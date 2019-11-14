@@ -1,0 +1,102 @@
+/*
+  This css file is for individual users to restyle items for their personal site,
+  or for the implementation of features specifically for their site. Anything that
+  is an official part of the theme (ex. Pull Requests) should be included in main.css
+  and follow the formatting and style given.
+*/
+body, input, select, textarea {
+  font-family: "M+PLUS+1p", "Source Sans Pro", "Ubuntu", sans-serif;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  text-decoration: underline dotted;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+  letter-spacing: 0.1em;
+  text-transform: none;
+}
+a:hover {
+  color:#0099ff;
+}
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.button:hover {
+  border:solid 1px #0099ff;
+  color:#1268B9 !important
+}
+input[type="submit"]:hover:active,
+input[type="reset"]:hover:active,
+input[type="button"]:hover:active,
+.button:hover:active {
+  background-color:rgba(46,186,174,0.05)
+}
+input:hover,
+select:hover,
+textarea:hover {
+  border-color:#0099ff;
+}
+
+@media (min-width: 768px) {
+  table>tbody>tr:hover {
+    background-color:rgba(46,187,170,0.5)
+  }
+}
+
+.button:hover {
+  border:solid 1px #0099ff;
+  color:#1268B9 !important
+}
+
+#site-nav .lang-toggle:hover span {
+  box-shadow:inset 0 0 0 100px rgba(46,187,170,0.5)
+}
+
+#lang-menu.flyout-menu span:hover {
+  box-shadow:inset 0 0 0 100px rgba(46,187,170,0.5)
+}
+
+
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+.button {
+  font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+   text-transform: none;
+}
+
+.button {
+  font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+  text-transform: none;
+}
+
+.post > header .meta .published {
+  font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+}
+
+.post > header .meta .author {
+  font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+}
+
+.post > footer .stats li ul li {
+  font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+}
+
+.post > footer .stats li ul li a {
+  font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+  overflow: visible;
+}
+
+#site-header a {
+  font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+}
+
+#recent-posts .mini-post header .published {
+  font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+}
+
+#site-footer .copyright {
+    font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+}

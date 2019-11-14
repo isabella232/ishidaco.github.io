@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ruby on モノコセル</title>
+    <link>https://monocosel.jp/categories/ruby/</link>
+    <description>Recent content in ruby on モノコセル</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Thu, 24 Jan 2013 21:49:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://monocosel.jp/categories/ruby/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Carrierwave: Dynamic Resize Processing With RMagick</title>
+      <link>https://monocosel.jp/blog/carrierwave-dynamic-resize-processing-with-rmagick/</link>
+      <pubDate>Thu, 24 Jan 2013 21:49:00 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/blog/carrierwave-dynamic-resize-processing-with-rmagick/</guid>
+      <description>この投稿は 旧ブログ stnoctps-blog Tumblr 出張所 から引っ越してきました。 Carrierwave 標準だと、resize_ 系が固定サイズしか指定できなかったので、倍率指定して拡大縮小で</description>
+    </item>
+    
+  </channel>
+</rss>
