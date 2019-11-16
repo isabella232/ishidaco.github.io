@@ -17,13 +17,8 @@ input, select, textarea {
   visibility: visible;
 }
 
-p {
-  font-family: "Noto Sans CJK JP", "Noto Sans JP", "Source Sans Pro", "Ubuntu", sans-serif;
-  visibility: hidden;
-}
-
 .wf-active p {
-  visibility: visible;
+  font-family: "Noto Sans CJK JP", "Noto Sans JP", "Source Sans Pro", "Ubuntu", sans-serif;
 }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
