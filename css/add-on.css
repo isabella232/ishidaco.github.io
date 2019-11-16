@@ -89,6 +89,11 @@ input[type="button"],
   text-transform: none;
 }
 
+.post {
+  max-width: 65rem;
+
+}
+
 .post > header .meta .published {
   font-family: "Noto Sans CJK JP", "Noto Sans JP", "Ubuntu", sans-serif;
 }
