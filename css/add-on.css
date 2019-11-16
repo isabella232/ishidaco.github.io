@@ -4,8 +4,26 @@
   is an official part of the theme (ex. Pull Requests) should be included in main.css
   and follow the formatting and style given.
 */
-body, input, select, textarea {
-  font-family: "M+PLUS+1p", "Source Sans Pro", "Ubuntu", sans-serif;
+.wf-active body {
+  font-family: "Noto Sans CJK JP", "Noto Sans JP", "Source Sans Pro", "Ubuntu", sans-serif;
+}
+
+input, select, textarea {
+  font-family: "Noto Sans CJK JP", "Noto Sans JP", "Source Sans Pro", "Ubuntu", sans-serif;
+  visibility: hidden;
+}
+
+.wf-active input, select, textarea {
+  visibility: visible;
+}
+
+p {
+  font-family: "Noto Sans CJK JP", "Noto Sans JP", "Source Sans Pro", "Ubuntu", sans-serif;
+  visibility: hidden;
+}
+
+.wf-active p {
+  visibility: visible;
 }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -13,7 +31,7 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+  font-family: "Noto Sans CJK JP", "Noto Sans JP", "Ubuntu", sans-serif;
   letter-spacing: 0.1em;
   text-transform: none;
 }
@@ -63,40 +81,40 @@ input[type="submit"],
 input[type="reset"],
 input[type="button"],
 .button {
-  font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+  font-family: "Noto Sans CJK JP", "Noto Sans JP", "Ubuntu", sans-serif;
    text-transform: none;
 }
 
 .button {
-  font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+  font-family: "Noto Sans CJK JP", "Noto Sans JP", "Ubuntu", sans-serif;
   text-transform: none;
 }
 
 .post > header .meta .published {
-  font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+  font-family: "Noto Sans CJK JP", "Noto Sans JP", "Ubuntu", sans-serif;
 }
 
 .post > header .meta .author {
-  font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+  font-family: "Noto Sans CJK JP", "Noto Sans JP", "Ubuntu", sans-serif;
 }
 
 .post > footer .stats li ul li {
-  font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+  font-family: "Noto Sans CJK JP", "Noto Sans JP", "Ubuntu", sans-serif;
 }
 
 .post > footer .stats li ul li a {
-  font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+  font-family: "Noto Sans CJK JP", "Noto Sans JP", "Ubuntu", sans-serif;
   overflow: visible;
 }
 
 #site-header a {
-  font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+  font-family: "Noto Sans CJK JP", "Noto Sans JP", "Ubuntu", sans-serif;
 }
 
 #recent-posts .mini-post header .published {
-  font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+  font-family: "Noto Sans CJK JP", "Noto Sans JP", "Ubuntu", sans-serif;
 }
 
 #site-footer .copyright {
-    font-family: "M+PLUS+1p", "Ubuntu", sans-serif;
+  font-family: "Noto Sans CJK JP", "Noto Sans JP", "Ubuntu", sans-serif;
 }
