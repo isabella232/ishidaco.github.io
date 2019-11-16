@@ -1,114 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-  <url>
-    <loc>https://monocosel.jp/blog/</loc>
-    <lastmod>2019-11-16T16:31:54+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://monocosel.jp/categories/</loc>
-    <lastmod>2019-11-16T16:31:54+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://monocosel.jp/en/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://monocosel.jp/categories/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://monocosel.jp/tags/css/</loc>
-    <lastmod>2019-11-16T16:31:54+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://monocosel.jp/tags/html/</loc>
-    <lastmod>2019-11-16T16:31:54+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://monocosel.jp/tags/javascript/</loc>
-    <lastmod>2019-11-16T16:31:54+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://monocosel.jp/categories/performance/</loc>
-    <lastmod>2019-11-16T16:31:54+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://monocosel.jp/tags/</loc>
-    <lastmod>2019-11-16T16:31:54+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://monocosel.jp/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://monocosel.jp/tags/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://monocosel.jp/blog/web-font-loader/</loc>
-    <lastmod>2019-11-16T16:31:54+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://monocosel.jp/</loc>
-    <lastmod>2019-11-16T16:31:54+09:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://monocosel.jp/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ja"
-                href="https://monocosel.jp/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://monocosel.jp/about/</loc>
-    <lastmod>2019-11-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://monocosel.jp/tags/carrierwave/</loc>
-    <lastmod>2013-01-24T21:49:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://monocosel.jp/blog/carrierwave-dynamic-resize-processing-with-rmagick/</loc>
-    <lastmod>2013-01-24T21:49:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://monocosel.jp/tags/image/</loc>
-    <lastmod>2013-01-24T21:49:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://monocosel.jp/tags/ror/</loc>
-    <lastmod>2013-01-24T21:49:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://monocosel.jp/categories/ruby/</loc>
-    <lastmod>2013-01-24T21:49:00+09:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://monocosel.jp/contact/</loc>
-  </url>
-  
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+<url>
+<loc>https://monocosel.jp/blog/web-font-loader/</loc>
+
+<lastmod>2019-11-16T16:31:54+09:00</lastmod>
+
+</url>
+
+<url>
+<loc>https://monocosel.jp/blog/carrierwave-dynamic-resize-processing-with-rmagick/</loc>
+
+<lastmod>2013-01-24T21:49:00+09:00</lastmod>
+
+</url>
+
 </urlset>

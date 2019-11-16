@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>javascript on モノコセル</title>
+    <link>https://monocosel.jp/tags/javascript/</link>
+    <description>Recent content in javascript on モノコセル</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Sat, 16 Nov 2019 16:31:54 +0900</lastBuildDate>
+    
+	<atom:link href="https://monocosel.jp/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Web Font Loader で Web フォントの読み込み速度を改善してみた</title>
+      <link>https://monocosel.jp/blog/web-font-loader/</link>
+      <pubDate>Sat, 16 Nov 2019 16:31:54 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/blog/web-font-loader/</guid>
+      <description>Web フォントを非同期で読み込んで、Web フォントのダウンロード中に固まらないようにしてみた。 https://github.com/typekit/webfontloader JavaScript を非同期でロード 2019-11-16 時点で最新版は 1.6.28 だが、Goo</description>
+    </item>
+    
+  </channel>
+</rss>
