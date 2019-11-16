@@ -4,6 +4,10 @@
   is an official part of the theme (ex. Pull Requests) should be included in main.css
   and follow the formatting and style given.
 */
+body {
+  font-family: 'Hiragino Maru Gothic ProN', 'Meiryo',"Noto Sans CJK JP", sans-serif;
+}
+
 .wf-active body {
   font-family: "Noto Sans CJK JP", "Noto Sans JP", "Source Sans Pro", "Ubuntu", sans-serif;
 }

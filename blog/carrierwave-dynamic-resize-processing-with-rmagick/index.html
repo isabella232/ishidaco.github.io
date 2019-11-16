@@ -35,8 +35,6 @@
   
 
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" async></script>
-  <link rel="stylesheet"
-      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css">
   
     
       <link rel="stylesheet" href="/css/normalize.css">
@@ -292,65 +290,56 @@
 <p>rmagick (2.13.1)</p>
 
 <h1 id="lib-carrierwave-dynamic-resize-rb">/lib/carrierwave/dynamic_resize.rb</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rb" data-lang="rb"><span style="color:#66d9ef">module</span> CarrierWave
 
-<pre><code class="language-rb">module CarrierWave
+  <span style="color:#66d9ef">module</span> DynamicResize
 
-  module DynamicResize
+    <span style="color:#66d9ef">module</span> ClassMethods
 
-    module ClassMethods
+      <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">resize_to_power</span>(power)
+        process <span style="color:#e6db74">:resize_to_power</span> <span style="color:#f92672">=&gt;</span> power
+      <span style="color:#66d9ef">end</span>
 
-      def resize_to_power(power)
-        process :resize_to_power =&gt; power
-      end
+    <span style="color:#66d9ef">end</span>
 
-    end
-
-    def resize_to_power(power)
-      if @file
-        img = ::Magick::Image::read(@file.file).first
-        if model
-          @img_width = img.columns
-          @img_height = img.rows
-          @resize_width = @img_width * power
-          @resize_height = @img_height * power
+    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">resize_to_power</span>(power)
+      <span style="color:#66d9ef">if</span> @file
+        img <span style="color:#f92672">=</span> <span style="color:#f92672">::</span><span style="color:#66d9ef">Magick</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Image</span><span style="color:#f92672">::</span>read(@file<span style="color:#f92672">.</span>file)<span style="color:#f92672">.</span>first
+        <span style="color:#66d9ef">if</span> model
+          @img_width <span style="color:#f92672">=</span> img<span style="color:#f92672">.</span>columns
+          @img_height <span style="color:#f92672">=</span> img<span style="color:#f92672">.</span>rows
+          @resize_width <span style="color:#f92672">=</span> @img_width <span style="color:#f92672">*</span> power
+          @resize_height <span style="color:#f92672">=</span> @img_height <span style="color:#f92672">*</span> power
           resize_to_fill(@resize_width, @resize_height)
-        end
-      end
-    end
+        <span style="color:#66d9ef">end</span>
+      <span style="color:#66d9ef">end</span>
+    <span style="color:#66d9ef">end</span>
 
-  end
+  <span style="color:#66d9ef">end</span>
 
-end
-</code></pre>
-
+<span style="color:#66d9ef">end</span></code></pre></div>
 <h1 id="app-uploaders-hoge-uploader-rb">/app/uploaders/hoge_uploader.rb</h1>
-
-<pre><code class="language-rb">class HogeUploader &lt; CarrierWave::Uploader::Base
-
-  :
-
-  include CarrierWave::DynamicResize
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rb" data-lang="rb"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HogeUploader</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">CarrierWave</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Uploader</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Base</span>
 
   :
 
-  version :half do
-    process :resize_to_power =&gt; 0.5
-  end
+  <span style="color:#66d9ef">include</span> <span style="color:#66d9ef">CarrierWave</span><span style="color:#f92672">::</span><span style="color:#66d9ef">DynamicResize</span>
+
   :
 
-  version :quarter do
-    process :resize_to_power =&gt; 0.25
-  end
-end
-</code></pre>
+  version <span style="color:#e6db74">:half</span> <span style="color:#66d9ef">do</span>
+    process <span style="color:#e6db74">:resize_to_power</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">.</span><span style="color:#ae81ff">5</span>
+  <span style="color:#66d9ef">end</span>
+  :
 
+  version <span style="color:#e6db74">:quarter</span> <span style="color:#66d9ef">do</span>
+    process <span style="color:#e6db74">:resize_to_power</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">.</span><span style="color:#ae81ff">25</span>
+  <span style="color:#66d9ef">end</span>
+<span style="color:#66d9ef">end</span></code></pre></div>
 <h1 id="config-initilaizers-carrierwave-rb">/config/initilaizers/carrierwave.rb</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rb" data-lang="rb">  :
 
-<pre><code class="language-rb">  :
-
-require File.join(Rails.root, “lib”, “carrierwave”, “dynamic_resize”)
-</code></pre>
-
+require <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>join(<span style="color:#66d9ef">Rails</span><span style="color:#f92672">.</span>root, <span style="color:#960050;background-color:#1e0010">“</span>lib<span style="color:#960050;background-color:#1e0010">”</span>, <span style="color:#960050;background-color:#1e0010">“</span>carrierwave<span style="color:#960050;background-color:#1e0010">”</span>, <span style="color:#960050;background-color:#1e0010">“</span>dynamic_resize<span style="color:#960050;background-color:#1e0010">”</span>)</code></pre></div>
   </div>
   <footer>
     <ul class="stats">
@@ -562,10 +551,6 @@ require File.join(Rails.root, “lib”, “carrierwave”, “dynamic_resize”
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
 
       
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/html.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/css.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/js.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/languages/toml.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
-
 
   
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
