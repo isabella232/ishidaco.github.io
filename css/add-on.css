@@ -91,7 +91,14 @@ input[type="button"],
 
 .post {
   max-width: 65rem;
+}
 
+.post > header .title {
+  width: 85%;
+}
+
+.post > header .meta {
+  width: 15%;
 }
 
 .post > header .meta .published {
