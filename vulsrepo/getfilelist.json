@@ -1,0 +1,38 @@
+[
+  {
+    "isFolder": "true",
+    "title": "2020-02-03T08:44:29Z",
+    "children": [
+      {
+        "title": "laughing_gates@localhost.json",
+        "url": "/2020-02-03T08:44:29Z/laughing_gates@localhost.json"
+      },
+      {
+        "title": "localhost.json",
+        "url": "/2020-02-03T08:44:29Z/localhost.json"
+      }
+    ]
+  },
+  {
+    "isFolder": "true",
+    "title": "2020-02-04T01:25:11Z",
+    "children": [
+      {
+        "title": "amazon-ec2.json",
+        "url": "/2020-02-04T01:25:11Z/amazon-ec2.json"
+      },
+      {
+        "title": "localhost.json",
+        "url": "/2020-02-04T01:25:11Z/localhost.json"
+      },
+      {
+        "title": "suspicious_beaver@localhost.json",
+        "url": "/2020-02-04T01:25:11Z/suspicious_beaver@localhost.json"
+      },
+      {
+        "title": "vulsrepo@localhost.json",
+        "url": "/2020-02-04T01:25:11Z/vulsrepo@localhost.json"
+      }
+    ]
+  }
+]

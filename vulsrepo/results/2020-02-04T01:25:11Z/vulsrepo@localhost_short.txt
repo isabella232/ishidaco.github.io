@@ -1,0 +1,7 @@
+
+vulsrepo@localhost (alpine3.10.4) on localhost
+==============================================
+Total: 0 (High:0 Medium:0 Low:0 ?:0), 0/0 Fixed, 14 installed, 0 updatable, 0 exploits, en: 0, ja: 0 alerts
+
+No CVE-IDs are found in updatable packages.
+14 installed, 0 updatable

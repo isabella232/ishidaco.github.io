@@ -1,0 +1,44 @@
+amazon-ec2 (amazon2 (Karoo))
+============================
+Total: 36 (High:11 Medium:21 Low:4 ?:0), 36/36 Fixed, 551 installed, 69 updatable, 0 exploits, en: 0, ja: 0 alerts
+
++------------------+------+--------+-----+------+---------+---------------------------------------------------+
+|      CVE-ID      | CVSS | ATTACK | POC | CERT |  FIXED  |                        NVD                        |
++------------------+------+--------+-----+------+---------+---------------------------------------------------+
+| CVE-2019-19604   | 10.0 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-19604   |
+| CVE-2019-18218   |  9.8 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-18218   |
+| CVE-2019-18224   |  9.8 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-18224   |
+| CVE-2019-9893    |  9.8 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-9893    |
+| CVE-2019-1349    |  9.3 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-1349    |
+| CVE-2019-1350    |  9.3 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-1350    |
+| CVE-2019-1352    |  9.3 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-1352    |
+| CVE-2019-1354    |  9.3 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-1354    |
+| CVE-2019-1353    |  8.9 |        |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-1353    |
+| CVE-2016-3616    |  8.8 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2016-3616    |
+| CVE-2019-11745   |  8.8 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-11745   |
+| CVE-2019-1387    |  8.8 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-1387    |
+| CVE-2018-1000876 |  7.8 |  AV:L  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2018-1000876 |
+| CVE-2014-6272    |  7.5 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2014-6272    |
+| CVE-2015-6525    |  7.5 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2015-6525    |
+| CVE-2018-11813   |  7.5 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2018-11813   |
+| CVE-2018-12697   |  7.5 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2018-12697   |
+| CVE-2018-16881   |  7.5 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2018-16881   |
+| CVE-2019-11729   |  7.5 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-11729   |
+| CVE-2019-12290   |  7.5 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-12290   |
+| CVE-2019-16056   |  7.5 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-16056   |
+| CVE-2019-6470    |  7.5 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-6470    |
+| CVE-2018-11212   |  6.5 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2018-11212   |
+| CVE-2018-11213   |  6.5 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2018-11213   |
+| CVE-2018-11214   |  6.5 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2018-11214   |
+| CVE-2018-12207   |  6.5 |  AV:L  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2018-12207   |
+| CVE-2018-14498   |  6.5 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2018-14498   |
+| CVE-2019-11139   |  6.0 |  AV:L  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-11139   |
+| CVE-2018-12641   |  5.5 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2018-12641   |
+| CVE-2018-16838   |  5.5 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2018-16838   |
+| CVE-2018-18384   |  5.5 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2018-18384   |
+| CVE-2018-19519   |  5.5 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2018-19519   |
+| CVE-2019-11135   |  5.5 |  AV:L  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-11135   |
+| CVE-2019-3811    |  5.2 |  AV:A  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-3811    |
+| CVE-2019-1351    |  5.0 |  AV:N  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-1351    |
+| CVE-2019-1348    |  3.6 |  AV:L  |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2019-1348    |
++------------------+------+--------+-----+------+---------+---------------------------------------------------+
