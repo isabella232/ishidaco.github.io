@@ -6,10 +6,19 @@
     <description>Recent content in Tags on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 16 Nov 2019 16:31:54 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 04 Feb 2020 11:30:09 +0900</lastBuildDate>
     
 	<atom:link href="https://monocosel.jp/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>vulsrepo</title>
+      <link>https://monocosel.jp/tags/vulsrepo/</link>
+      <pubDate>Tue, 04 Feb 2020 11:30:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/tags/vulsrepo/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>css</title>

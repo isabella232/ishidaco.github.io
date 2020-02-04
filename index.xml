@@ -6,10 +6,19 @@
     <description>Recent content on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 16 Nov 2019 16:31:54 +0900</lastBuildDate>
+    <lastBuildDate>Tue, 04 Feb 2020 11:30:09 +0900</lastBuildDate>
     
 	<atom:link href="https://monocosel.jp/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>VulsRepo オンラインデモ</title>
+      <link>https://monocosel.jp/blog/vulsrepo-demo/</link>
+      <pubDate>Tue, 04 Feb 2020 11:30:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/blog/vulsrepo-demo/</guid>
+      <description>VulsRepo オンラインデモを公開しました。 https://github.com/ishiDACo/vulsrepo/commit/3a0f432d18933b2776c5c2983cbcc79ebe35a115 まで対応したものになります。</description>
+    </item>
     
     <item>
       <title>Web Font Loader で Web フォントの読み込み速度を改善してみた</title>
