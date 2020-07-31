@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>matomeli on モノコセル</title>
+    <link>https://monocosel.jp/categories/matomeli/</link>
+    <description>Recent content in matomeli on モノコセル</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja</language>
+    <lastBuildDate>Mon, 27 Jul 2020 11:31:37 +0900</lastBuildDate>
+    
+	<atom:link href="https://monocosel.jp/categories/matomeli/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>「まとめり」の運用を開始しました</title>
+      <link>https://monocosel.jp/blog/launched-matomeli/</link>
+      <pubDate>Mon, 27 Jul 2020 11:31:37 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/blog/launched-matomeli/</guid>
+      <description>@iorate 氏 製作の uBlacklist 向けの Google 検索ブロックリストを配信する まとめり を 2020/07/27 より運用開始しました。</description>
+    </item>
+    
+  </channel>
+</rss>
