@@ -6,7 +6,16 @@
     <description>Recent content in security on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 04 Feb 2020 11:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/categories/security/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 23 Sep 2020 14:00:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/categories/security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo が Raspberry Pi に対応しました</title>
+      <link>https://monocosel.jp/blog/vulsrepo-demo-v0-2-2/</link>
+      <pubDate>Wed, 23 Sep 2020 14:00:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/blog/vulsrepo-demo-v0-2-2/</guid>
+      <description>VulsRepo オンラインデモ を更新しました。 新たに Debian Security Tracker に対応しました。 Amazon Linux 2 Ubuntu 18.04 Raspbian 9.13 Raspberry Pi OS 10 Docker コンテナ上の Alpine Linux に対する脆弱性スキャン結果のサンプルを確</description>
+    </item>
+    
     <item>
       <title>VulsRepo オンラインデモ</title>
       <link>https://monocosel.jp/blog/vulsrepo-demo/</link>

@@ -2,24 +2,36 @@
 <html lang="ja">
   <head>
   <meta charset="utf-8">
-<title>Blog - モノコセル</title>
+<title>VulsRepo が Raspberry Pi に対応しました - モノコセル</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
   <meta name="generator" content="Hugo 0.75.1" />
-  <meta itemprop="name" content="Blog">
-<meta itemprop="description" content="">
+  <meta itemprop="name" content="VulsRepo が Raspberry Pi に対応しました">
+<meta itemprop="description" content="VulsRepo オンラインデモ を更新しました。 新たに Debian Security Tracker に対応しました。 Amazon Linux 2 Ubuntu 18.04 Raspbian 9.13 Raspberry Pi OS 10 Docker コンテナ上の Alpine Linux に対する脆弱性スキャン結果のサンプルを確">
+<meta itemprop="datePublished" content="2020-09-23T14:00:09+09:00" />
+<meta itemprop="dateModified" content="2020-09-23T14:00:09+09:00" />
+<meta itemprop="wordCount" content="90">
+<meta itemprop="image" content="https://monocosel.jp/blog/vulsrepo-demo-v0-2-2/debian-security-tracker.png">
 
-  <meta property="og:title" content="Blog" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://monocosel.jp/blog/" />
-<meta property="og:updated_time" content="2020-09-23T14:00:09+09:00" />
 
-  <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Blog"/>
-<meta name="twitter:description" content=""/>
+
+<meta itemprop="keywords" content="vulsrepo," />
+
+  <meta property="og:title" content="VulsRepo が Raspberry Pi に対応しました" />
+<meta property="og:description" content="VulsRepo オンラインデモ を更新しました。 新たに Debian Security Tracker に対応しました。 Amazon Linux 2 Ubuntu 18.04 Raspbian 9.13 Raspberry Pi OS 10 Docker コンテナ上の Alpine Linux に対する脆弱性スキャン結果のサンプルを確" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://monocosel.jp/blog/vulsrepo-demo-v0-2-2/" />
+<meta property="og:image" content="https://monocosel.jp/blog/vulsrepo-demo-v0-2-2/debian-security-tracker.png" />
+<meta property="article:published_time" content="2020-09-23T14:00:09+09:00" />
+<meta property="article:modified_time" content="2020-09-23T14:00:09+09:00" />
+
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://monocosel.jp/blog/vulsrepo-demo-v0-2-2/debian-security-tracker.png"/>
+
+<meta name="twitter:title" content="VulsRepo が Raspberry Pi に対応しました"/>
+<meta name="twitter:description" content="VulsRepo オンラインデモ を更新しました。 新たに Debian Security Tracker に対応しました。 Amazon Linux 2 Ubuntu 18.04 Raspbian 9.13 Raspberry Pi OS 10 Docker コンテナ上の Alpine Linux に対する脆弱性スキャン結果のサンプルを確"/>
 <meta name="twitter:site" content="@ishiDACo"/>
 
   
@@ -114,7 +126,7 @@
   <menu id="lang-menu" class="flyout-menu">
   <a href="#" lang="ja" class="link active">日本語 (ja)</a>
   
-      <a href="https://monocosel.jp/en/blog/" lang="en" class="link">English (en)</a>
+      <a href="https://monocosel.jp/en/blog/vulsrepo-demo-v0-2-2/" lang="en" class="link">English (en)</a>
     
   
 </menu>
@@ -129,31 +141,31 @@
 
   
     
-    <a href="//twitter.com/share?text=Blog&amp;url=https%3a%2f%2fmonocosel.jp%2fblog%2f" target="_blank" rel="noopener" class="share-btn twitter">
+    <a href="//twitter.com/share?text=VulsRepo%20%e3%81%8c%20Raspberry%20Pi%20%e3%81%ab%e5%af%be%e5%bf%9c%e3%81%97%e3%81%be%e3%81%97%e3%81%9f&amp;url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-demo-v0-2-2%2f" target="_blank" rel="noopener" class="share-btn twitter">
         <i class="fab fa-twitter"></i><p>&nbsp;Twitter</p>
       </a>
   
 
   
-      <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fmonocosel.jp%2fblog%2f" target="_blank" rel="noopener" class="share-btn facebook">
+      <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-demo-v0-2-2%2f" target="_blank" rel="noopener" class="share-btn facebook">
         <i class="fab fa-facebook"></i><p>&nbsp;Facebook</p>
         </a>
   
 
   
-    <a href="//www.reddit.com/submit?url=https%3a%2f%2fmonocosel.jp%2fblog%2f&amp;title=Blog" target="_blank" rel="noopener" class="share-btn reddit">
+    <a href="//www.reddit.com/submit?url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-demo-v0-2-2%2f&amp;title=VulsRepo%20%e3%81%8c%20Raspberry%20Pi%20%e3%81%ab%e5%af%be%e5%bf%9c%e3%81%97%e3%81%be%e3%81%97%e3%81%9f" target="_blank" rel="noopener" class="share-btn reddit">
           <i class="fab fa-reddit-alien"></i><p>&nbsp;Reddit</p>
         </a>
   
 
   
-        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fmonocosel.jp%2fblog%2f&amp;title=Blog" target="_blank" rel="noopener" class="share-btn linkedin">
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-demo-v0-2-2%2f&amp;title=VulsRepo%20%e3%81%8c%20Raspberry%20Pi%20%e3%81%ab%e5%af%be%e5%bf%9c%e3%81%97%e3%81%be%e3%81%97%e3%81%9f" target="_blank" rel="noopener" class="share-btn linkedin">
             <i class="fab fa-linkedin"></i><p>&nbsp;LinkedIn</p>
           </a>
   
 
   
-        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fmonocosel.jp%2fblog%2f&amp;description=Blog" target="_blank" rel="noopener" class="share-btn pinterest">
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-demo-v0-2-2%2f&amp;description=VulsRepo%20%e3%81%8c%20Raspberry%20Pi%20%e3%81%ab%e5%af%be%e5%bf%9c%e3%81%97%e3%81%be%e3%81%97%e3%81%9f" target="_blank" rel="noopener" class="share-btn pinterest">
           <i class="fab fa-pinterest-p"></i><p>&nbsp;Pinterest</p>
         </a>
   
@@ -223,9 +235,7 @@
 </section>
 
       <main id="site-main">
-        
-        
-          <article class="post">
+        <article class="post">
   <header>
   <div class="title">
     
@@ -244,6 +254,45 @@
   </div>
 </header>
 
+  <section id="socnet-share">
+    
+
+
+
+
+  
+    
+    <a href="//twitter.com/share?text=VulsRepo%20%e3%81%8c%20Raspberry%20Pi%20%e3%81%ab%e5%af%be%e5%bf%9c%e3%81%97%e3%81%be%e3%81%97%e3%81%9f&amp;url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-demo-v0-2-2%2f" target="_blank" rel="noopener" class="share-btn twitter">
+        <i class="fab fa-twitter"></i><p>&nbsp;Twitter</p>
+      </a>
+  
+
+  
+      <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-demo-v0-2-2%2f" target="_blank" rel="noopener" class="share-btn facebook">
+        <i class="fab fa-facebook"></i><p>&nbsp;Facebook</p>
+        </a>
+  
+
+  
+    <a href="//www.reddit.com/submit?url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-demo-v0-2-2%2f&amp;title=VulsRepo%20%e3%81%8c%20Raspberry%20Pi%20%e3%81%ab%e5%af%be%e5%bf%9c%e3%81%97%e3%81%be%e3%81%97%e3%81%9f" target="_blank" rel="noopener" class="share-btn reddit">
+          <i class="fab fa-reddit-alien"></i><p>&nbsp;Reddit</p>
+        </a>
+  
+
+  
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-demo-v0-2-2%2f&amp;title=VulsRepo%20%e3%81%8c%20Raspberry%20Pi%20%e3%81%ab%e5%af%be%e5%bf%9c%e3%81%97%e3%81%be%e3%81%97%e3%81%9f" target="_blank" rel="noopener" class="share-btn linkedin">
+            <i class="fab fa-linkedin"></i><p>&nbsp;LinkedIn</p>
+          </a>
+  
+
+  
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-demo-v0-2-2%2f&amp;description=VulsRepo%20%e3%81%8c%20Raspberry%20Pi%20%e3%81%ab%e5%af%be%e5%bf%9c%e3%81%97%e3%81%be%e3%81%97%e3%81%9f" target="_blank" rel="noopener" class="share-btn pinterest">
+          <i class="fab fa-pinterest-p"></i><p>&nbsp;Pinterest</p>
+        </a>
+  
+
+
+  </section>
   
   <a href="/blog/vulsrepo-demo-v0-2-2/" class="image featured">
     
@@ -252,11 +301,22 @@
   </a>
 
 
-  
-  <p><a href="/vulsrepo/">VulsRepo オンラインデモ</a>
+  <div class="content">
+    <p><a href="/vulsrepo/">VulsRepo オンラインデモ</a>
 を更新しました。</p>
+<p>新たに Debian Security Tracker に対応しました。</p>
+<ul>
+<li>Amazon Linux 2</li>
+<li>Ubuntu 18.04</li>
+<li>Raspbian 9.13</li>
+<li>Raspberry Pi OS 10</li>
+<li>Docker コンテナ上の Alpine Linux</li>
+</ul>
+<p>に対する脆弱性スキャン結果のサンプルを確認できます。</p>
+<p><a href="https://github.com/ishiDACo/vulsrepo/releases/tag/v0.2.2">https://github.com/ishiDACo/vulsrepo/releases/tag/v0.2.2</a> に対応したものになります。</p>
+
+  </div>
   <footer>
-    <a href="/blog/vulsrepo-demo-v0-2-2/" class="button big">続きを読む</a>
     <ul class="stats">
   
     
@@ -289,151 +349,14 @@
   </footer>
 </article>
 
-        
-          <article class="post">
-  <header>
-  <div class="title">
-    
-        <h2><a href="/blog/launched-matomeli/">「まとめり」の運用を開始しました</a></h2>
-    
-    
-</div>
-  <div class="meta">
-    <time class="published" datetime="2020-07-27 11:31:37 &#43;0900 JST">
-      2020-07-27
-    </time>
-    <span class="author"></span>
-    
-      <p>1 分で読めます</p>
-    
-  </div>
-</header>
 
-  
-  <a href="/blog/launched-matomeli/" class="image featured">
-    
-      <img src="/blog/launched-matomeli/launched-matomeli.jpg" alt="">
-    
-  </a>
-
-
-  
-  <p><a href="https://github.com/iorate" target="_blank" rel="noopener noreferrer">@iorate 氏 <span class="fas fa-external-link-alt"></span></a>
-製作の <a href="https://qiita.com/iorate/items/9ff65360fbdf4082476a" target="_blank" rel="noopener noreferrer">uBlacklist <span class="fas fa-external-link-alt"></span></a>
- 向けの Google 検索ブロックリストを配信する <a href="https://matomeli.info" target="_blank" rel="noopener noreferrer">まとめり <span class="fas fa-external-link-alt"></span></a>
- を 2020/07/27 より運用開始しました。</p>
-  <footer>
-    <a href="/blog/launched-matomeli/" class="button big">続きを読む</a>
-    <ul class="stats">
-  
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://monocosel.jp/categories/matomeli">matomeli</a></li>
-          
-        </ul>
-      </li>
-    
-  
-  
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://monocosel.jp/tags/service">service</a></li>
-          
-            
-            <li><a class="article-category-link" href="https://monocosel.jp/tags/matomeli">matomeli</a></li>
-          
-        </ul>
-      </li>
-    
-  
-</ul>
-
-  </footer>
-</article>
-
-        
-          <article class="post">
-  <header>
-  <div class="title">
-    
-        <h2><a href="/blog/vulsrepo-demo/">VulsRepo オンラインデモ</a></h2>
-    
-    
-</div>
-  <div class="meta">
-    <time class="published" datetime="2020-02-04 11:30:09 &#43;0900 JST">
-      2020-02-04
-    </time>
-    <span class="author"></span>
-    
-      <p>1 分で読めます</p>
-    
-  </div>
-</header>
-
-  
-  <a href="/blog/vulsrepo-demo/" class="image featured">
-    
-      <img src="/blog/vulsrepo-demo/image003.png" alt="">
-    
-  </a>
-
-
-  
-  <p><a href="/vulsrepo/">VulsRepo オンラインデモ</a>
-を公開しました。</p>
-  <footer>
-    <a href="/blog/vulsrepo-demo/" class="button big">続きを読む</a>
-    <ul class="stats">
-  
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://monocosel.jp/categories/security">security</a></li>
-          
-        </ul>
-      </li>
-    
-  
-  
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://monocosel.jp/tags/vulsrepo">vulsrepo</a></li>
-          
-        </ul>
-      </li>
-    
-  
-</ul>
-
-  </footer>
-</article>
-
-        
-        
 <div class="pagination">
   
-    <a href="#" class="disabled button big previous"><i class="fas fa-angle-left"></i></a>
+    <a href="/blog/launched-matomeli/" class="button"><div class="previous"><div>「まとめり」の運用を開始しました</div></div></a>
   
-  
-    <a href="/blog/page/2/" class="button big next"><i class="fas fa-angle-right"></i></a>
   
 </div>
+
 
       </main>
       <section id="site-sidebar">
