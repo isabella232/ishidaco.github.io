@@ -1,0 +1,15 @@
+amazon-ec2 (amazon2 (Karoo))
+============================
+Total: 7 (High:7 Medium:0 Low:0 ?:0), 7/7 Fixed, 552 installed, 118 updatable, 0 exploits, 0 modules, en: 0, ja: 0 alerts
+
++----------------+------+--------+-----+------+---------+-------------------------------------------------+
+|     CVE-ID     | CVSS | ATTACK | POC | CERT |  FIXED  |                       NVD                       |
++----------------+------+--------+-----+------+---------+-------------------------------------------------+
+| CVE-2020-14556 |  8.9 |        |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2020-14556 |
+| CVE-2020-14577 |  8.9 |        |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2020-14577 |
+| CVE-2020-14578 |  8.9 |        |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2020-14578 |
+| CVE-2020-14579 |  8.9 |        |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2020-14579 |
+| CVE-2020-14583 |  8.9 |        |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2020-14583 |
+| CVE-2020-14593 |  8.9 |        |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2020-14593 |
+| CVE-2020-14621 |  8.9 |        |     |      |   fixed | https://nvd.nist.gov/vuln/detail/CVE-2020-14621 |
++----------------+------+--------+-----+------+---------+-------------------------------------------------+
