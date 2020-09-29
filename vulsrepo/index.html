@@ -137,7 +137,7 @@
                                 </ul>
                             </div>
 
-                            <div class="col-xs-11" style="padding-left: 0px; padding-right: 0px;">
+                            <div class="col-xs-11" style="padding-left: 0px; padding-right: 0px; width: 1575px;">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="main-r">
                                         <div class="panel panel-info">
@@ -146,8 +146,8 @@
                                                 <p class="bg-primary">
                                                     CVSS Detail
                                                 </p>
-                                                <div class="col-xs-8">
-                                                    <table class="table table-hover table-condensed font-size-small">
+                                                <div class="col-xs-9" style="padding-left:0;">
+                                                    <table class="table table-hover table-condensed font-size-small" style="margin-bottom:0;">
                                                         <tr class="active">
                                                             <th>Type</th>
                                                             <th>Score
@@ -225,7 +225,7 @@
 
                                                     </table>
                                                 </div>
-                                                <div class="col-xs-4" style="padding-left: 0px;">
+                                                <div class="col-xs-3" style="padding-left: 0px;">
                                                     <ul class="nav nav-tabs">
                                                         <li>
                                                             <a data-toggle="tab" href="#tab_chart_v2">CvssV2</a>
@@ -249,20 +249,70 @@
 
                                             </div>
                                         </div>
-                                        <p class="bg-primary">
-                                            CweID
-                                        </p>
-                                        <div id="CweID"></div>
-                                        <p class="bg-primary">
-                                            Links
-                                        </p>
-                                        <div id="Link"></div>
+                                        <div class="container-fluid">
+                                            <div class="row full-width-row">
+                                                <div>
+                                                    <div class="col-xs-6">
+                                                        <p class="bg-primary">
+                                                            CweID
+                                                        </p>
+                                                        <div id="CweID"></div>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <p class="bg-primary">
+                                                            Links
+                                                        </p>
+                                                        <div id="Link"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row full-width-row">
+                                                <div>
+                                                    <div class="col-xs-6">
+                                                        <section>
+                                                            <div class="panel-group" id="panel-cert">
+                                                                <div class="panel panel-primary">
+                                                                    <div class="panel-heading">
+                                                                        <h4 class="panel-title accordion-toggle title">
+                                                                            <a id="title-cert" data-toggle="collapse" data-parent="#panel-cert" href="#collapse-cert" class="collapse">USCERT / JPCERT Alert<span id="count-cert" class="badge count">0</span></a>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div id="collapse-cert" class="panel-collapse collapse">
+                                                                        <div class="panel-body">
+                                                                            <div id="cert"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </section>
+                                                    </div>
+                                                    <div class="col-xs-6">
+                                                        <section>
+                                                            <div class="panel-group" id="panel-cert">
+                                                                <div class="panel panel-primary">
+                                                                    <div class="panel-heading">
+                                                                        <h4 class="panel-title accordion-toggle title">
+                                                                            <a id="title-exploit" data-toggle="collapse" data-parent="#panel-exploit" href="#collapse-exploit" class="collapse">Exploits<span id="count-exploit" class="badge count">0</span></a>
+                                                                        </h4>
+                                                                    </div>
+                                                                    <div id="collapse-exploit" class="panel-collapse collapse">
+                                                                        <div class="panel-body">
+                                                                            <div id="exploit"></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </section>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <section>
                                             <div class="panel-group" id="panel-References">
                                                 <div class="panel panel-primary">
                                                     <div class="panel-heading">
-                                                        <h4 class="panel-title accordion-toggle">
-                                                            <a id="title-References" data-toggle="collapse" data-parent="#panel-References" href="#collapse-References">References<span id="count-References" class="badge">0</span></a>
+                                                        <h4 class="panel-title accordion-toggle title">
+                                                            <a id="title-References" data-toggle="collapse" data-parent="#panel-References" href="#collapse-References" class="collapse">References<span id="count-References" class="badge count">0</span></a>
                                                         </h4>
                                                     </div>
                                                     <div id="collapse-References" class="panel-collapse collapse">
@@ -287,6 +337,9 @@
                                                     <th>Package<br>Release</th>
                                                     <th>Package<br>NewVersion</th>
                                                     <th>Package<br>NewRelease</th>
+                                                    <th>Package<br>Repository</th>
+                                                    <th>FixedIn</th>
+                                                    <th>FixState</th>
                                                     <th>NotFixedYet</th>
                                                 </tr>
                                             </thead>
@@ -340,21 +393,57 @@
                         <h4>Pivot Table</h4>
                         <br>
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-7">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         Show / Hide the Item
                                     </div>
                                     <div class="panel-body">
                                         <div class="make-switch">
-                                            <input type="checkbox" name="chkPivotSummary" data-label-text="Summary" checked>
-                                            <input type="checkbox" name="chkPivotCvss" data-label-text="Cvss Metrics" checked>
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" name="chkPivotSummary" data-label-text="Summary" checked>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" name="chkPivotCvss" data-label-text="Cvss Metrics" checked>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <p class="bg-primary">Attention CweID</p>
+                                        <div class="make-switch">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" name="chkCweTop25" data-label-text="2019 CWE Top 25 Most Dangerous Software Errors" checked>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" name="chkOwaspTopTen2017" data-label-text="OWASP Top 10 - 2017">
+                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" name="chkSansTop25" data-label-text="SANS Top 25 Software Errors">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-5">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         Priority

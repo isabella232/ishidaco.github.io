@@ -276,13 +276,16 @@ const setEvents = function() {
     });
 
     $("#delete_pivot_conf").click(function() {
-        db.removePivotConf($("#drop_topmenu_hiddenValue").attr('value'));
-        db.remove("vulsrepo_pivot_conf");
-        $("#drop_topmenu_visibleValue").html("Select setting");
-        $("#drop_topnemu_hiddenValue").val("");
-        filterDisp.off("#label_pivot_conf");
-        fadeAlert("#alert_pivot_conf");
-        initPivotTable();
+        let ret = confirm("Are you sure to delete?");
+        if (ret === true) {
+            db.removePivotConf($("#drop_topmenu_hiddenValue").attr('value'));
+            db.remove("vulsrepo_pivot_conf");
+            $("#drop_topmenu_visibleValue").html("Select setting");
+            $("#drop_topnemu_hiddenValue").val("");
+            filterDisp.off("#label_pivot_conf");
+            fadeAlert("#alert_pivot_conf");
+            initPivotTable();
+        }
     });
 
     $("#clear_pivot_conf").click(function() {
@@ -312,30 +315,25 @@ const setEvents = function() {
     });
 
     // ---switch
-    $("[name='chkPivotSummary']").bootstrapSwitch();
-    $("[name='chkPivotCvss']").bootstrapSwitch();
-
-    if (db.get("vulsrepo_chkPivotSummary") === "false") {
-        $('input[name="chkPivotSummary"]').bootstrapSwitch('state', false, false);
-    }
-    if (db.get("vulsrepo_chkPivotCvss") === "false") {
-        $('input[name="chkPivotCvss"]').bootstrapSwitch('state', false, false);
-    }
-
-    $('input[name="chkPivotSummary"]').on('switchChange.bootstrapSwitch', function(event, state) {
-        if (state === false) {
-            db.set("vulsrepo_chkPivotSummary", "false");
-        } else {
-            db.remove("vulsrepo_chkPivotSummary");
+    let initSwitch = function(name) {
+        $("[name='" + name + "']").bootstrapSwitch();
+        if (db.get("vulsrepo_" + name) === "false") {
+            $('input[name="' + name + '"]').bootstrapSwitch('state', false, false);
         }
-    });
-    $('input[name="chkPivotCvss"]').on('switchChange.bootstrapSwitch', function(event, state) {
-        if (state === false) {
-            db.set("vulsrepo_chkPivotCvss", "false");
-        } else {
-            db.remove("vulsrepo_chkPivotCvss");
-        }
-    });
+
+        $('input[name="' + name + '"]').on('switchChange.bootstrapSwitch', function(event, state) {
+            if (state === false) {
+                db.set("vulsrepo_" + name, "false");
+            } else {
+                db.remove("vulsrepo_" + name);
+            }
+        });
+    };
+    initSwitch("chkPivotSummary");
+    initSwitch("chkPivotCvss");
+    initSwitch("chkCweTop25");
+    initSwitch("chkOwaspTopTen2017");
+    initSwitch("chkSansTop25");
 
     // ---priority
 
@@ -429,6 +427,9 @@ const createPivotData = function(resultArray) {
     const prioltyFlag = db.get("vulsrepo_pivotPriority");
     const summaryFlag = db.get("vulsrepo_chkPivotSummary");
     const cvssFlag = db.get("vulsrepo_chkPivotCvss");
+    const cweTop25Flag = db.get("vulsrepo_chkCweTop25");
+    const owaspTopTen2017Flag = db.get("vulsrepo_chkOwaspTopTen2017");
+    const sansTop25Flag = db.get("vulsrepo_chkSansTop25");
 
     $.each(resultArray, function(x, x_val) {
         if (Object.keys(x_val.data.scannedCves).length === 0) {
@@ -439,9 +440,12 @@ const createPivotData = function(resultArray) {
                 "Release": x_val.data.release,
                 "CveID": "healthy",
                 "Packages": "healthy",
+                "FixedIn": "healthy",
+                "FixState": "healthy",
                 "NotFixedYet": "healthy",
                 "PackageVer": "healthy",
                 "NewPackageVer": "healthy",
+                "Repository": "healthy",
                 "CweID": "healthy",
                 "Summary": "healthy",
                 "CVSS Score": "healthy",
@@ -469,11 +473,7 @@ const createPivotData = function(resultArray) {
                 "Last Modified": "healthy",
             };
 
-            if (x_val.data.runningKernel.rebootRequired === true) {
-                result["ServerName"] = x_val.data.serverName + " [Reboot Required]";
-            } else {
-                result["ServerName"] = x_val.data.serverName;
-            }
+            result["ServerName"] = getServerName(x_val.data);
 
             if (x_val.data.platform.name !== "") {
                 result["Platform"] = x_val.data.platform.name;
@@ -503,9 +503,13 @@ const createPivotData = function(resultArray) {
                     if (p_val.name === undefined) {
                         pkgName = p_val;
                         NotFixedYet = "Unknown";
+                        fixedIn = "";
+                        fixState = "";
                     } else {
                         pkgName = p_val.name;
-                        NotFixedYet = isNotFixedYet(p_val, x_val.data.packages[pkgName]);
+                        NotFixedYet = isNotFixedYet(p_val);
+                        fixedIn = getFixedIn(p_val);
+                        fixState = getFixState(p_val);
                     }
 
                     let pkgInfo = x_val.data.packages[pkgName];
@@ -517,13 +521,11 @@ const createPivotData = function(resultArray) {
                         "CveID": "CHK-cveid-" + y_val.cveID,
                         "Packages": pkgName,
                         "NotFixedYet": NotFixedYet,
+                        "FixedIn": fixedIn,
+                        "FixState": fixState
                     };
 
-                    if (x_val.data.runningKernel.rebootRequired === true) {
-                        result["ServerName"] = x_val.data.serverName + " [Reboot Required]";
-                    } else {
-                        result["ServerName"] = x_val.data.serverName;
-                    }
+                    result["ServerName"] = getServerName(x_val.data);
 
                     if (y_val.cveContents !== undefined && y_val.cveContents.nvd !== undefined) {
                         let cweIds = y_val.cveContents.nvd.cweIDs;
@@ -533,25 +535,34 @@ const createPivotData = function(resultArray) {
                             if(cweIds[0].indexOf("NVD-CWE-") !== -1) {
                                 result["CweID"] = cweIds[0];
                             } else {
-                                // TODO OWASP Top Ten 2017 https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_Top_10.html
-                                // CWE Top25 https://cwe.mitre.org/top25/archive/2019/2019_cwe_top25.html
-                                let cweTop25 = ["119", "79", "20", "200", "125", "89", "416", "190", "352", "22", "78", "787", "287", "476", "732", "434", "611", "94", "798", "400", "772", "426", "502", "269", "295"]
-                                // TODO SANS Top25 https://www.sans.org/top25-software-errors/
                                 for(var j = 0; j < cweIds.length; j++) {
+                                    cweIdStr = cweIdStr + cweIds[j];
                                     let match = false;
-                                    for(var i = 0; i < cweTop25.length; i++) {
-                                        if(cweIds[j].indexOf(cweTop25[i]) !== -1) {
-                                            match = true;
-                                            break;
+                                    let makeCweStr = function(source) {
+                                        if (match === true) {
+                                            return;
                                         }
+                                        for(var i = 0; i < cweTop[source].length; i++) {
+                                            if(cweIds[j] === "CWE-" + cweTop[source][i]) {
+                                                match = true;
+                                                break;
+                                            }
+                                        }
+                                        if (match === true) {
+                                            cweIdStr = cweIdStr + "[!!]";
+                                        }
+                                    };
+                                    if (cweTop25Flag !== "false") {
+                                        makeCweStr("cweTop25");
                                     }
-                                    if (match === true) {
-                                        cweIdStr = cweIdStr + cweIds[j] + "[!!]";
-                                    } else {
-                                        cweIdStr = cweIdStr + cweIds[j];
+                                    if (owaspTopTen2017Flag !== "false") {
+                                        makeCweStr("owaspTopTen2017");
+                                    }
+                                    if (sansTop25Flag !== "false") {
+                                        makeCweStr("sansTop25");
                                     }
                                     if (j < cweIds.length - 1) {
-                                        cweIdStr = cweIdStr + ",";
+                                        cweIdStr = cweIdStr + ", ";
                                     }
                                 }
                                 result["CweID"] = "CHK-cweid-" + cweIdStr;
@@ -575,14 +586,32 @@ const createPivotData = function(resultArray) {
                         result["Container"] = "None";
                     }
 
-                    if (y_val.alertDict.ja != null) {
-                        result["CERT"] = "CHK-CERT-" + y_val.alertDict.ja[0].url;
-                    } else {
-                        result["CERT"] = "";
+                    var cert = "";
+                    if (y_val.alertDict.en != null) {
+                        cert = y_val.alertDict.en[0].url;
                     }
+                    if (y_val.alertDict.ja != null) {
+                        if (cert !== "") {
+                            cert = cert + ",";
+                        }
+                        cert = cert + y_val.alertDict.ja[0].url;
+                    }
+                    if (cert !== "") {
+                        cert = "CHK-CERT-" + cert;
+                    }
+                    result["CERT"] = cert;
 
-                    if (y_val.exploits !== undefined) {
-                        result["PoC"] = "PoC(" + y_val.exploits.length + ")";
+                    if (y_val.exploits !== undefined || y_val.metasploits !== undefined) {
+                        let count = 0;
+                        if (y_val.exploits !== undefined) {
+                            count = y_val.exploits.length;
+                        }
+                        if (y_val.metasploits !== undefined) {
+                            $.each(y_val.metasploits, function(x, m_val) {
+                                count = count + m_val.URLs.length;
+                            });
+                        }
+                        result["PoC"] = "PoC(" + count + ")";
                     } else {
                         result["PoC"] = "";
                     }
@@ -621,11 +650,13 @@ const createPivotData = function(resultArray) {
                         } else {
                             result["NewPackageVer"] = "None";
                         }
+                        result["Repository"] = pkgInfo.repository;
                     } else {
                         // ===for cpe
                         result["PackageVer"] = "Unknown";
                         result["NewPackageVer"] = "Unknown";
                         result["Changelog"] = "None";
+                        result["Repository"] = ""
                     }
 
                     var getSummaryAndDate = function(target) {
@@ -685,11 +716,11 @@ const createPivotData = function(resultArray) {
                         }
 
                         if (y_val.cveContents[target].cvss3Score !== 0) {
-                            result["CVSS Score"] = y_val.cveContents[target].cvss3Score;
+                            result["CVSS Score"] = y_val.cveContents[target].cvss3Score.toFixed(1);
                             result["CVSS Severity"] = getSeverityV3(y_val.cveContents[target].cvss3Score);
                             result["CVSS Score Type"] = target + "V3";
                         } else if (y_val.cveContents[target].cvss2Score !== 0) {
-                            result["CVSS Score"] = y_val.cveContents[target].cvss2Score;
+                            result["CVSS Score"] = y_val.cveContents[target].cvss2Score.toFixed(1);
                             result["CVSS Severity"] = getSeverityV2(y_val.cveContents[target].cvss2Score);
                             result["CVSS Score Type"] = target;
                         }
@@ -782,12 +813,39 @@ const createPivotData = function(resultArray) {
     return array;
 };
 
-const isNotFixedYet = function(val, pkg) {
+const isNotFixedYet = function(val) {
     var result = "Fixed";
     if (val.notFixedYet !== undefined) {
         result = val.notFixedYet === true ? "Unfixed" : "Fixed";
     }
     return result;
+};
+
+const getFixedIn = function(val) {
+    var result = "";
+    if (val.fixedIn !== undefined) {
+        result = val.fixedIn;
+    }
+    return result;
+};
+
+const getFixState = function(val) {
+    var result = "";
+    if (val.fixState !== undefined) {
+        result = val.fixState;
+    }
+    return result;
+};
+
+const getServerName = function(data) {
+    let servername = data.serverName;
+    if (data.warnings.length > 0) {
+        servername = "[Warn] " + servername;
+    }
+    if (data.runningKernel.rebootRequired === true) {
+        servername = "[Reboot Required] " + servername;
+    }
+    return servername;
 };
 
 const displayPivot = function(array) {
@@ -960,7 +1018,7 @@ const addCweIDLink = function() {
     doms.each(function() {
         let cveid = $(this).text();
         cveid = cveid.replace("CHK-cweid-", "");
-        let cveids = cveid.split(',');
+        let cveids = cveid.split(', ');
         let generated = "";
         for (var i = 0; i < cveids.length; i++) {
             if (cveids[i].indexOf("NVD-CWE-") !== -1) {
@@ -969,14 +1027,14 @@ const addCweIDLink = function() {
             } else {
                 if (nvd < jvn) {
                     // NVD
-                    generated = generated + "<a href=\"" + detailLink.cwe_nvd.url + cveids[i].replace(/\[!!\]/, "").replace(/CWE-/, "") + "\" target='_blank'>" + cveids[i] + "</a>";
+                    generated = generated + "<a href=\"" + detailLink.cwe_nvd.url + cveids[i].replace(/\[!!\]/, "").replace(/CWE-/, "") + "\" rel='noopener noreferrer' target='_blank'>" + cveids[i] + "</a>";
                 } else {
                     // JVN
-                    generated = generated + "<a href=\"" + detailLink.cwe_jvn.url + cveids[i].replace(/\[!!\]/, "") + ".html\" target='_blank'>" + cveids[i] + "</a>";
+                    generated = generated + "<a href=\"" + detailLink.cwe_jvn.url + cveids[i].replace(/\[!!\]/, "") + ".html\" rel='noopener noreferrer' target='_blank'>" + cveids[i] + "</a>";
                 }
             }
             if (i < cveids.length - 1) {
-                generated = generated + ",";
+                generated = generated + ", ";
             }
         }
         $(this).text("").append(generated);
@@ -990,7 +1048,7 @@ const addAdvisoryIDLink = function() {
         // Open Advisory page
         if (advisoryid.indexOf('ALAS2-') != -1) {
             // ALAS2
-            $(this).text("").append("<a href=\"" + detailLink.amazon.url + "AL2/" + advisoryid.replace("ALAS2-", "ALAS-") + ".html\" target='_blank'>" + advisoryid + '</a>');
+            $(this).text("").append("<a href=\"" + detailLink.amazon.url + "AL2/" + advisoryid.replace("ALAS2-", "ALAS-") + ".html\" rel='noopener noreferrer' target='_blank'>" + advisoryid + '</a>');
         } else if (advisoryid.indexOf('ALAS-') != -1) {
             // TODO ALAS
         }
@@ -1004,7 +1062,19 @@ const addCertLink = function() {
     let doms = $("#pivot_base").find("th:contains('CHK-CERT-')");
     doms.each(function() {
         let cert = $(this).text().replace("CHK-CERT-", "");
-        $(this).text("").append("<a href=\"" + cert + "\" target='_blank'>JPCERT</a>");
+        let certs = cert.split(',');
+        let generated = "";
+        for (var i = 0; i < certs.length; i++) {
+            let team = "USCERT";
+            if (certs[i].indexOf("jpcert") != -1) {
+                team = "JPCERT";
+            }
+            generated = generated +"<a href=\"" + certs[i] + "\" rel='noopener noreferrer' target='_blank'>" + team + "</a>";
+            if (i < certs.length - 1) {
+                generated = generated + "<br>";
+            }
+        }
+        $(this).text("").append(generated);
     });
 };
 
@@ -1019,15 +1089,39 @@ const addChangelogLink = function() {
 
 const createDetailData = function(cveID) {
     var targetObj = { cveContents: {} };
+    targetObj["cweDict"] = {};
     $.each(vulsrepo.detailRawData, function(x, x_val) {
         tmpCve = x_val.data.scannedCves[cveID];
         if (tmpCve !== undefined) {
             targetObj["cveID"] = cveID;
             targetObj["DistroAdvisories"] = tmpCve.distroAdvisories;
             targetObj["exploits"] = tmpCve.exploits;
+            targetObj["metasploits"] = tmpCve.metasploits;
+            targetObj["alertDict"] = tmpCve.alertDict;
             $.each(vulsrepo.detailTaget, function(i, i_val) {
                 if (tmpCve.cveContents !== undefined && tmpCve.cveContents[i_val] !== undefined) {
                     targetObj.cveContents[i_val] = tmpCve.cveContents[i_val];
+                    // Make CWE information
+                    if (targetObj.cveContents[i_val].cweIDs !== undefined) {
+                        $.each(targetObj.cveContents[i_val].cweIDs, function(c, c_val) {
+                            if (c_val.indexOf("NVD-CWE-") === -1) {
+                                let cweid = c_val.split("-")[1];
+                                let cweDict = x_val.data.cweDict[cweid];
+                                if (targetObj.cweDict[cweid] === undefined) {
+                                    targetObj.cweDict[cweid] = {};
+                                }
+                                if (targetObj.cweDict[cweid].en === undefined && cweDict.en !== undefined) {
+                                    targetObj.cweDict[cweid].en = cweDict.en;
+                                }
+                                if (targetObj.cweDict[cweid].ja === undefined && cweDict.ja !== undefined) {
+                                    targetObj.cweDict[cweid].ja = cweDict.ja;
+                                }
+                                targetObj.cweDict[cweid].owaspTopTen2017 = cweDict.owaspTopTen2017;
+                                targetObj.cweDict[cweid].cweTopTwentyfive2019 = cweDict.cweTopTwentyfive2019;
+                                targetObj.cweDict[cweid].sansTopTwentyfive = cweDict.sansTopTwentyfive;
+                            }
+                        });
+                    }
                 }
             });
         }
@@ -1038,8 +1132,9 @@ const createDetailData = function(cveID) {
 
 const initDetail = function() {
     $("#modal-label").text("");
+    $("#count-cert").text("0");
     $("#count-References").text("0");
-    $("#CweID,#Link,#References").empty();
+    $("#CweID,#Link,#cert,#exploit,#References").empty();
 
     $.each(vulsrepo.detailTaget, function(i, i_val) {
         $("#typeName_" + i_val).empty();
@@ -1072,13 +1167,13 @@ const displayDetail = function(cveID) {
             }
 
             if (scoreV2 !== 0) {
-                $("#scoreText_" + target).text(scoreV2 + " (" + severityV2 + ")").addClass("cvss-" + severityV2);
+                $("#scoreText_" + target).text(scoreV2.toFixed(1) + " (" + severityV2 + ")").addClass("cvss-" + severityV2);
             } else {
                 $("#scoreText_" + target).text("None").addClass("cvss-None");
             }
 
             if (scoreV3 !== 0) {
-                $("#scoreText_" + target + "V3").text(scoreV3 + " (" + severityV3 + ")").addClass("cvss-" + severityV3);
+                $("#scoreText_" + target + "V3").text(scoreV3.toFixed(1) + " (" + severityV3 + ")").addClass("cvss-" + severityV3);
             } else {
                 $("#scoreText_" + target + "V3").text("None").addClass("cvss-None");
             }
@@ -1293,29 +1388,73 @@ const displayDetail = function(cveID) {
         truncate: 50
     });
 
+    const prioltyFlag = db.get("vulsrepo_pivotPriority");
+    let nvd = prioltyFlag.indexOf("nvd");
+    let jvn = prioltyFlag.indexOf("jvn");
+
     // ---CweID---
     if (data.cveContents.nvd !== undefined) {
         if (data.cveContents.nvd.cweIDs) {
-            $("#CweID").append("<span>NVD:[" + data.cveContents.nvd.cweIDs + "] (</span>");
-            $("#CweID").append("<a href=\"" + detailLink.cwe_nvd.url + data.cveContents.nvd.cweIDs[0].split("-")[1] + "\" target='_blank'>MITRE</a>");
-            $("#CweID").append("<span>&nbsp;/&nbsp;</span>");
-            $("#CweID").append("<a href=\"" + detailLink.cwe_jvn.url + data.cveContents.nvd.cweIDs[0] + ".html\" target='_blank'>JVN)</a>");
-            $("#CweID").append("<span>&emsp;</span>");
+            $("#CweID").append("<ul id='cwe-nvd'>");
+            $.each(data.cveContents.nvd.cweIDs, function(x, x_val) {
+                let cweid = x_val.split("-")[1];
+                if (data.cweDict[cweid] !== undefined) {
+                    $("#cwe-nvd").append("<li id='cweid-" + cweid + "'>");
+                    let name = "";
+                    if (nvd < jvn) {
+                        if (data.cweDict[cweid].en !== undefined) {
+                            name = data.cweDict[cweid].en.name;
+                        } else if (name === "" && data.cweDict[cweid].ja !== undefined) {
+                            name = data.cweDict[cweid].ja.name;
+                        }
+                    } else {
+                        if (data.cweDict[cweid].ja !== undefined) {
+                            name = data.cweDict[cweid].ja.name;
+                        } else  if (name === "" && data.cweDict[cweid].en !== undefined) {
+                            name = data.cweDict[cweid].en.name;
+                        }
+                    }
+                    $("#cweid-" + cweid).append(cweid + " [" + name + "]");
+                    $("#cweid-" + cweid).append(" (<a href=\"" + detailLink.cwe_nvd.url + cweid + "\" rel='noopener noreferrer' target='_blank'>MITRE</a>");
+                    $("#cweid-" + cweid).append("<span>&nbsp;/&nbsp;</span>");
+                    $("#cweid-" + cweid).append("<a href=\"" + detailLink.cwe_jvn.url + x_val + ".html\" rel='noopener noreferrer' target='_blank'>JVN</a>)");
+                    if (data.cweDict[cweid].cweTopTwentyfive2019 !== "") {
+                        // CWE Top25 https://cwe.mitre.org/top25/archive/2019/2019_cwe_top25.html
+                        $("#cweid-" + cweid).append(" <a href=\"" + detailLink.cweTopTwentyfive2019.url + "\" rel='noopener noreferrer' target='_blank' class='badge count'>CWE Rank: " + data.cweDict[cweid].cweTopTwentyfive2019 +"</a>");
+                    }
+                    if (data.cweDict[cweid].owaspTopTen2017 !== "") {
+                        // OWASP Top Ten 2017 https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_Top_10.html
+                        let owaspLink = "";
+                        if (nvd < jvn) {
+                            owaspLink = detailLink.owaspTopTen2017[data.cweDict[cweid].owaspTopTen2017].en;
+                        } else {
+                            owaspLink = detailLink.owaspTopTen2017[data.cweDict[cweid].owaspTopTen2017].ja;
+                        }
+                        $("#cweid-" + cweid).append(" <a href=\"" + owaspLink + "\" rel='noopener noreferrer' target='_blank' class='badge count'>OWASP Rank: " + data.cweDict[cweid].owaspTopTen2017 +"</a>");
+                    }
+                    if (data.cweDict[cweid].sansTopTwentyfive !== "") {
+                        // SANS Top25 https://www.sans.org/top25-software-errors/
+                        $("#cweid-" + cweid).append(" <a href=\"" + detailLink.sansTopTwentyfive.url + "\" rel='noopener noreferrer' target='_blank' class='badge count'>SANS Rank: " + data.cweDict[cweid].sansTopTwentyfive + "</a>");
+                    }
+                    $("#cwe-nvd").append("</li>");
+                }
+            });
+            $("#CweID").append("</ul>");
         }
     }
 
     if (data.cveContents.redhat !== undefined) {
         if (data.cveContents.redhat.cweIDs !== "") {
             $("#CweID").append("<span>RedHat:[" + data.cveContents.redhat.cweIDs + "] (</span>");
-            $("#CweID").append("<a href=\"" + detailLink.cwe_nvd.url + data.cveContents.redhat.cweIDs[0].split("-")[1] + "\" target='_blank'>MITRE</a>");
+            $("#CweID").append("<a href=\"" + detailLink.cwe_nvd.url + data.cveContents.redhat.cweIDs[0].split("-")[1] + "\" rel='noopener noreferrer' target='_blank'>MITRE</a>");
             $("#CweID").append("<span>&nbsp;/&nbsp;</span>");
-            $("#CweID").append("<a href=\"" + detailLink.cwe_jvn.url + data.cveContents.redhat.cweIDs[0] + ".html\" target='_blank'>JVN)</a>");
+            $("#CweID").append("<a href=\"" + detailLink.cwe_jvn.url + data.cveContents.redhat.cweIDs[0] + ".html\" rel='noopener noreferrer' target='_blank'>JVN)</a>");
         }
     }
 
     // ---Link---
     var addLink = function(target, url, disp) {
-        $(target).append("<a href=\"" + url + "\" target='_blank'>" + disp + " </a>");
+        $(target).append("<a href=\"" + url + "\" rel='noopener noreferrer' target='_blank'>" + disp + " </a>");
     };
 
     addLink("#Link", detailLink.mitre.url + "?name=" + data.cveID, detailLink.mitre.disp);
@@ -1329,8 +1468,8 @@ const displayDetail = function(cveID) {
         $("#Link").append("<span> / </span>");
         addLink("#Link", detailLink.cvssV3CalculatorJvn.url + "#" + data.cveContents.jvn.cvss3Vector, detailLink.cvssV3CalculatorJvn.disp);
     }
-    $("#Link").append("<span> / </span>");
     $.each(getDistroAdvisoriesArray(data.DistroAdvisories), function(i, i_val) {
+        $("#Link").append("<span> / </span>");
         addLink("#Link", i_val.url, i_val.disp);
     });
 
@@ -1338,15 +1477,15 @@ const displayDetail = function(cveID) {
     addLink("#typeName_nvdV3", detailLink.nvd.url + data.cveID, detailLink.nvd.disp + " (v3)");
     if (data.cveContents.jvn !== undefined) {
         if (data.cveContents.jvn.jvnLink === "") {
-            $("#typeName_jvn").append("<a href=\"" + detailLink.jvn.url + data.cveID + "\" target='_blank'>JVN (v2)</a>");
-            $("#typeName_jvnV3").append("<a href=\"" + detailLink.jvn.url + data.cveID + "\" target='_blank'>JVN (v3)</a>");
+            $("#typeName_jvn").append("<a href=\"" + detailLink.jvn.url + data.cveID + "\" rel='noopener noreferrer' target='_blank'>JVN (v2)</a>");
+            $("#typeName_jvnV3").append("<a href=\"" + detailLink.jvn.url + data.cveID + "\" rel='noopener noreferrer' target='_blank'>JVN (v3)</a>");
         } else {
-            $("#typeName_jvn").append("<a href=\"" + data.cveContents.jvn.sourceLink + "\" target='_blank'>JVN (v2)</a>");
-            $("#typeName_jvnV3").append("<a href=\"" + data.cveContents.jvn.sourceLink + "\" target='_blank'>JVN (v3)</a>");
+            $("#typeName_jvn").append("<a href=\"" + data.cveContents.jvn.sourceLink + "\" rel='noopener noreferrer' target='_blank'>JVN (v2)</a>");
+            $("#typeName_jvnV3").append("<a href=\"" + data.cveContents.jvn.sourceLink + "\" rel='noopener noreferrer' target='_blank'>JVN (v3)</a>");
         }
     } else {
-        $("#typeName_jvn").append("<a href=\"" + detailLink.jvn.url + data.cveID + "\" target='_blank'>JVN (v2)</a>");
-        $("#typeName_jvnV3").append("<a href=\"" + detailLink.jvn.url + data.cveID + "\" target='_blank'>JVN (v3)</a>");
+        $("#typeName_jvn").append("<a href=\"" + detailLink.jvn.url + data.cveID + "\" rel='noopener noreferrer' target='_blank'>JVN (v2)</a>");
+        $("#typeName_jvnV3").append("<a href=\"" + detailLink.jvn.url + data.cveID + "\" rel='noopener noreferrer' target='_blank'>JVN (v3)</a>");
     }
     addLink("#typeName_redhat", detailLink.rhel.url + data.cveID, "RedHat (v2)");
     addLink("#typeName_redhatV3", detailLink.rhel.url + data.cveID, "RedHat (v3)");
@@ -1355,7 +1494,7 @@ const displayDetail = function(cveID) {
     addLink("#typeName_oracle", detailLink.oracle.url + data.cveID + ".html", detailLink.oracle.disp);
     if (data.cveContents.amazon !== undefined) {
         if (data.cveContents.amazon.title.indexOf('ALAS2-') != -1) {
-            $("#typeName_amazon").append("<a href=\"" + detailLink.amazon.url + "AL2/" + data.cveContents.amazon.title.replace("ALAS2-", "ALAS-") + ".html\" target='_blank'>Amazon</a>");
+            $("#typeName_amazon").append("<a href=\"" + detailLink.amazon.url + "AL2/" + data.cveContents.amazon.title.replace("ALAS2-", "ALAS-") + ".html\" rel='noopener noreferrer' target='_blank'>Amazon</a>");
         } else {
             // TODO Amazon Linux 1
         }
@@ -1363,36 +1502,102 @@ const displayDetail = function(cveID) {
         $("#typeName_amazon").append("Amazon");
     }
 
+    // ---USCERT/JPCERT---
+    let countCert = 0;
+
+    var addCert = function(target, cert) {
+        if (data.alertDict[target] !== undefined) {
+            if (isCheckNull(data.alertDict[target]) === false) {
+                $("#cert").append("<div><strong>=== " + cert + " Alert ===</strong></div>");
+                let certId = cert + "-cert-list";
+                $("#cert").append("<ul id='" + certId + "'>");
+                $.each(data.alertDict[target], function(x, x_val) {
+                    let title = cert;
+                    if (x_val.title !== undefined) {
+                        title = x_val.title;
+                    }
+                    $("#" + certId).append("<li>[" + title + "]<a href=\"" + x_val.url + "\" rel='noopener noreferrer' target='_blank'> (" + x_val.url + ")</a></li>");
+                    countCert++;
+                });
+                $("#cert").append("</ul>");
+            }
+        }
+    }
+    if (nvd < jvn) {
+        addCert("en", "USCERT");
+        addCert("ja", "JPCERT");
+    } else {
+        addCert("ja", "JPCERT");
+        addCert("en", "USCERT");
+    }
+    $("#count-cert").text(countCert);
+
+    // ---Exploits---
+    let countExploit = 0;
+
+    var addExploit = function() {
+        if (data.exploits !== undefined) {
+            $("#exploit").append("<div><strong>=== Exploit Codes ===</strong></div>");
+            $("#exploit").append("<ul id='exploit-list'>");
+            $.each(data.exploits, function(x, x_val) {
+                $("#exploit-list").append("<li>[" + x_val.exploitType + "]<a href=\"" + x_val.url + "\" rel='noopener noreferrer' target='_blank'> (" + x_val.url + ")</a> " + x_val.description + "</li>");
+                countExploit++;
+            });
+            $("#exploit").append("</ul>");
+        }
+
+        if (data.metasploits !== undefined) {
+            $("#exploit").append("<div><strong>=== Metasploit Modules ===</strong></div>");
+            $("#exploit").append("<ul id='metasploit-list'>");
+            $.each(data.metasploits, function(x, x_val) {
+                let exploitId = "exploit-" + countExploit;
+                $("#metasploit-list").append("<li id='" + exploitId + "'>");
+                // name, title
+                $("#" + exploitId).append("<div>[" + x_val.name + "] " + x_val.title);
+                // description
+                $("#" + exploitId).append("<span class='metasploits-description'>" + x_val.description + "</span>");
+                // URLs
+                $("#" + exploitId).append("<ul id='"+ exploitId + "-inner-list'>");
+                $.each(x_val.URLs, function(u, u_val) {
+                    $("#" + exploitId +"-inner-list").append("<li><a href=\"" + u_val + "\" rel='noopener noreferrer' target='_blank'>" + u_val + "</a></li>");
+                    countExploit++;
+                });
+                $("#" + exploitId).append("</ul>");
+                $("#" + exploitId).append("</div>");
+                $("#metasploit-list").append("</li>");
+            });
+            $("#exploit").append("</ul>");
+        }
+    }
+    addExploit();
+    $('span.metasploits-description').collapser({
+        mode: 'words',
+        truncate: 50
+    });
+    $("#count-exploit").text(countExploit);
+
     // ---References---
     let countRef = 0;
 
     var addRef = function(target) {
         if (data.cveContents[target] !== undefined) {
             if (isCheckNull(data.cveContents[target].references) === false) {
-                $("#References").append("<div>===" + target + "===</div>");
+                $("#References").append("<div><strong>=== " + target + " ===</strong></div>");
+                let referencesId = target + "-references-list";
+                $("#References").append("<ul id='"+ referencesId + "'>");
                 $.each(data.cveContents[target].references, function(x, x_val) {
-                    $("#References").append("<div>[" + x_val.source + "]<a href=\"" + x_val.link + "\" target='_blank'> (" + x_val.link + ")</a></div>");
+                    $("#" + referencesId).append("<li>[" + x_val.source + "]<a href=\"" + x_val.link + "\" rel='noopener noreferrer' target='_blank'> (" + x_val.link + ")</a></li>");
                     countRef++;
                 });
+                $("#References").append("</ul>");
             }
         }
     }
 
-    const prioltyFlag = db.get("vulsrepo_pivotPriority");
     $.each(prioltyFlag, function(i, i_val) {
         addRef(i_val);
     });
 
-    var addExploit = function() {
-        if (data.exploits !== undefined) {
-            $("#References").append("<div>===Exploits===</div>");
-           $.each(data.exploits, function(x, x_val) {
-               $("#References").append("<div>[" + x_val.exploitType + "]<a href=\"" + x_val.url + "\" target='_blank'> (" + x_val.url + ")</a> " + x_val.description + "</div>");
-               countRef++;
-           });
-        }
-    }
-    addExploit();
     $("#count-References").text(countRef);
 
     // ---Tab Package
@@ -1422,6 +1627,12 @@ const displayDetail = function(cveID) {
                 data: "PackageNewVersion"
             }, {
                 data: "PackageNewRelease"
+            }, {
+                data: "Repository"
+            }, {
+                data: "FixedIn"
+            }, {
+                data: "FixState"
             }, {
                 data: "NotFixedYet"
             }]
@@ -1515,7 +1726,9 @@ const createDetailPackageData = function(cveID) {
                         NotFixedYet = "None";
                     } else {
                         pkgName = z_val.name;
-                        NotFixedYet = isNotFixedYet(z_val, x_val.data.packages[pkgName]);
+                        NotFixedYet = isNotFixedYet(z_val);
+                        fixedIn = getFixedIn(z_val);
+                        fixState = getFixState(z_val);
                     }
 
                     let tmp_Map = {
@@ -1530,14 +1743,20 @@ const createDetailPackageData = function(cveID) {
                         tmp_Map["PackageRelease"] = "";
                         tmp_Map["PackageNewVersion"] = "";
                         tmp_Map["PackageNewRelease"] = "";
+                        tmp_Map["Repository"] = "";
                         tmp_Map["NotFixedYet"] = "";
+                        tmp_Map["FixedIn"] = "";
+                        tmp_Map["FixState"] = "";
                     } else if (x_val.data.packages[pkgName] !== undefined) {
                         tmp_Map["PackageName"] = '<a href="#contents" class="lightbox" data-cveid="' + cveID + '" data-scantime="' + x_val.scanTime + '" data-server="' + x_val.data.serverName + '" data-container="' + x_val.data.container.name + '" data-package="' + pkgName + '">' + pkgName + '</a>';
                         tmp_Map["PackageVersion"] = x_val.data.packages[pkgName].version;
                         tmp_Map["PackageRelease"] = x_val.data.packages[pkgName].release;
                         tmp_Map["PackageNewVersion"] = x_val.data.packages[pkgName].newVersion;
                         tmp_Map["PackageNewRelease"] = x_val.data.packages[pkgName].newRelease;
+                        tmp_Map["Repository"] = x_val.data.packages[pkgName].repository;
                         tmp_Map["NotFixedYet"] = NotFixedYet;
+                        tmp_Map["FixedIn"] = fixedIn;
+                        tmp_Map["FixState"] = fixState;
                     } else {
                         return;
                     }
@@ -1568,28 +1787,48 @@ const displayChangelogDetail = function(ankerData) {
     let getPkg = function() {
         let result;
         $.each(changelogInfo.cveidInfo.affectedPackages, function (i, i_val) {
-            if (i_val.Name = package) {
-                result = isNotFixedYet(i_val, changelogInfo.pkgContents);
+            if (i_val.name === package) {
+                result = i_val;
             };
         });
         return result;
     };
 
-    let notFixedYet = getPkg();
+    let pkg = getPkg();
+    let notFixedYet = isNotFixedYet(pkg);
     if (notFixedYet === "Unfixed") {
         $("#changelog-notfixedyet").append("Unfixed").removeClass("notfixyet-false").addClass("notfixyet-true");
     } else if (notFixedYet === "Fixed") {
         $("#changelog-notfixedyet").append("Fixed").removeClass("notfixyet-true").addClass("notfixyet-false");
     }
+    let fixedIn = getFixedIn(pkg);
+    let fixState = getFixState(pkg);
 
     if (isCheckNull(changelogInfo.pkgContents) !== true) {
         var packageInfo = pkgContents.name + "-" + pkgContents.version;
         if (pkgContents.release !== "") {
             packageInfo = packageInfo + "." + pkgContents.release;
         }
-        packageInfo = packageInfo + " => " + pkgContents.newVersion;
+        let to = pkgContents.newVersion;
         if (pkgContents.newRelease !== "") {
-            packageInfo = packageInfo + "." + pkgContents.newRelease
+            to = to + "." + pkgContents.newRelease;
+        }
+        if (notFixedYet === "Unfixed") {
+            if (fixState !== "") {
+                to = fixState;
+            } else {
+                to = "Not Fixed Yet";
+            }
+        } else if (to === "") {
+            to = "Unknown";
+        }
+        if (fixedIn !== "") {
+            to = to + "<br> (FixedIn: " + fixedIn + ")";
+        }
+
+        packageInfo = packageInfo + " => " + to;
+        if (pkgContents.repository !== "") {
+            packageInfo = packageInfo + " (" + pkgContents.repository + ")";
         }
         $("#changelog-packagename").append(packageInfo);
         if (changelogInfo.pkgContents.changelog.contents === "") {

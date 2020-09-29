@@ -6,7 +6,16 @@
     <description>Recent content in Blog on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Wed, 23 Sep 2020 14:00:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 29 Sep 2020 12:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo v.0.2.3 で表示できる情報が増えました</title>
+      <link>https://monocosel.jp/blog/vulsrepo-demo-v0-2-3/</link>
+      <pubDate>Tue, 29 Sep 2020 12:30:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/blog/vulsrepo-demo-v0-2-3/</guid>
+      <description>VulsRepo オンラインデモ を v.0.2.3 に更新しました。更新内容は以下になります。 v0.2.3 の更新内容 表示できる情報が増えました。 #72 ピボットテーブルの CERT に USCERT も表示するよ</description>
+    </item>
+    
     <item>
       <title>VulsRepo が Raspberry Pi に対応しました</title>
       <link>https://monocosel.jp/blog/vulsrepo-demo-v0-2-2/</link>
