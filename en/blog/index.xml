@@ -6,7 +6,17 @@
     <description>Recent content in Blog on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 23 Sep 2020 14:00:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/en/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 29 Sep 2020 12:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/en/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo v0.2.3 supports Metasploit and more information display</title>
+      <link>https://monocosel.jp/en/blog/vulsrepo-demo-v0-2-3/</link>
+      <pubDate>Tue, 29 Sep 2020 12:30:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/en/blog/vulsrepo-demo-v0-2-3/</guid>
+      <description>VulsRepo online demo v.0.2.3 is here.
+v0.2.3  #72  USCERT is now shown in the CERT of the pivot table.  #76  Show [WARN] if there is a warning on a scan. #73  Add Repository. #74  Add FixedIn and FixState. (Vuls v.0.9.2 or later required)  #69  Add Metasploit Modules view to the details panel. (Vuls v.0.11.0 or later required) #81  Add USCERT Alert and JPCERT Alert indications to the details panel.</description>
+    </item>
+    
     <item>
       <title>VulsRepo supports Debian Security Tracker</title>
       <link>https://monocosel.jp/en/blog/vulsrepo-demo-v0-2-2/</link>
