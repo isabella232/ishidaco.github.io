@@ -6,7 +6,17 @@
     <description>Recent content in vulsrepo on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 29 Sep 2020 12:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/en/tags/vulsrepo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Oct 2020 11:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/en/tags/vulsrepo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo v0.2.4 supports RedHatAPI information</title>
+      <link>https://monocosel.jp/en/blog/vulsrepo-demo-v0-2-4/</link>
+      <pubDate>Thu, 29 Oct 2020 11:30:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/en/blog/vulsrepo-demo-v0-2-4/</guid>
+      <description>VulsRepo online demo v.0.2.4 is here.
+v0.2.4 Features  #121  RedHatAPI information is now viewable. #70  Mitigation information is now viewable. #101  Pivot table settings can now be shared by URL. #113  ConfidenceScore has been added to the pivot table.  Changes  #111  Changed evaluation values for CVSSv3 (*) and CVSS (*) to affect CVSS chart drawing. #110  Change CVSSv3 (*) and CVSS (*) metrics sort order by decending value.</description>
+    </item>
+    
     <item>
       <title>VulsRepo v0.2.3 supports Metasploit and more information display</title>
       <link>https://monocosel.jp/en/blog/vulsrepo-demo-v0-2-3/</link>

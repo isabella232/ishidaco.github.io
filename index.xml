@@ -6,7 +6,16 @@
     <description>Recent content on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 29 Sep 2020 12:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 29 Oct 2020 11:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo v0.2.4 で RedHatAPI に対応しました</title>
+      <link>https://monocosel.jp/blog/vulsrepo-demo-v0-2-4/</link>
+      <pubDate>Thu, 29 Oct 2020 11:30:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/blog/vulsrepo-demo-v0-2-4/</guid>
+      <description>VulsRepo を v.0.2.4 に更新しました。RedHatAPI への対応や、フィルターに関する挙動や表示の修正を行いました。 更新内容 追加 #121 RedHatAPI の情報が表示できるように</description>
+    </item>
+    
     <item>
       <title>VulsRepo v.0.2.3 で表示できる情報が増えました</title>
       <link>https://monocosel.jp/blog/vulsrepo-demo-v0-2-3/</link>
