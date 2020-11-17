@@ -6,7 +6,16 @@
     <description>Recent content in Blog on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Thu, 29 Oct 2020 11:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Nov 2020 10:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo v0.2.5 で影響を受けるプロセスの情報表示に対応しました</title>
+      <link>https://monocosel.jp/blog/vulsrepo-demo-v0-2-5/</link>
+      <pubDate>Tue, 17 Nov 2020 10:30:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/blog/vulsrepo-demo-v0-2-5/</guid>
+      <description>VulsRepo を v.0.2.5 に更新しました。影響を受けるプロセスの情報や Trivy の情報表示ができるようになりました。また、いくつかの変更およびバグ修正を行いました。 更新</description>
+    </item>
+    
     <item>
       <title>VulsRepo v0.2.4 で RedHatAPI に対応しました</title>
       <link>https://monocosel.jp/blog/vulsrepo-demo-v0-2-4/</link>

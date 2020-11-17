@@ -34,9 +34,13 @@ const restoreParam = function() {
                             showAlert("param decode error", decode_str);
                         }
                         url_param = JSON.parse(decode_str);
-                        let sorted_url_param = url_param.slice();
-                        let sorted_detailTaget = vulsrepo.detailTaget.slice();
-                        if (sorted_url_param.sort().toString() === sorted_detailTaget.sort().toString()) {
+                        let valid = true;
+                        $.each(url_param, function(u, u_val) {
+                            if (vulsrepo.detailTaget.indexOf(u_val) == -1) {
+                                valid = false;
+                            }
+                        });
+                        if (valid === true) {
                             db.set(key, url_param);
                         } else {
                             showAlert("invalid parameter", param[key]);
@@ -169,7 +173,7 @@ const getData = function() {
 
     var selectedFiles = getSelectedFile();
 
-    if (selectedFiles.length === 0) {
+    if (isCheckNull(selectedFiles) === true) {
         defer.reject("notSelect");
         return defer.promise();
     }
@@ -415,13 +419,14 @@ const setEvents = function() {
     };
     initSwitch("chkPivotSummary");
     initSwitch("chkPivotCvss");
+    initSwitch("chkPivotProcess");
     initSwitch("chkCweTop25");
     initSwitch("chkOwaspTopTen2017");
     initSwitch("chkSansTop25");
 
     // ---priority
 
-    var priority = db.get("vulsrepo_pivotPriority");
+    let priority = db.get("vulsrepo_pivotPriority");
     if (priority === null) {
         db.set("vulsrepo_pivotPriority", vulsrepo.detailTaget);
     }
@@ -430,14 +435,33 @@ const setEvents = function() {
         db.set("vulsrepo_pivotPriority", vulsrepo.detailTaget);
     }
 
-    if (priority != null && priority.length !== 9) {
-        db.set("vulsrepo_pivotPriority", vulsrepo.detailTaget);
+    let priorityOff = db.get("vulsrepo_pivotPriorityOff");
+    if (priorityOff === null) {
+        priorityOff = [];
+        db.set("vulsrepo_pivotPriorityOff", priorityOff);
+    }
+
+    if (Array.isArray(priorityOff) === false) {
+        priorityOff = [];
+        db.set("vulsrepo_pivotPriorityOff", priorityOff);
+    }
+
+    if (priority != null && priority.length + priorityOff.length !== 10) {
+        $.each(vulsrepo.detailTaget, function(i, i_val) {
+            if (priority.indexOf(i_val) == -1 && priorityOff.indexOf(i_val) == -1) {
+                priority.push(i_val);
+            }
+        });
+        db.set("vulsrepo_pivotPriority", priority);
     }
 
     $.each(db.get("vulsrepo_pivotPriority"), function(i, i_val) {
         $("#pivot-priority").append('<li class="ui-state-default"><span class="fa fa-arrows-v" aria-hidden="true"></span>' + i_val + '</li>');
     });
     $('#pivot-priority').sortable({
+        connectWith: ".connectedSortable",
+        cancel: 'li:only-child', // at least one item
+        forcePlaceholderSize: true,
         tolerance: "pointer",
         distance: 1,
         cursor: "move",
@@ -453,11 +477,33 @@ const setEvents = function() {
     });
     $('#pivot-priority').disableSelection();
 
+    $.each(db.get("vulsrepo_pivotPriorityOff"), function(i, i_val) {
+        $("#pivot-priority-off").append('<li class="ui-state-default"><span class="fa fa-arrows-v" aria-hidden="true"></span>' + i_val + '</li>');
+    });
+    $('#pivot-priority-off').sortable({
+        connectWith: ".connectedSortable",
+        forcePlaceholderSize: true,
+        tolerance: "pointer",
+        distance: 1,
+        cursor: "move",
+        revert: 100,
+        placeholder: "placeholder",
+        update: function() {
+            let tmp_pri = [];
+            $("#pivot-priority-off li").each(function(index) {
+                tmp_pri.push($(this).text());
+            });
+            db.set("vulsrepo_pivotPriorityOff", tmp_pri);
+        }
+    });
+    $('#pivot-priority-off').disableSelection();
+
     $("#pivot-link").click(function() {
         let str = location.href + "?vulsrepo_pivot_conf_tmp=" + LZString.compressToEncodedURIComponent(localStorage.getItem("vulsrepo_pivot_conf_tmp"));
         str = str + "&vulsrepo_chkPivotSummary=" + db.get("vulsrepo_chkPivotSummary");
         str = str + "&vulsrepo_chkPivotCvss=" + db.get("vulsrepo_chkPivotCvss");
         str = str + "&vulsrepo_pivotPriority=" + LZString.compressToEncodedURIComponent(localStorage.getItem("vulsrepo_pivotPriority"));
+        str = str + "&vulsrepo_pivotPriorityOff=" + LZString.compressToEncodedURIComponent(localStorage.getItem("vulsrepo_pivotPriorityOff"));
         str = str + "&vulsrepo_chkCweTop25=" + db.get("vulsrepo_chkCweTop25");
         str = str + "&vulsrepo_chkOwaspTopTen2017=" + db.get("vulsrepo_chkOwaspTopTen2017");
         str = str + "&vulsrepo_chkSansTop25=" + db.get("vulsrepo_chkSansTop25");
@@ -517,6 +563,7 @@ const createPivotData = function(resultArray) {
     const prioltyFlag = db.get("vulsrepo_pivotPriority");
     const summaryFlag = db.get("vulsrepo_chkPivotSummary");
     const cvssFlag = db.get("vulsrepo_chkPivotCvss");
+    const processFlag = db.get("vulsrepo_chkPivotProcess");
     const cweTop25Flag = db.get("vulsrepo_chkCweTop25");
     const owaspTopTen2017Flag = db.get("vulsrepo_chkOwaspTopTen2017");
     const sansTop25Flag = db.get("vulsrepo_chkSansTop25");
@@ -530,6 +577,7 @@ const createPivotData = function(resultArray) {
                 "Release": x_val.data.release,
                 "CveID": "healthy",
                 "Packages": "healthy",
+                "Path": "healthy",
                 "FixedIn": "healthy",
                 "FixState": "healthy",
                 "NotFixedYet": "healthy",
@@ -537,6 +585,7 @@ const createPivotData = function(resultArray) {
                 "NewPackageVer": "healthy",
                 "Repository": "healthy",
                 "CweID": "healthy",
+                "Title": "healthy",
                 "Summary": "healthy",
                 "CVSS Score": "healthy",
                 "CVSS Severity": "healthy",
@@ -561,6 +610,7 @@ const createPivotData = function(resultArray) {
                 "Changelog": "healthy",
                 "DetectionMethod": "healthy",
                 "ConfidenceScore": "healthy",
+                "PortScannable": "healthy",
                 "Published": "healthy",
                 "Last Modified": "healthy",
             };
@@ -581,17 +631,11 @@ const createPivotData = function(resultArray) {
             array.push(result);
         } else {
             $.each(x_val.data.scannedCves, function(y, y_val) {
-                let targetNames;
-                if (isCheckNull(y_val.cpeNames) === false) {
-                    targetNames = y_val.cpeNames;
-                } else if(isCheckNull(y_val.cpeURIs) === false) {
-                    targetNames = y_val.cpeURIs;
-                } else {
-                    targetNames = y_val.affectedPackages;
-                }
+                let targetNames = getTargetPackages(y_val);
 
                 cveid_count = cveid_count + 1
                 $.each(targetNames, function(p, p_val) {
+                    let libPath;
                     if (p_val.name === undefined) {
                         pkgName = p_val;
                         NotFixedYet = "Unknown";
@@ -602,9 +646,17 @@ const createPivotData = function(resultArray) {
                         NotFixedYet = isNotFixedYet(p_val);
                         fixedIn = getFixedIn(p_val);
                         fixState = getFixState(p_val);
+                        libPath = p_val.path;
                     }
 
-                    let pkgInfo = x_val.data.packages[pkgName];
+                    let pkgInfo;
+                    let libInfo;
+                    if (libPath === undefined) {
+                        libPath = "";
+                        pkgInfo = x_val.data.packages[pkgName];
+                    } else {
+                        libInfo = getLibraryInformation(x_val.data.libraries, pkgName, libPath);
+                    }
 
                     let result = {
                         "ScanTime": x_val.scanTime,
@@ -612,6 +664,7 @@ const createPivotData = function(resultArray) {
                         "Release": x_val.data.release,
                         "CveID": "CHK-cveid-" + y_val.cveID,
                         "Packages": pkgName,
+                        "Path": libPath,
                         "NotFixedYet": NotFixedYet,
                         "FixedIn": fixedIn,
                         "FixState": fixState
@@ -620,49 +673,49 @@ const createPivotData = function(resultArray) {
                     result["ServerName"] = getServerName(x_val.data);
 
                     var getCweId = function(target) {
-                        if (y_val.cveContents === undefined || y_val.cveContents[target] === undefined) {
+                        if (y_val.cveContents === undefined ||
+                            y_val.cveContents[target] === undefined ||
+                            y_val.cveContents[target].cweIDs === undefined ) {
                             return false;
                         }
 
                         let cweIds = y_val.cveContents[target].cweIDs;
                         let cweIdStr = "";
-                        if (cweIds !== undefined) {
-                            // NVD-CWE-Other and NVD-CWE-noinfo
-                            if(cweIds[0].indexOf("NVD-CWE-") !== -1) {
-                                result["CweID"] = cweIds[0];
-                            } else {
-                                for(var j = 0; j < cweIds.length; j++) {
-                                    cweIdStr = cweIdStr + cweIds[j];
-                                    let match = false;
-                                    let makeCweStr = function(source) {
-                                        if (match === true) {
-                                            return;
+                        // NVD-CWE-Other and NVD-CWE-noinfo
+                        if(cweIds[0].indexOf("NVD-CWE-") !== -1) {
+                            result["CweID"] = cweIds[0];
+                        } else {
+                            for(var j = 0; j < cweIds.length; j++) {
+                                cweIdStr = cweIdStr + cweIds[j];
+                                let match = false;
+                                let makeCweStr = function(source) {
+                                    if (match === true) {
+                                        return;
+                                    }
+                                    for(var i = 0; i < cweTop[source].length; i++) {
+                                        if(cweIds[j] === "CWE-" + cweTop[source][i]) {
+                                            match = true;
+                                            break;
                                         }
-                                        for(var i = 0; i < cweTop[source].length; i++) {
-                                            if(cweIds[j] === "CWE-" + cweTop[source][i]) {
-                                                match = true;
-                                                break;
-                                            }
-                                        }
-                                        if (match === true) {
-                                            cweIdStr = cweIdStr + "[!!]";
-                                        }
-                                    };
-                                    if (cweTop25Flag !== "false") {
-                                        makeCweStr("cweTop25");
                                     }
-                                    if (owaspTopTen2017Flag !== "false") {
-                                        makeCweStr("owaspTopTen2017");
+                                    if (match === true) {
+                                        cweIdStr = cweIdStr + "[!!]";
                                     }
-                                    if (sansTop25Flag !== "false") {
-                                        makeCweStr("sansTop25");
-                                    }
-                                    if (j < cweIds.length - 1) {
-                                        cweIdStr = cweIdStr + ", ";
-                                    }
+                                };
+                                if (cweTop25Flag !== "false") {
+                                    makeCweStr("cweTop25");
                                 }
-                                result["CweID"] = "CHK-cweid-" + cweIdStr;
+                                if (owaspTopTen2017Flag !== "false") {
+                                    makeCweStr("owaspTopTen2017");
+                                }
+                                if (sansTop25Flag !== "false") {
+                                    makeCweStr("sansTop25");
+                                }
+                                if (j < cweIds.length - 1) {
+                                    cweIdStr = cweIdStr + ", ";
+                                }
                             }
+                            result["CweID"] = "CHK-cweid-" + cweIdStr;
                         }
                         return true;
                     };
@@ -718,7 +771,14 @@ const createPivotData = function(resultArray) {
                     }
 
                     if (y_val.distroAdvisories !== undefined) {
-                        result["AdvisoryID"] = "CHK-advisoryid-" + y_val.distroAdvisories[0].advisoryID;
+                        let distroAdvisoriesIdStr = "";
+                        for(var j = 0; j < y_val.distroAdvisories.length; j++) {
+                            distroAdvisoriesIdStr = distroAdvisoriesIdStr + y_val.distroAdvisories[j].advisoryID;
+                            if (j < y_val.distroAdvisories.length - 1) {
+                                distroAdvisoriesIdStr = distroAdvisoriesIdStr + ", ";
+                            }
+                        }
+                        result["AdvisoryID"] = "CHK-advisoryid-" + distroAdvisoriesIdStr;
                     } else {
                         result["AdvisoryID"] = "None";
                     }
@@ -733,7 +793,7 @@ const createPivotData = function(resultArray) {
                             result["Changelog"] = "None";
                         }
 
-                        if (pkgInfo.Version !== "") {
+                        if (pkgInfo.version !== "") {
                             if (pkgInfo.release !== "") {
                                 result["PackageVer"] = pkgInfo.version + "-" + pkgInfo.release;
                             } else {
@@ -743,7 +803,7 @@ const createPivotData = function(resultArray) {
                             result["PackageVer"] = "None";
                         }
 
-                        if (pkgInfo.NewVersion !== "") {
+                        if (pkgInfo.newVersion !== "") {
                             if (pkgInfo.newRelease !== "") {
                                 result["NewPackageVer"] = pkgInfo.newVersion + "-" + pkgInfo.newRelease;
                             } else {
@@ -753,18 +813,53 @@ const createPivotData = function(resultArray) {
                             result["NewPackageVer"] = "None";
                         }
                         result["Repository"] = pkgInfo.repository;
+                        if (processFlag !== "false") {
+                            result["PortScannable"] = "";
+                            result["Process"] = "";
+                            if (pkgInfo.AffectedProcs !== undefined) {
+                                let process = "";
+                                $.each(pkgInfo.AffectedProcs, function(a, a_val) {
+                                    process = process + a_val.pid + ":" + a_val.name + " ";
+                                    if (a_val.listenPorts !== undefined) {
+                                        $.each(a_val.listenPorts, function(l, l_val) {
+                                            if (isCheckNull(l_val.portScanSuccessOn) === false) {
+                                                result["PortScannable"] = "CHK-PortScannable-" + y_val.cveID + "," + x_val.scanTime + "," + x_val.data.serverName + "," + x_val.data.container.name + "," + pkgName;
+                                                return;
+                                            }
+                                        });
+                                    }
+                                });
+                                result["Process"] = "CHK-Process-" + y_val.cveID + "," + x_val.scanTime + "," + x_val.data.serverName + "," + x_val.data.container.name + "," + pkgName + "," + process;
+                            }
+                        }
+                    } else if (libInfo !== undefined) {
+                        // === for library
+                        result["PackageVer"] = libInfo.Version;
+                        result["NewPackageVer"] = "Unknown";
+                        result["Changelog"] = "None";
+                        result["Repository"] = ""
+                        if (processFlag !== "false") {
+                            result["PortScannable"] = "";
+                            result["Process"] = "";
+                        }
                     } else {
                         // ===for cpe
                         result["PackageVer"] = "Unknown";
                         result["NewPackageVer"] = "Unknown";
                         result["Changelog"] = "None";
                         result["Repository"] = ""
+                        if (processFlag !== "false") {
+                            result["PortScannable"] = "";
+                            result["Process"] = "";
+                        }
                     }
 
                     var getSummaryAndDate = function(target) {
                         if (y_val.cveContents === undefined || y_val.cveContents[target] === undefined) {
                             return false;
                         }
+
+                        result["Title"] = y_val.cveContents[target].title;
 
                         if (summaryFlag !== "false") {
                             result["Summary"] = y_val.cveContents[target].summary;
@@ -834,10 +929,6 @@ const createPivotData = function(resultArray) {
                             return false;
                         }
 
-                        if (y_val.cveContents[target].cvss2Score === 0 & y_val.cveContents[target].cvss3Score === 0) {
-                            return false;
-                        }
-
                         if (y_val.cveContents[target].cvss3Score !== 0) {
                             result["CVSS Score"] = y_val.cveContents[target].cvss3Score.toFixed(1);
                             result["CVSS Severity"] = toUpperFirstLetter(y_val.cveContents[target].cvss3Severity);
@@ -846,6 +937,18 @@ const createPivotData = function(resultArray) {
                             result["CVSS Score"] = y_val.cveContents[target].cvss2Score.toFixed(1);
                             result["CVSS Severity"] = toUpperFirstLetter(y_val.cveContents[target].cvss2Severity);
                             result["CVSS Score Type"] = target;
+                        } else {
+                            result["CVSS Score"] = "-";
+                            if (y_val.cveContents[target].cvss3Severity !== "") {
+                                result["CVSS Severity"] = toUpperFirstLetter(y_val.cveContents[target].cvss3Severity);
+                                result["CVSS Score Type"] = target;
+                            } else if (isCheckNull(y_val.distroAdvisories) === false) {
+                                result["CVSS Severity"] = toUpperFirstLetter(y_val.distroAdvisories[0].severity);
+                                result["CVSS Score Type"] = target + "Advisory";
+                            } else {
+                                result["CVSS Severity"] = "Unknown";
+                                result["CVSS Score Type"] = "Unknown";
+                            }
                         }
 
                         if (cvssFlag !== "false") {
@@ -968,7 +1071,7 @@ const getFixState = function(val) {
 
 const getServerName = function(data) {
     let servername = data.serverName;
-    if (data.warnings.length > 0) {
+    if (isCheckNull(data.warnings) === false) {
         servername = "[Warn] " + servername;
     }
     if (data.runningKernel.rebootRequired === true) {
@@ -1021,7 +1124,7 @@ const displayPivot = function(array) {
             }
         },
         sorters: {
-            "CVSS Severity": sortAs(["healthy", "Unknown", "Critical", "High", "Important", "Medium", "Moderate", "Low"]),
+            "CVSS Severity": sortAs(["healthy", "Unknown", "Critical", "High", "Important", "Medium", "Moderate", "Low", "Negligible", "Unimportant", "Pending", "Not Vulnerable"]),
             "CveID": sortAs(["healthy"]),
             "CweID": sortAs(["healthy"]),
             "Packages": sortAs(["healthy"]),
@@ -1050,7 +1153,7 @@ const displayPivot = function(array) {
             db.set("vulsrepo_pivot_conf_tmp", config);
             $("#pivot_base").find(".pvtVal[data-value='null']").css("background-color", "#b2f3b2");
 
-            let cvsss = ["Critical", "High", "Medium", "Low", "Important", "Moderate"];
+            let cvsss = ["Unknown", "Critical", "High", "Medium", "Low", "Important", "Moderate", "Negligible", "Unimportant", "Pending", "Not Vulnerable"];
             $.each(cvsss, function(i, i_val) {
                 $("#pivot_base").find("th:contains('" + i_val + "')").each(function() {
                     if ($(this).text() === i_val) {
@@ -1073,12 +1176,16 @@ const displayPivot = function(array) {
 
             $("#pivot_base").find("th:contains('healthy')").css("background-color", "lightskyblue");
             $("#pivot_base").find("th:contains('CveID')").css("minWidth", "110px");
+            $("#pivot_base").find("th:contains('CweID')").css("minWidth", "80px");
+            $("#pivot_base").find("th:contains('AdvisoryID')").css("minWidth", "110px");
             $("#pivot_base").find("th:contains('Reboot Required')").css("color", "#da0b00");
             addAdvisoryIDLink();
             addCertLink();
             addCveIDLink();
             addCweIDLink();
             addChangelogLink();
+            addPortScannableLink();
+            addProcessLink();
         }
 
     };
@@ -1120,11 +1227,25 @@ const addCveIDLink = function() {
     });
 };
 
-const addCweIDLink = function() {
+const isNVDHighPriority = function() {
     const prioltyFlag = db.get("vulsrepo_pivotPriority");
     let nvd = prioltyFlag.indexOf("nvd");
     let jvn = prioltyFlag.indexOf("jvn");
 
+    if (nvd == -1) {
+        nvd = 99; // lowest priority
+    }
+    if (jvn == -1) {
+        jvn = 99; // lowest priority
+    }
+    if (nvd <= jvn) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
+const addCweIDLink = function() {
     let doms = $("#pivot_base").find("th:contains('CHK-cweid-')");
     doms.each(function() {
         let cveid = $(this).text();
@@ -1136,7 +1257,7 @@ const addCweIDLink = function() {
                 // NVD-CWE-Other and NVD-CWE-noinfo
                 generated = generated + cveids[i];
             } else {
-                if (nvd < jvn) {
+                if (isNVDHighPriority()) {
                     // NVD
                     generated = generated + "<a href=\"" + detailLink.cwe_nvd.url + cveids[i].replace(/\[!!\]/, "").replace(/CWE-/, "") + "\" rel='noopener noreferrer' target='_blank'>" + cveids[i] + "</a>";
                 } else {
@@ -1156,16 +1277,32 @@ const addAdvisoryIDLink = function() {
     let doms = $("#pivot_base").find("th:contains('CHK-advisoryid-')");
     doms.each(function() {
         let advisoryid = $(this).text().replace("CHK-advisoryid-", "");
-        // Open Advisory page
-        if (advisoryid.indexOf('ALAS2-') != -1) {
-            // ALAS2
-            $(this).text("").append("<a href=\"" + detailLink.amazon.url + "AL2/" + advisoryid.replace("ALAS2-", "ALAS-") + ".html\" rel='noopener noreferrer' target='_blank'>" + advisoryid + '</a>');
-        } else if (advisoryid.indexOf('ALAS-') != -1) {
-            // TODO ALAS
-        }
-        // TODO RHSA
-        // TODO ELSA
-        // TODO OVMSA
+        let advisoryids = advisoryid.split(', ');
+        let generated = "";
+
+        $.each(advisoryids, function(a, a_val) {
+            // Open Advisory page
+            if (a_val.indexOf('ALAS2-') != -1) {
+                // ALAS2
+                generated = generated + "<a href=\"" + detailLink.amazon.url + "AL2/" + a_val.replace("ALAS2-", "ALAS-") + ".html\" rel='noopener noreferrer' target='_blank'>" + a_val + '</a>';
+            } else if (a_val.indexOf('ALAS-') != -1) {
+                // TODO ALAS
+            } else if (a_val.indexOf('RHSA-') != -1) {
+                // RHSA
+                generated = generated + "<a href=\"" + detailLink.rhn.url + a_val + ".html\" rel='noopener noreferrer' target='_blank'>" + a_val + '</a>';
+            } else if (a_val.indexOf('ELSA-') != -1) {
+                // ELSA
+                let elsa = a_val.trim().split(":");
+                generated = generated + "<a href=\"" + detailLink.oracleErrata.url + elsa[0] + ".html\" rel='noopener noreferrer' target='_blank'>" + elsa[0] + '</a>';
+            }
+            // TODO OVMSA
+
+            if (a < advisoryids.length - 1) {
+                generated = generated + "<br>";
+            }
+        });
+
+        $(this).text("").append(generated);
     });
 };
 
@@ -1198,6 +1335,24 @@ const addChangelogLink = function() {
     addEventDisplayChangelog();
 };
 
+const addPortScannableLink = function() {
+    let doms = $("#pivot_base").find("th:contains('CHK-PortScannable-')");
+    doms.each(function() {
+        let changelogSearch = $(this).text().replace("CHK-PortScannable-", "").split(",");
+        $(this).text("").append('<a href="#contents" class="lightbox" data-cveid="' + changelogSearch[0] + '" data-scantime="' + changelogSearch[1] + '" data-server="' + changelogSearch[2] + '" data-container="' + changelogSearch[3] + '" data-package="' + changelogSearch[4] + '">Scannable</a>');
+    });
+    addEventDisplayChangelog();
+};
+
+const addProcessLink = function() {
+    let doms = $("#pivot_base").find("th:contains('CHK-Process-')");
+    doms.each(function() {
+        let changelogSearch = $(this).text().replace("CHK-Process-", "").split(",");
+        $(this).text("").append('<a href="#contents" class="lightbox" data-cveid="' + changelogSearch[0] + '" data-scantime="' + changelogSearch[1] + '" data-server="' + changelogSearch[2] + '" data-container="' + changelogSearch[3] + '" data-package="' + changelogSearch[4] + '">' + changelogSearch[5] + '</a>');
+    });
+    addEventDisplayChangelog();
+};
+
 const createDetailData = function(cveID) {
     var targetObj = { cveContents: {} };
     targetObj["cweDict"] = {};
@@ -1209,7 +1364,8 @@ const createDetailData = function(cveID) {
             targetObj["exploits"] = tmpCve.exploits;
             targetObj["metasploits"] = tmpCve.metasploits;
             targetObj["alertDict"] = tmpCve.alertDict;
-            $.each(vulsrepo.detailTaget, function(i, i_val) {
+            let priority = db.get("vulsrepo_pivotPriority");
+            $.each(priority, function(i, i_val) {
                 if (tmpCve.cveContents !== undefined && tmpCve.cveContents[i_val] !== undefined) {
                     targetObj.cveContents[i_val] = tmpCve.cveContents[i_val];
                     // Make CWE information
@@ -1258,6 +1414,28 @@ const initDetail = function() {
         $("#summary_" + i_val).empty();
         $("#lastModified_" + i_val).empty();
     });
+    let priorityOff = db.get("vulsrepo_pivotPriorityOff");
+    $.each(priorityOff, function(i, i_val) {
+        if (i_val === "redhat_api") {
+            i_val = "redhat"
+        } else if (i_val === "debian_security_tracker") {
+            i_val = "debian"
+        }
+        $("#typeRow_" + i_val).hide();
+        $("#typeRow_" + i_val + "V3").hide();
+    });
+    let priority = db.get("vulsrepo_pivotPriority");
+    $.each(priority.slice().reverse(), function(i, i_val) {
+        if (i_val === "redhat_api") {
+            i_val = "redhat"
+        } else if (i_val === "debian_security_tracker") {
+            i_val = "debian"
+        }
+        $("#typeRow_" + i_val).show();
+        $("#typeRow_" + i_val + "V3").show();
+        $("#typeRow_" + i_val + "V3").insertAfter("#typeRowHeader");
+        $("#typeRow_" + i_val).insertAfter("#typeRowHeader");
+    });
 };
 
 
@@ -1274,44 +1452,56 @@ const displayDetail = function(cveID) {
         let dest = target;
         if (target === "redhat_api") {
             dest = "redhat"
+        } else if (target === "debian_security_tracker") {
+            dest = "debian"
         }
+
+        var cvss3Ver = "";
 
         if (data.cveContents[target] !== undefined) {
             scoreV2 = data.cveContents[target].cvss2Score;
             scoreV3 = data.cveContents[target].cvss3Score;
 
-            if (scoreV2 !== 0) {
-                severityV2 = toUpperFirstLetter(data.cveContents[target].cvss2Severity);
-            }
-            if (scoreV3 !== 0) {
-                severityV3 = toUpperFirstLetter(data.cveContents[target].cvss3Severity);
-            }
-
-            if (scoreV2 !== 0) {
-                $("#scoreText_" + dest).removeClass();
-                $("#scoreText_" + dest).text(scoreV2.toFixed(1) + " (" + severityV2 + ")").addClass("cvss-" + severityV2);
-            } else {
-                $("#scoreText_" + dest).removeClass();
-                $("#scoreText_" + dest).text("None").addClass("cvss-None");
-            }
-
-            if (scoreV3 !== 0) {
-                $("#scoreText_" + dest + "V3").removeClass();
-                $("#scoreText_" + dest + "V3").text(scoreV3.toFixed(1) + " (" + severityV3 + ")").addClass("cvss-" + severityV3);
-            } else {
-                $("#scoreText_" + dest + "V3").removeClass();
-                $("#scoreText_" + dest + "V3").text("None").addClass("cvss-None");
-            }
+            severityV2 = toUpperFirstLetter(data.cveContents[target].cvss2Severity);
+            severityV3 = toUpperFirstLetter(data.cveContents[target].cvss3Severity);
 
             if (target === "ubuntu" || target === "debian" || target === "debian_security_tracker" || target === "amazon") {
                 $("#scoreText_" + dest).removeClass();
                 $("#scoreText_" + dest).text(severityV2).addClass("cvss-" + severityV2);
+            } else if (target === "trivy") {
+                $("#scoreText_" + dest).removeClass();
+                $("#scoreText_" + dest).text(severityV3).addClass("cvss-" + severityV3);
+            } else if (target === "oracle" && isCheckNull(data.DistroAdvisories) === false) {
+                severityV3 = toUpperFirstLetter(data.DistroAdvisories[0].severity);
+                $("#scoreText_" + dest).removeClass();
+                $("#scoreText_" + dest).text(severityV3).addClass("cvss-" + severityV3);
+            } else {
+                if (scoreV2 !== 0) {
+                    $("#scoreText_" + dest).removeClass();
+                    $("#scoreText_" + dest).text(scoreV2.toFixed(1) + " (" + severityV2 + ")").addClass("cvss-" + severityV2);
+                } else {
+                    $("#scoreText_" + dest).removeClass();
+                    $("#scoreText_" + dest).text("None").addClass("cvss-None");
+                }
+
+                if (scoreV3 !== 0) {
+                    $("#scoreText_" + dest + "V3").removeClass();
+                    $("#scoreText_" + dest + "V3").text(scoreV3.toFixed(1) + " (" + severityV3 + ")").addClass("cvss-" + severityV3);
+                } else {
+                    $("#scoreText_" + dest + "V3").removeClass();
+                    $("#scoreText_" + dest + "V3").text("None").addClass("cvss-None");
+                }
             }
 
-            if (data.cveContents[target].Summary !== "") {
+            if (data.cveContents[target].summary !== "") {
                 if ($("#summary_" + dest).text() === "NO DATA" || $("#summary_" + dest).text() === "") {
                     $("#summary_" + dest).text("");
-                    $("#summary_" + dest).append("<div>" + data.cveContents[target].summary + "</div>");
+                    $("#summary_" + dest).append("<div class='div-pre'>" + data.cveContents[target].summary + "</div>");
+                }
+            } else if (data.cveContents[target].title !== "") {
+                if ($("#summary_" + dest).text() === "NO DATA" || $("#summary_" + dest).text() === "") {
+                    $("#summary_" + dest).text("");
+                    $("#summary_" + dest).append("<div class='div-pre'>" + data.cveContents[target].title + "</div>");
                 }
             }
 
@@ -1326,7 +1516,7 @@ const displayDetail = function(cveID) {
             if (data.cveContents[target].mitigation !== undefined && data.cveContents[target].mitigation !== "") {
                 countMitigation++;
                 $("#Mitigation").append("<div><strong>=== " + target + " ===</strong></div>");
-                $("#Mitigation").append("<pre>" + data.cveContents[target].mitigation + "</pre>");
+                $("#Mitigation").append("<div class='div-pre'>" + data.cveContents[target].mitigation + "</div>");
                 $("#count-mitigation").text(countMitigation);
                 $("#Mitigation-section").show();
             }
@@ -1345,6 +1535,7 @@ const displayDetail = function(cveID) {
             var resultV3 = [];
             if (data.cveContents[target].cvss3Vector !== "") {
                 var arrayVectorV3 = getSplitArray(data.cveContents[target].cvss3Vector);
+                cvss3Ver = "v" + arrayVectorV3[0].split(":")[1];
                 resultV3.push(getVectorV3.cvss(arrayVectorV3[1], "")[1] / 0.85);
                 resultV3.push(getVectorV3.cvss(arrayVectorV3[2], "")[1] / 0.77);
                 resultV3.push(getVectorV3.cvss(arrayVectorV3[3], arrayVectorV3[5])[1] / 0.85);
@@ -1356,23 +1547,25 @@ const displayDetail = function(cveID) {
             }
 
         } else {
-            $("#scoreText_" + dest).text("None").addClass("cvss-None");
-            $("#scoreText_" + dest + "V3").text("None").addClass("cvss-None");
-            $("#summary_" + dest).text("NO DATA");
-            $("#summary_" + dest + "V3").text("NO DATA");
-            $("#lastModified_" + dest).text("------");
-            $("#lastModified_" + dest + "V3").text("------");
+            if ($("#scoreText_" + dest).text() === "") {
+                $("#scoreText_" + dest).text("None").addClass("cvss-None");
+                $("#scoreText_" + dest + "V3").text("None").addClass("cvss-None");
+                $("#summary_" + dest).text("NO DATA");
+                $("#summary_" + dest + "V3").text("NO DATA");
+                $("#lastModified_" + dest).text("------");
+                $("#lastModified_" + dest + "V3").text("------");
+            }
         }
 
         if (resultV2 === undefined) {
-            resultV2 = [0, 0, 0, 0, 0, 0];
+            resultV2 = [];
         }
 
         if (resultV3 === undefined) {
-            resultV3 = [0, 0, 0, 0, 0, 0, 0, 0];
+            resultV3 = [];
         }
 
-        return [resultV2, resultV3];
+        return [resultV2, resultV3, cvss3Ver];
     }
 
     // ---ChartRadar
@@ -1383,21 +1576,25 @@ const displayDetail = function(cveID) {
     let radarData_redhatV2
     let radarData_redhatV3
 
-    $.each(vulsrepo.detailTaget, function(i, i_val) {
+    let priority = db.get("vulsrepo_pivotPriority");
+    $.each(priority, function(i, i_val) {
         let r = dispCvss(i_val);
         switch (i_val) {
             case "nvd":
                 radarData_nvd = r[0];
                 radarData_nvdV3 = r[1];
+                radarData_nvdV3Ver = r[2];
                 break;
             case "jvn":
                 radarData_jvn = r[0];
                 radarData_jvnV3 = r[1];
+                radarData_jvnV3Ver = r[2];
                 break;
             case "redhat_api":
             case "redhat":
                 radarData_redhatV2 = r[0];
                 radarData_redhatV3 = r[1];
+                radarData_redhatV3Ver = r[2];
                 break;
         }
 
@@ -1413,6 +1610,47 @@ const displayDetail = function(cveID) {
         chartV3.destroy();
     }
 
+    let v2Datasets = [];
+    if (isCheckNull(radarData_nvd) === false) {
+        v2Datasets.push({
+            label: "NVD",
+            backgroundColor: "rgba(179,181,198,0.2)",
+            borderColor: "rgba(179,181,198,1)",
+            pointBackgroundColor: "rgba(179,181,198,1)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(179,181,198,1)",
+            hitRadius: 5,
+            data: radarData_nvd
+        });
+    }
+    if (isCheckNull(radarData_jvn) === false) {
+        v2Datasets.push({
+            label: "JVN",
+            backgroundColor: "rgba(255,99,132,0.2)",
+            borderColor: "rgba(255,99,132,1)",
+            pointBackgroundColor: "rgba(255,99,132,1)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(255,99,132,1)",
+            hitRadius: 5,
+            data: radarData_jvn
+        });
+    }
+    if (isCheckNull(radarData_redhatV2) === false) {
+        v2Datasets.push({
+            label: "RedHat",
+            backgroundColor: "rgba(51,204,204,0.2)",
+            borderColor: "rgba(51,204,204,1)",
+            pointBackgroundColor: "rgba(51,204,204,1)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(51,204,204,1)",
+            hitRadius: 5,
+            data: radarData_redhatV2
+        });
+    }
+
     chartV2 = new Chart(ctxV2, {
         type: 'radar',
         options: {
@@ -1425,43 +1663,51 @@ const displayDetail = function(cveID) {
             }
         },
         data: {
-            labels: ["Access Vector(AV)", "Access Complexity(AC)", "Authentication(Au)", "Confidentiality Impact(C)", "Integrity Impact(I)", "Availability Impact(A)"],
-            datasets: [{
-                    label: "NVD",
-                    backgroundColor: "rgba(179,181,198,0.2)",
-                    borderColor: "rgba(179,181,198,1)",
-                    pointBackgroundColor: "rgba(179,181,198,1)",
-                    pointBorderColor: "#fff",
-                    pointHoverBackgroundColor: "#fff",
-                    pointHoverBorderColor: "rgba(179,181,198,1)",
-                    hitRadius: 5,
-                    data: radarData_nvd
-                },
-                {
-                    label: "JVN",
-                    backgroundColor: "rgba(255,99,132,0.2)",
-                    borderColor: "rgba(255,99,132,1)",
-                    pointBackgroundColor: "rgba(255,99,132,1)",
-                    pointBorderColor: "#fff",
-                    pointHoverBackgroundColor: "#fff",
-                    pointHoverBorderColor: "rgba(255,99,132,1)",
-                    hitRadius: 5,
-                    data: radarData_jvn
-                },
-                {
-                    label: "RedHatV2",
-                    backgroundColor: "rgba(51,204,204,0.2)",
-                    borderColor: "rgba(51,204,204,1)",
-                    pointBackgroundColor: "rgba(51,204,204,1)",
-                    pointBorderColor: "#fff",
-                    pointHoverBackgroundColor: "#fff",
-                    pointHoverBorderColor: "rgba(51,204,204,1)",
-                    hitRadius: 5,
-                    data: radarData_redhatV2
-                }
-            ]
+            labels: getVectorV2.label(isNVDHighPriority()),
+            datasets: v2Datasets
         }
     });
+
+    let v3Datasets = [];
+    if (isCheckNull(radarData_nvdV3) === false) {
+        v3Datasets.push({
+            label: "NVD " + radarData_nvdV3Ver,
+            backgroundColor: "rgba(179,181,198,0.2)",
+            borderColor: "rgba(179,181,198,1)",
+            pointBackgroundColor: "rgba(179,181,198,1)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(179,181,198,1)",
+            hitRadius: 5,
+            data: radarData_nvdV3
+    });
+    }
+    if (isCheckNull(radarData_jvnV3) === false) {
+        v3Datasets.push({
+            label: "JVN " + radarData_jvnV3Ver,
+            backgroundColor: "rgba(255,99,132,0.2)",
+            borderColor: "rgba(255,99,132,1)",
+            pointBackgroundColor: "rgba(255,99,132,1)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(255,99,132,1)",
+            hitRadius: 5,
+            data: radarData_jvnV3
+    });
+    }
+    if (isCheckNull(radarData_redhatV3) === false) {
+        v3Datasets.push({
+            label: "RedHat " + radarData_redhatV3Ver,
+            backgroundColor: "rgba(102,102,255,0.2)",
+            borderColor: "rgba(102,102,255,1)",
+            pointBackgroundColor: "rgba(102,102,255,1)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgba(102,102,255,1)",
+            hitRadius: 5,
+            data: radarData_redhatV3
+    });
+    }
 
     chartV3 = new Chart(ctxV3, {
         type: 'radar',
@@ -1475,41 +1721,8 @@ const displayDetail = function(cveID) {
             }
         },
         data: {
-            labels: ["Access Vector(AV)", "Access Complexity(AC)", "Privileges Required(PR)", "User Interaction(UI)", "Scope(S)", "Confidentiality Impact(C)", "Integrity Impact(I)", "Availability Impact(A)"],
-            datasets: [{
-                label: "NVD v3",
-                backgroundColor: "rgba(179,181,198,0.2)",
-                borderColor: "rgba(179,181,198,1)",
-                pointBackgroundColor: "rgba(179,181,198,1)",
-                pointBorderColor: "#fff",
-                pointHoverBackgroundColor: "#fff",
-                pointHoverBorderColor: "rgba(179,181,198,1)",
-                hitRadius: 5,
-                data: radarData_nvdV3
-                },
-                {
-                label: "JVN v3",
-                backgroundColor: "rgba(255,99,132,0.2)",
-                borderColor: "rgba(255,99,132,1)",
-                pointBackgroundColor: "rgba(255,99,132,1)",
-                pointBorderColor: "#fff",
-                pointHoverBackgroundColor: "#fff",
-                pointHoverBorderColor: "rgba(255,99,132,1)",
-                hitRadius: 5,
-                data: radarData_jvnV3
-                },
-                {
-                label: "RedHatV3",
-                backgroundColor: "rgba(102,102,255,0.2)",
-                borderColor: "rgba(102,102,255,1)",
-                pointBackgroundColor: "rgba(102,102,255,1)",
-                pointBorderColor: "#fff",
-                pointHoverBackgroundColor: "#fff",
-                pointHoverBorderColor: "rgba(102,102,255,1)",
-                hitRadius: 5,
-                data: radarData_redhatV3
-
-            }]
+            labels: getVectorV3.label(isNVDHighPriority()),
+            datasets: v3Datasets
         }
     });
 
@@ -1525,9 +1738,15 @@ const displayDetail = function(cveID) {
         truncate: 50
     });
 
-    const prioltyFlag = db.get("vulsrepo_pivotPriority");
-    let nvd = prioltyFlag.indexOf("nvd");
-    let jvn = prioltyFlag.indexOf("jvn");
+    $('#summary_trivy > div').collapser({
+        mode: 'words',
+        truncate: 50
+    });
+
+    $('#summary_oracle > div').collapser({
+        mode: 'words',
+        truncate: 50
+    });
 
     // ---CweID---
     let getCweIDInfo = function(cveContents, target) {
@@ -1540,7 +1759,7 @@ const displayDetail = function(cveID) {
                     if (data.cweDict[cweid] !== undefined) {
                         $("#cwe-" + target).append("<li id='cweid-" + cweid + "-" + target + "'>");
                         let name = "";
-                        if (nvd < jvn) {
+                        if (isNVDHighPriority()) {
                             if (data.cweDict[cweid].en !== undefined) {
                                 name = data.cweDict[cweid].en.name;
                             } else if (name === "" && data.cweDict[cweid].ja !== undefined) {
@@ -1557,21 +1776,21 @@ const displayDetail = function(cveID) {
                         $("#cweid-" + cweid + "-" + target).append(" (<a href=\"" + detailLink.cwe_nvd.url + cweid + "\" rel='noopener noreferrer' target='_blank'>MITRE</a>");
                         $("#cweid-" + cweid + "-" + target).append("<span>&nbsp;/&nbsp;</span>");
                         $("#cweid-" + cweid + "-" + target).append("<a href=\"" + detailLink.cwe_jvn.url + x_val + ".html\" rel='noopener noreferrer' target='_blank'>JVN</a>)");
-                        if (data.cweDict[cweid].cweTopTwentyfive2019 !== "") {
+                        if (data.cweDict[cweid].cweTopTwentyfive2019 !== undefined && data.cweDict[cweid].cweTopTwentyfive2019 !== "") {
                             // CWE Top25 https://cwe.mitre.org/top25/archive/2019/2019_cwe_top25.html
                             $("#cweid-" + cweid + "-" + target).append(" <a href=\"" + detailLink.cweTopTwentyfive2019.url + "\" rel='noopener noreferrer' target='_blank' class='badge count'>CWE Rank: " + data.cweDict[cweid].cweTopTwentyfive2019 +"</a>");
                         }
-                        if (data.cweDict[cweid].owaspTopTen2017 !== "") {
+                        if (data.cweDict[cweid].owaspTopTen2017 !== undefined && data.cweDict[cweid].owaspTopTen2017 !== "") {
                             // OWASP Top Ten 2017 https://owasp.org/www-project-top-ten/OWASP_Top_Ten_2017/Top_10-2017_Top_10.html
                             let owaspLink = "";
-                            if (nvd < jvn) {
+                            if (isNVDHighPriority()) {
                                 owaspLink = detailLink.owaspTopTen2017[data.cweDict[cweid].owaspTopTen2017].en;
                             } else {
                                 owaspLink = detailLink.owaspTopTen2017[data.cweDict[cweid].owaspTopTen2017].ja;
                             }
                             $("#cweid-" + cweid + "-" + target).append(" <a href=\"" + owaspLink + "\" rel='noopener noreferrer' target='_blank' class='badge count'>OWASP Rank: " + data.cweDict[cweid].owaspTopTen2017 +"</a>");
                         }
-                        if (data.cweDict[cweid].sansTopTwentyfive !== "") {
+                        if (data.cweDict[cweid].sansTopTwentyfive !== undefined && data.cweDict[cweid].sansTopTwentyfive !== "") {
                             // SANS Top25 https://www.sans.org/top25-software-errors/
                             $("#cweid-" + cweid + "-" + target).append(" <a href=\"" + detailLink.sansTopTwentyfive.url + "\" rel='noopener noreferrer' target='_blank' class='badge count'>SANS Rank: " + data.cweDict[cweid].sansTopTwentyfive + "</a>");
                         }
@@ -1637,6 +1856,7 @@ const displayDetail = function(cveID) {
     } else {
         $("#typeName_amazon").append("Amazon");
     }
+    $("#typeName_trivy").append("Trivy");
 
     // ---USCERT/JPCERT---
     let countCert = 0;
@@ -1659,7 +1879,7 @@ const displayDetail = function(cveID) {
             }
         }
     }
-    if (nvd < jvn) {
+    if (isNVDHighPriority()) {
         addCert("en", "USCERT");
         addCert("ja", "JPCERT");
     } else {
@@ -1736,7 +1956,7 @@ const displayDetail = function(cveID) {
         }
     }
 
-    $.each(prioltyFlag, function(i, i_val) {
+    $.each(priority, function(i, i_val) {
         addRef(i_val);
     });
 
@@ -1768,6 +1988,8 @@ const displayDetail = function(cveID) {
                 data: "ServerName"
             }, {
                 data: "ContainerName"
+            }, {
+                data: "Path"
             }, {
                 data: "PackageName"
             }, {
@@ -1815,7 +2037,14 @@ const getDistroAdvisoriesArray = function(DistroAdvisoriesData) {
                 url: detailLink.rhn.url + x_val.advisoryID + ".html",
                 disp: detailLink.rhn.disp,
             }
-        } else if ((x_val.advisoryID.indexOf("ELSA-") != -1) | (x_val.advisoryID.indexOf("OVMSA-") != -1)) {
+        } else if (x_val.advisoryID.indexOf("ELSA-") != -1) {
+            // ex. "advisoryID": "\nELSA-2020-3385:  libvncserver security update (IMPORTANT)\n"
+            let elsa = x_val.advisoryID.trim().split(":");
+            tmp_Map = {
+                url: detailLink.oracleErrata.url + elsa[0] + ".html",
+                disp: detailLink.oracleErrata.disp,
+            }
+        } else if (x_val.advisoryID.indexOf("OVMSA-") != -1) {
             tmp_Map = {
                 url: detailLink.oracleErrata.url + x_val.advisoryID + ".html",
                 disp: detailLink.oracleErrata.disp,
@@ -1852,20 +2081,51 @@ const addEventDisplayChangelog = function() {
     });
 }
 
+const getTargetPackages = function(scannedCve) {
+    let targets;
+
+    if (isCheckNull(scannedCve.cpeNames) === false) {
+        targets = scannedCve.cpeNames;
+    } else if(isCheckNull(scannedCve.cpeURIs) === false) {
+        targets = scannedCve.cpeURIs;
+    } else if(isCheckNull(scannedCve.affectedPackages) === false) {
+        targets = scannedCve.affectedPackages;
+    } else if(isCheckNull(scannedCve.libraryFixedIns) === false) {
+        targets = scannedCve.libraryFixedIns;
+    }
+
+    return targets;
+};
+
+const getLibraryInformation = function(libraries, pkgName, libPath) {
+    let libInfo;
+
+    if (libPath === undefined) {
+        return;
+    }
+
+    $.each(libraries, function(l, l_val) {
+        if (l_val.Path === libPath) {
+            $.each(l_val.Libs, function(n, n_val) {
+                if (n_val.Name === pkgName) {
+                    libInfo = n_val;
+                }
+            });
+        }
+    });
+
+    return libInfo;
+};
+
 const createDetailPackageData = function(cveID) {
     var array = [];
     $.each(vulsrepo.detailRawData, function(x, x_val) {
         $.each(x_val.data.scannedCves, function(y, y_val) {
             if (cveID === y_val.cveID) {
-                if (isCheckNull(y_val.cpeNames) === false) {
-                    targets = y_val.cpeNames;
-                } else if(isCheckNull(y_val.cpeURIs) === false) {
-                    targets = y_val.cpeURIs;
-                } else {
-                    targets = y_val.affectedPackages;
-                }
+                let targets = getTargetPackages(y_val);
 
                 $.each(targets, function(z, z_val) {
+                    let libPath;
                     if (z_val.name === undefined) {
                         pkgName = z_val;
                         NotFixedYet = "None";
@@ -1874,7 +2134,10 @@ const createDetailPackageData = function(cveID) {
                         NotFixedYet = isNotFixedYet(z_val);
                         fixedIn = getFixedIn(z_val);
                         fixState = getFixState(z_val);
+                        libPath = z_val.path;
                     }
+
+                    let libInfo =  getLibraryInformation(x_val.data.libraries, pkgName, libPath);
 
                     let tmp_Map = {
                         ScanTime: x_val.scanTime,
@@ -1883,6 +2146,7 @@ const createDetailPackageData = function(cveID) {
                     };
 
                     if (pkgName.indexOf('cpe:/') != -1) {
+                        tmp_Map["Path"] = "";
                         tmp_Map["PackageName"] = '<a href="#contents" class="lightbox" data-cveid="' + cveID + '" data-scantime="' + x_val.scanTime + '" data-server="' + x_val.data.serverName + '" data-container="' + x_val.data.container.name + '" data-package="' + pkgName + '">' + pkgName + '</a>';
                         tmp_Map["PackageVersion"] = "";
                         tmp_Map["PackageRelease"] = "";
@@ -1893,12 +2157,24 @@ const createDetailPackageData = function(cveID) {
                         tmp_Map["FixedIn"] = "";
                         tmp_Map["FixState"] = "";
                     } else if (x_val.data.packages[pkgName] !== undefined) {
+                        tmp_Map["Path"] = "";
                         tmp_Map["PackageName"] = '<a href="#contents" class="lightbox" data-cveid="' + cveID + '" data-scantime="' + x_val.scanTime + '" data-server="' + x_val.data.serverName + '" data-container="' + x_val.data.container.name + '" data-package="' + pkgName + '">' + pkgName + '</a>';
                         tmp_Map["PackageVersion"] = x_val.data.packages[pkgName].version;
                         tmp_Map["PackageRelease"] = x_val.data.packages[pkgName].release;
                         tmp_Map["PackageNewVersion"] = x_val.data.packages[pkgName].newVersion;
                         tmp_Map["PackageNewRelease"] = x_val.data.packages[pkgName].newRelease;
                         tmp_Map["Repository"] = x_val.data.packages[pkgName].repository;
+                        tmp_Map["NotFixedYet"] = NotFixedYet;
+                        tmp_Map["FixedIn"] = fixedIn;
+                        tmp_Map["FixState"] = fixState;
+                    } else if (libInfo !== undefined) {
+                        tmp_Map["Path"] = libPath;
+                        tmp_Map["PackageName"] = '<a href="#contents" class="lightbox" data-cveid="' + cveID + '" data-scantime="' + x_val.scanTime + '" data-server="' + x_val.data.serverName + '" data-container="' + x_val.data.container.name + '" data-package="' + pkgName + '">' + pkgName + '</a>';
+                        tmp_Map["PackageVersion"] = libInfo.Version;
+                        tmp_Map["PackageRelease"] = "";
+                        tmp_Map["PackageNewVersion"] = "";
+                        tmp_Map["PackageNewRelease"] = "";
+                        tmp_Map["Repository"] = "";
                         tmp_Map["NotFixedYet"] = NotFixedYet;
                         tmp_Map["FixedIn"] = fixedIn;
                         tmp_Map["FixState"] = fixState;
@@ -1923,6 +2199,7 @@ const displayChangelogDetail = function(ankerData) {
     let changelogInfo = getChangeLogInfo(scantime, server, container, cveid, package);
 
     $("#changelog-cveid, #changelog-servername, #changelog-containername, #changelog-packagename, #changelog-method, #changelog-score, #changelog-contents, #changelog-notfixedyet").empty();
+    $(".changelog-affected-processes-data").remove();
     $("#changelog-cveid").append(cveid);
     $("#changelog-servername").append(server);
     $("#changelog-containername").append(container);
@@ -1990,6 +2267,32 @@ const displayChangelogDetail = function(ankerData) {
     } else {
         $("#changelog-packagename").append(package);
         $("#changelog-contents").append("NO DATA");
+    }
+
+    if (isCheckNull(changelogInfo.pkgContents.AffectedProcs) === false) {
+        $.each(changelogInfo.pkgContents.AffectedProcs.slice().reverse(), function(a, a_val) {
+            let rowData = "<tr class='changelog-affected-processes-data'>";
+            rowData = rowData + "<td>" + a_val.pid + "</td>";
+            rowData = rowData + "<td>" + a_val.name + "</td>";
+            rowData = rowData + "<td>";
+            if (isCheckNull(a_val.listenPorts) === false) {
+                $.each(a_val.listenPorts, function(l, l_val) {
+                    if (l > 0) {
+                        rowData = rowData + "<br>";
+                    }
+                    rowData = rowData + l_val.address + ":" + l_val.port;
+                    if (isCheckNull(l_val.portScanSuccessOn) === false) {
+                        rowData = rowData + " (◉ Scannable: [" + l_val.portScanSuccessOn + "])";
+                    }
+                });
+            }
+            rowData = rowData + "</td>";
+            rowData = rowData + "</tr>;"
+            $(rowData).insertAfter('#changelog-affected-processes-header');
+        });
+        $("#changelog-affected-processes").show();
+    } else {
+        $("#changelog-affected-processes").hide();
     }
 }
 

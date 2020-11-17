@@ -3,7 +3,7 @@ var vulsrepo = {
     detailPivotData: null,
     timeOut: 300 * 1000,
     demoFlag: true,
-    detailTaget: ["nvd", "jvn", "amazon", "redhat", "redhat_api", "ubuntu", "debian", "debian_security_tracker", "oracle"]
+    detailTaget: ["nvd", "jvn", "amazon", "redhat", "redhat_api", "ubuntu", "debian", "debian_security_tracker", "oracle", "trivy"]
 };
 
 
@@ -33,6 +33,7 @@ const vulsrepo_params = {
     vulsrepo_chkPivotSummary: "boolean",
     vulsrepo_chkPivotCvss: "boolean",
     vulsrepo_pivotPriority: "array",
+    vulsrepo_pivotPriorityOff: "array",
     vulsrepo_chkCweTop25: "boolean",
     vulsrepo_chkOwaspTopTen2017: "boolean",
     vulsrepo_chkSansTop25: "boolean"

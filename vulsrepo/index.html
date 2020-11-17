@@ -68,7 +68,7 @@
     <nav class="navbar navbar-inverse">
 
         <div class="navbar-header">
-            <a id="toolName" class="navbar-brand">VulsRepo</a>
+            <a id="toolName" class="navbar-brand">VulsRepo <span id="toolVersion">v.0.2.5</span></a>
         </div>
         <div class="collapse navbar-collapse">
             <button id="Setting" type="button" class="btn btn-default navbar-btn glyphicon glyphicon-wrench pull-right"></button>
@@ -148,7 +148,7 @@
                                                 </p>
                                                 <div class="col-xs-9" style="padding-left:0;">
                                                     <table class="table table-hover table-condensed font-size-small" style="margin-bottom:0;">
-                                                        <tr class="active">
+                                                        <tr id="typeRowHeader" class="active">
                                                             <th>Type</th>
                                                             <th>Score
                                                                 <div id="tooltip_score" class="glyphicon glyphicon-question-sign"></div>
@@ -156,71 +156,71 @@
                                                             <th>Summary</th>
                                                             <th>LastModified Date</th>
                                                         </tr>
-                                                        <tr>
+                                                        <tr id="typeRow_nvd">
                                                             <td id="typeName_nvd"></td>
                                                             <td id="scoreText_nvd"></td>
                                                             <td id="summary_nvd" rowspan="2"></td>
                                                             <td id="lastModified_nvd" rowspan="2"></td>
                                                         </tr>
-                                                        <tr>
+                                                        <tr id="typeRow_nvdV3">
                                                             <td id="typeName_nvdV3"></td>
                                                             <td id="scoreText_nvdV3"></td>
                                                             <td id="summary_nvdV3" hidden></td>
                                                             <td id="lastModified_nvdV3" hidden></td>
-                                                            </tr>
-                                                            <tr>
+                                                        </tr>
+                                                        <tr id="typeRow_jvn">
                                                             <td id="typeName_jvn"></td>
                                                             <td id="scoreText_jvn"></td>
                                                             <td id="summary_jvn" rowspan="2"></td>
                                                             <td id="lastModified_jvn" rowspan="2"></td>
-                                                            </tr>
-                                                            <tr>
+                                                        </tr>
+                                                        <tr id="typeRow_jvnV3">
                                                                 <td id="typeName_jvnV3"></td>
                                                                 <td id="scoreText_jvnV3"></td>
                                                                 <td id="summary_jvnV3" hidden></td>
                                                                 <td id="lastModified_jvnV3" hidden></td>
                                                         </tr>
-                                                        <tr>
+                                                        <tr id="typeRow_amazon">
                                                             <td id="typeName_amazon"></td>
                                                             <td id="scoreText_amazon"></td>
                                                             <td id="summary_amazon"></td>
                                                             <td id="lastModified_amazon"></td>
                                                         </tr>
-                                                        <tr>
+                                                        <tr id="typeRow_redhat">
                                                             <td id="typeName_redhat"></td>
                                                             <td id="scoreText_redhat"></td>
                                                             <td id="summary_redhat" rowspan="2"></td>
                                                             <td id="lastModified_redhat" rowspan="2"></td>
                                                         </tr>
-                                                        <tr>
+                                                        <tr id="typeRow_redhatV3">
                                                             <td id="typeName_redhatV3"></td>
                                                             <td id="scoreText_redhatV3"></td>
                                                             <td id="summary_redhatV3" hidden></td>
                                                             <td id="lastModified_redhatV3" hidden></td>
                                                         </tr>
-                                                        <tr>
+                                                        <tr id="typeRow_ubuntu">
                                                             <td id="typeName_ubuntu"></td>
                                                             <td id="scoreText_ubuntu"></td>
                                                             <td id="summary_ubuntu"></td>
                                                             <td id="lastModified_ubuntu"></td>
                                                         </tr>
-                                                        <tr>
-                                                            <td id="typeName_debian" rowspan="2"></td>
+                                                        <tr id="typeRow_debian">
+                                                            <td id="typeName_debian"></td>
                                                             <td id="scoreText_debian"></td>
                                                             <td id="summary_debian"></td>
                                                             <td id="lastModified_debian"></td>
                                                         </tr>
-                                                        <tr>
-                                                            <td id="typeName_debian_security_tracker" hidden></td>
-                                                            <td id="scoreText_debian_security_tracker"></td>
-                                                            <td id="summary_debian_security_tracker"></td>
-                                                            <td id="lastModified_debian_security_tracker"></td>
-                                                        </tr>
-                                                        <tr>
+                                                        <tr id="typeRow_oracle">
                                                             <td id="typeName_oracle"></td>
                                                             <td id="scoreText_oracle"></td>
                                                             <td id="summary_oracle"></td>
                                                             <td id="lastModified_oracle"></td>
+                                                        </tr>
+                                                        <tr id="typeRow_trivy">
+                                                            <td id="typeName_trivy"></td>
+                                                            <td id="scoreText_trivy"></td>
+                                                            <td id="summary_trivy"></td>
+                                                            <td id="lastModified_trivy"></td>
                                                         </tr>
 
                                                     </table>
@@ -228,10 +228,10 @@
                                                 <div class="col-xs-3" style="padding-left: 0px;">
                                                     <ul class="nav nav-tabs">
                                                         <li>
-                                                            <a data-toggle="tab" href="#tab_chart_v2">CvssV2</a>
+                                                            <a data-toggle="tab" href="#tab_chart_v2">Cvss v2</a>
                                                         </li>
                                                         <li class="active">
-                                                            <a data-toggle="tab" href="#tab_chart_v3">CvssV3</a>
+                                                            <a data-toggle="tab" href="#tab_chart_v3">Cvss v3.x</a>
                                                         </li>
                                                     </ul>
                                                     <div class="tab-content">
@@ -350,6 +350,7 @@
                                                     <th>ScanTime</th>
                                                     <th>Server<br>Name</th>
                                                     <th>Container<br>Name</th>
+                                                    <th>Path</th>
                                                     <th>Package<br>Name</th>
                                                     <th>Package<br>Version</th>
                                                     <th>Package<br>Release</th>
@@ -398,7 +399,7 @@
 
     <div class="modal fade" id="modal-setting" tabindex="-1">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content">
+            <div class="modal-content setting">
                 <div class="modal-header bg-success">
                     <button type="button" class="close" data-dismiss="modal">
 						<span aria-hidden="true">&times;</span>
@@ -411,7 +412,7 @@
                         <h4>Pivot Table</h4>
                         <br>
                         <div class="row">
-                            <div class="col-sm-7">
+                            <div class="col-sm-5">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         Show / Hide the Item
@@ -427,6 +428,13 @@
                                                 <div class="col-sm-4">
                                                     <div class="checkbox">
                                                         <input type="checkbox" name="chkPivotCvss" data-label-text="Cvss Metrics" checked>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    <div class="checkbox">
+                                                        <input type="checkbox" name="chkPivotProcess" data-label-text="Affected Processes" checked>
                                                     </div>
                                                 </div>
                                             </div>
@@ -461,47 +469,24 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-5">
+                            <div class="col-sm-7">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         Priority
                                     </div>
                                     <div class="panel-body">
-                                        <table>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td rowspan="9">
-                                                        <ul id="pivot-priority">
-                                                        </ul>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>5</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>6</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>7</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>8</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>9</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <p class="bg-primary">Hide</p>
+                                                <ul id="pivot-priority-off" class="connectedSortable">
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="bg-primary">Show</p>
+                                                <ul id="pivot-priority" class="connectedSortable">
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -643,10 +628,24 @@
                 </table>
             </div>
 
-            <p class="bg-primary">
+            <div id="changelog-affected-processes">
+                <p class="bg-primary">
+                Affected Processes
+                </p>
+                <table class="table table-condensed table-bordered">
+                    <tr id ="changelog-affected-processes-header" class="info">
+                        <th>PID</th>
+                        <th>Name</th>
+                        <th>Address:Port(Scannable)</th>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <p class="bg-primary">
                 Changelog
-            </p>
-            <div id="changelog-contents"></div>
+                </p>
+                <div id="changelog-contents"></div>
+            </div>
         </div>
     </div>
 </body>

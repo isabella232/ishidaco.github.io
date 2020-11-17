@@ -6,7 +6,17 @@
     <description>Recent content in Blog on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 29 Oct 2020 11:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/en/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Nov 2020 10:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/en/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo v0.2.5 supports Affected Processes and Trivy information</title>
+      <link>https://monocosel.jp/en/blog/vulsrepo-demo-v0-2-5/</link>
+      <pubDate>Tue, 17 Nov 2020 10:30:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/en/blog/vulsrepo-demo-v0-2-5/</guid>
+      <description>VulsRepo online demo v.0.2.5 is here.
+v0.2.5 Features  #105  Affected Processes information is now viewable.   #143  Trivy information is now viewable. Added Path and Title on pivot table and references on detail panel.   #151  You can now choose to show or hide CveCcontents.   #151  Changed to sort the CVSS Detail according to priority. #144  Changed CVSS Vector chart to distinguish between CVSS v3.</description>
+    </item>
+    
     <item>
       <title>VulsRepo v0.2.4 supports RedHatAPI information</title>
       <link>https://monocosel.jp/en/blog/vulsrepo-demo-v0-2-4/</link>
