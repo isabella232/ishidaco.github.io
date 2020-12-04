@@ -6,7 +6,17 @@
     <description>Recent content on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Nov 2020 10:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/en/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Dec 2020 10:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Added TSV download and pages for printing in VulsRepo v0.2.6</title>
+      <link>https://monocosel.jp/en/blog/vulsrepo-demo-v0-2-6/</link>
+      <pubDate>Fri, 04 Dec 2020 10:30:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/en/blog/vulsrepo-demo-v0-2-6/</guid>
+      <description>VulsRepo online demo v.0.2.6 is here.
+v0.2.6 Features  #173  TSV Export renderer has been added and can now be downloaded as a TSV file. This will allow you to import and work with VulsRepo&amp;rsquo;s aggregate results in applications that support TSV files, such as Excel and LibreOffice Calc.   #173  Printable pages can now be displayed in a separate window. This allows you to print just the tables and graphs on the printer or save them as PDF file (depending on your browser&amp;rsquo;s printing capabilities).</description>
+    </item>
+    
     <item>
       <title>VulsRepo v0.2.5 supports Affected Processes and Trivy information</title>
       <link>https://monocosel.jp/en/blog/vulsrepo-demo-v0-2-5/</link>

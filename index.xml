@@ -6,7 +6,16 @@
     <description>Recent content on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 17 Nov 2020 10:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 04 Dec 2020 10:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo v0.2.6 で TSV ダウンロードと印刷用ページを追加しました</title>
+      <link>https://monocosel.jp/blog/vulsrepo-demo-v0-2-6/</link>
+      <pubDate>Fri, 04 Dec 2020 10:30:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/blog/vulsrepo-demo-v0-2-6/</guid>
+      <description>VulsRepo を v.0.2.6 に更新しました。集計結果を TSV ファイルとしてダウンロードできるようになり、印刷用のページを別ウィンドウで表示できるようになりました。また</description>
+    </item>
+    
     <item>
       <title>VulsRepo v0.2.5 で影響を受けるプロセスの情報表示に対応しました</title>
       <link>https://monocosel.jp/blog/vulsrepo-demo-v0-2-5/</link>
