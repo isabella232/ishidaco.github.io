@@ -6,7 +6,16 @@
     <description>Recent content in security on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 04 Dec 2020 10:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/categories/security/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Dec 2020 10:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/categories/security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo v0.2.7 で表示対象データの絞り込みが簡単になりました</title>
+      <link>https://monocosel.jp/blog/vulsrepo-demo-v0-2-7/</link>
+      <pubDate>Mon, 21 Dec 2020 10:30:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/blog/vulsrepo-demo-v0-2-7/</guid>
+      <description>VulsRepo を v.0.2.7 に更新しました。日付範囲とサーバー一覧からサーバー（コンテナー）を指定して表示対象を選択できるようにしました。また、軽微なバグ修正を行</description>
+    </item>
+    
     <item>
       <title>VulsRepo v0.2.6 で TSV ダウンロードと印刷用ページを追加しました</title>
       <link>https://monocosel.jp/blog/vulsrepo-demo-v0-2-6/</link>

@@ -6,7 +6,18 @@
     <description>Recent content in Blog on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 04 Dec 2020 10:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/en/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Dec 2020 10:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/en/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo v0.2.7 makes it easier to narrow down the data to be displayed</title>
+      <link>https://monocosel.jp/en/blog/vulsrepo-demo-v0-2-7/</link>
+      <pubDate>Mon, 21 Dec 2020 10:30:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/en/blog/vulsrepo-demo-v0-2-7/</guid>
+      <description>VulsRepo online demo v.0.2.7 is here.
+v0.2.7 Features  #178  Added the ability to select data by specifying a date range and server (container).  For example, to display a specific server (container) for the last month, you had to expand the date tree one by one and select the target server repeatedly for the number of days.
+With this improvement, it is now possible to do so by simply selecting Last Month and choosing the target server from the server list.</description>
+    </item>
+    
     <item>
       <title>Added TSV download and pages for printing in VulsRepo v0.2.6</title>
       <link>https://monocosel.jp/en/blog/vulsrepo-demo-v0-2-6/</link>
