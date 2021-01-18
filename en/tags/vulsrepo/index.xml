@@ -6,7 +6,20 @@
     <description>Recent content in vulsrepo on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 28 Dec 2020 10:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/en/tags/vulsrepo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Jan 2021 10:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/en/tags/vulsrepo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo v0.3.0 now supports displaying EOL information and filtering reference information</title>
+      <link>https://monocosel.jp/en/blog/vulsrepo-v0-3-0/</link>
+      <pubDate>Mon, 18 Jan 2021 10:30:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/en/blog/vulsrepo-v0-3-0/</guid>
+      <description>The EOL information display added in Vuls v0.15.0  is now supported. You can now filter the reference information by tags and information source.
+The version numbering system has been changed.
+x.y.z
+x &amp;hellip; Major changes y &amp;hellip; Small changes z &amp;hellip; Bug fixes
+Features  #192  Added Errors and Warnings on pivot table. EOL information is included in warnings in the output of Vuls v0.15.0  and later.   #188  Reference information can now be filtered by tags.</description>
+    </item>
+    
     <item>
       <title>VulsRepo v0.2.8 now supports data output by Vuls v0.14.0 and later</title>
       <link>https://monocosel.jp/en/blog/vulsrepo-demo-v0-2-8/</link>

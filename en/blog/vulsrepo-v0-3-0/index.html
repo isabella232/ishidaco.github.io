@@ -2,39 +2,48 @@
 <html lang="en">
   <head>
   <meta charset="utf-8">
-<title>VulsRepo v0.2.8 now supports data output by Vuls v0.14.0 and later - モノコセル</title>
+<title>VulsRepo v0.3.0 now supports displaying EOL information and filtering reference information - モノコセル</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
   <meta name="generator" content="Hugo 0.80.0" />
-  <meta itemprop="name" content="VulsRepo v0.2.8 now supports data output by Vuls v0.14.0 and later">
-<meta itemprop="description" content="VulsRepo online demo v.0.2.8 is here.
-v0.2.8 Features  #186  Added display of NVD tag information (Vuls v0.14.0 or later required).   #186  Added Reported Version on pivot table.  Changes  #186  Changed the style of the links.  Fixes  #186  Fixed an issue where Mitigation was not displayed in the output results of Vuls v0.14.0 or later.  Docker image ishidaco/vulsrepo - Docker Hub  docker pull ishidaco/vulsrepo docker pull ishidaco/vulsrepo:version-0.">
-<meta itemprop="datePublished" content="2020-12-28T10:30:09+09:00" />
-<meta itemprop="dateModified" content="2020-12-28T10:30:09+09:00" />
-<meta itemprop="wordCount" content="100">
-<meta itemprop="image" content="https://monocosel.jp/blog/vulsrepo-demo-v0-2-8/tag.png">
+  <meta itemprop="name" content="VulsRepo v0.3.0 now supports displaying EOL information and filtering reference information">
+<meta itemprop="description" content="The EOL information display added in Vuls v0.15.0  is now supported. You can now filter the reference information by tags and information source.
+The version numbering system has been changed.
+x.y.z
+x &hellip; Major changes y &hellip; Small changes z &hellip; Bug fixes
+Features  #192  Added Errors and Warnings on pivot table. EOL information is included in warnings in the output of Vuls v0.15.0  and later.   #188  Reference information can now be filtered by tags.">
+<meta itemprop="datePublished" content="2021-01-18T10:30:09+09:00" />
+<meta itemprop="dateModified" content="2021-01-18T10:30:09+09:00" />
+<meta itemprop="wordCount" content="162">
+<meta itemprop="image" content="https://monocosel.jp/blog/vulsrepo-v0-3-0/tag-filter.png">
 
 
 
 <meta itemprop="keywords" content="vulsrepo," />
 
-  <meta property="og:title" content="VulsRepo v0.2.8 now supports data output by Vuls v0.14.0 and later" />
-<meta property="og:description" content="VulsRepo online demo v.0.2.8 is here.
-v0.2.8 Features  #186  Added display of NVD tag information (Vuls v0.14.0 or later required).   #186  Added Reported Version on pivot table.  Changes  #186  Changed the style of the links.  Fixes  #186  Fixed an issue where Mitigation was not displayed in the output results of Vuls v0.14.0 or later.  Docker image ishidaco/vulsrepo - Docker Hub  docker pull ishidaco/vulsrepo docker pull ishidaco/vulsrepo:version-0." />
+  <meta property="og:title" content="VulsRepo v0.3.0 now supports displaying EOL information and filtering reference information" />
+<meta property="og:description" content="The EOL information display added in Vuls v0.15.0  is now supported. You can now filter the reference information by tags and information source.
+The version numbering system has been changed.
+x.y.z
+x &hellip; Major changes y &hellip; Small changes z &hellip; Bug fixes
+Features  #192  Added Errors and Warnings on pivot table. EOL information is included in warnings in the output of Vuls v0.15.0  and later.   #188  Reference information can now be filtered by tags." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://monocosel.jp/en/blog/vulsrepo-demo-v0-2-8/" />
-<meta property="og:image" content="https://monocosel.jp/blog/vulsrepo-demo-v0-2-8/tag.png" />
-<meta property="article:published_time" content="2020-12-28T10:30:09+09:00" />
-<meta property="article:modified_time" content="2020-12-28T10:30:09+09:00" />
+<meta property="og:url" content="https://monocosel.jp/en/blog/vulsrepo-v0-3-0/" />
+<meta property="og:image" content="https://monocosel.jp/blog/vulsrepo-v0-3-0/tag-filter.png" />
+<meta property="article:published_time" content="2021-01-18T10:30:09+09:00" />
+<meta property="article:modified_time" content="2021-01-18T10:30:09+09:00" />
 
   <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://monocosel.jp/blog/vulsrepo-demo-v0-2-8/tag.png"/>
+<meta name="twitter:image" content="https://monocosel.jp/blog/vulsrepo-v0-3-0/tag-filter.png"/>
 
-<meta name="twitter:title" content="VulsRepo v0.2.8 now supports data output by Vuls v0.14.0 and later"/>
-<meta name="twitter:description" content="VulsRepo online demo v.0.2.8 is here.
-v0.2.8 Features  #186  Added display of NVD tag information (Vuls v0.14.0 or later required).   #186  Added Reported Version on pivot table.  Changes  #186  Changed the style of the links.  Fixes  #186  Fixed an issue where Mitigation was not displayed in the output results of Vuls v0.14.0 or later.  Docker image ishidaco/vulsrepo - Docker Hub  docker pull ishidaco/vulsrepo docker pull ishidaco/vulsrepo:version-0."/>
+<meta name="twitter:title" content="VulsRepo v0.3.0 now supports displaying EOL information and filtering reference information"/>
+<meta name="twitter:description" content="The EOL information display added in Vuls v0.15.0  is now supported. You can now filter the reference information by tags and information source.
+The version numbering system has been changed.
+x.y.z
+x &hellip; Major changes y &hellip; Small changes z &hellip; Bug fixes
+Features  #192  Added Errors and Warnings on pivot table. EOL information is included in warnings in the output of Vuls v0.15.0  and later.   #188  Reference information can now be filtered by tags."/>
 <meta name="twitter:site" content="@ishiDACo"/>
 
   
@@ -136,7 +145,7 @@ v0.2.8 Features  #186  Added display of NVD tag information (Vuls v0.14.0 or lat
   <menu id="lang-menu" class="flyout-menu">
   <a href="#" lang="en" class="link active">English (en)</a>
   
-      <a href="https://monocosel.jp/blog/vulsrepo-demo-v0-2-8/" lang="ja" class="link">日本語 (ja)</a>
+      <a href="https://monocosel.jp/blog/vulsrepo-v0-3-0/" lang="ja" class="link">日本語 (ja)</a>
     
   
 </menu>
@@ -151,31 +160,31 @@ v0.2.8 Features  #186  Added display of NVD tag information (Vuls v0.14.0 or lat
 
   
     
-    <a href="//twitter.com/share?text=VulsRepo%20v0.2.8%20now%20supports%20data%20output%20by%20Vuls%20v0.14.0%20and%20later&amp;url=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-demo-v0-2-8%2f" target="_blank" rel="noopener" class="share-btn twitter">
+    <a href="//twitter.com/share?text=VulsRepo%20v0.3.0%20now%20supports%20displaying%20EOL%20information%20and%20filtering%20reference%20information&amp;url=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-v0-3-0%2f" target="_blank" rel="noopener" class="share-btn twitter">
         <i class="fab fa-twitter"></i><p>&nbsp;Twitter</p>
       </a>
   
 
   
-      <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-demo-v0-2-8%2f" target="_blank" rel="noopener" class="share-btn facebook">
+      <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-v0-3-0%2f" target="_blank" rel="noopener" class="share-btn facebook">
         <i class="fab fa-facebook"></i><p>&nbsp;Facebook</p>
         </a>
   
 
   
-    <a href="//www.reddit.com/submit?url=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-demo-v0-2-8%2f&amp;title=VulsRepo%20v0.2.8%20now%20supports%20data%20output%20by%20Vuls%20v0.14.0%20and%20later" target="_blank" rel="noopener" class="share-btn reddit">
+    <a href="//www.reddit.com/submit?url=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-v0-3-0%2f&amp;title=VulsRepo%20v0.3.0%20now%20supports%20displaying%20EOL%20information%20and%20filtering%20reference%20information" target="_blank" rel="noopener" class="share-btn reddit">
           <i class="fab fa-reddit-alien"></i><p>&nbsp;Reddit</p>
         </a>
   
 
   
-        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-demo-v0-2-8%2f&amp;title=VulsRepo%20v0.2.8%20now%20supports%20data%20output%20by%20Vuls%20v0.14.0%20and%20later" target="_blank" rel="noopener" class="share-btn linkedin">
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-v0-3-0%2f&amp;title=VulsRepo%20v0.3.0%20now%20supports%20displaying%20EOL%20information%20and%20filtering%20reference%20information" target="_blank" rel="noopener" class="share-btn linkedin">
             <i class="fab fa-linkedin"></i><p>&nbsp;LinkedIn</p>
           </a>
   
 
   
-        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-demo-v0-2-8%2f&amp;description=VulsRepo%20v0.2.8%20now%20supports%20data%20output%20by%20Vuls%20v0.14.0%20and%20later" target="_blank" rel="noopener" class="share-btn pinterest">
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-v0-3-0%2f&amp;description=VulsRepo%20v0.3.0%20now%20supports%20displaying%20EOL%20information%20and%20filtering%20reference%20information" target="_blank" rel="noopener" class="share-btn pinterest">
           <i class="fab fa-pinterest-p"></i><p>&nbsp;Pinterest</p>
         </a>
   
@@ -249,13 +258,13 @@ v0.2.8 Features  #186  Added display of NVD tag information (Vuls v0.14.0 or lat
   <header>
   <div class="title">
     
-        <h2><a href="/en/blog/vulsrepo-demo-v0-2-8/">VulsRepo v0.2.8 now supports data output by Vuls v0.14.0 and later</a></h2>
+        <h2><a href="/en/blog/vulsrepo-v0-3-0/">VulsRepo v0.3.0 now supports displaying EOL information and filtering reference information</a></h2>
     
     
 </div>
   <div class="meta">
-    <time class="published" datetime="2020-12-28 10:30:09 &#43;0900 JST">
-      December 28, 2020
+    <time class="published" datetime="2021-01-18 10:30:09 &#43;0900 JST">
+      January 18, 2021
     </time>
     <span class="author"></span>
     
@@ -272,31 +281,31 @@ v0.2.8 Features  #186  Added display of NVD tag information (Vuls v0.14.0 or lat
 
   
     
-    <a href="//twitter.com/share?text=VulsRepo%20v0.2.8%20now%20supports%20data%20output%20by%20Vuls%20v0.14.0%20and%20later&amp;url=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-demo-v0-2-8%2f" target="_blank" rel="noopener" class="share-btn twitter">
+    <a href="//twitter.com/share?text=VulsRepo%20v0.3.0%20now%20supports%20displaying%20EOL%20information%20and%20filtering%20reference%20information&amp;url=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-v0-3-0%2f" target="_blank" rel="noopener" class="share-btn twitter">
         <i class="fab fa-twitter"></i><p>&nbsp;Twitter</p>
       </a>
   
 
   
-      <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-demo-v0-2-8%2f" target="_blank" rel="noopener" class="share-btn facebook">
+      <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-v0-3-0%2f" target="_blank" rel="noopener" class="share-btn facebook">
         <i class="fab fa-facebook"></i><p>&nbsp;Facebook</p>
         </a>
   
 
   
-    <a href="//www.reddit.com/submit?url=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-demo-v0-2-8%2f&amp;title=VulsRepo%20v0.2.8%20now%20supports%20data%20output%20by%20Vuls%20v0.14.0%20and%20later" target="_blank" rel="noopener" class="share-btn reddit">
+    <a href="//www.reddit.com/submit?url=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-v0-3-0%2f&amp;title=VulsRepo%20v0.3.0%20now%20supports%20displaying%20EOL%20information%20and%20filtering%20reference%20information" target="_blank" rel="noopener" class="share-btn reddit">
           <i class="fab fa-reddit-alien"></i><p>&nbsp;Reddit</p>
         </a>
   
 
   
-        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-demo-v0-2-8%2f&amp;title=VulsRepo%20v0.2.8%20now%20supports%20data%20output%20by%20Vuls%20v0.14.0%20and%20later" target="_blank" rel="noopener" class="share-btn linkedin">
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-v0-3-0%2f&amp;title=VulsRepo%20v0.3.0%20now%20supports%20displaying%20EOL%20information%20and%20filtering%20reference%20information" target="_blank" rel="noopener" class="share-btn linkedin">
             <i class="fab fa-linkedin"></i><p>&nbsp;LinkedIn</p>
           </a>
   
 
   
-        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-demo-v0-2-8%2f&amp;description=VulsRepo%20v0.2.8%20now%20supports%20data%20output%20by%20Vuls%20v0.14.0%20and%20later" target="_blank" rel="noopener" class="share-btn pinterest">
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fmonocosel.jp%2fen%2fblog%2fvulsrepo-v0-3-0%2f&amp;description=VulsRepo%20v0.3.0%20now%20supports%20displaying%20EOL%20information%20and%20filtering%20reference%20information" target="_blank" rel="noopener" class="share-btn pinterest">
           <i class="fab fa-pinterest-p"></i><p>&nbsp;Pinterest</p>
         </a>
   
@@ -304,43 +313,52 @@ v0.2.8 Features  #186  Added display of NVD tag information (Vuls v0.14.0 or lat
 
   </section>
   
-  <a href="/en/blog/vulsrepo-demo-v0-2-8/" class="image featured">
+  <a href="/en/blog/vulsrepo-v0-3-0/" class="image featured">
     
-      <img src="/blog/vulsrepo-demo-v0-2-8/tag.png" alt="">
+      <img src="/blog/vulsrepo-v0-3-0/tag-filter.png" alt="">
     
   </a>
 
 
   <div class="content">
-    <p><a href="/vulsrepo/">VulsRepo online demo v.0.2.8</a>
- is here.</p>
-<h2 id="v028">v0.2.8</h2>
+    <p>The EOL information display added in <a href="https://github.com/future-architect/vuls/releases/tag/v0.15.0" target="_blank" rel="noopener noreferrer">Vuls v0.15.0 <span class="fas fa-external-link-alt"></span></a>
+ is now supported. You can now filter the reference information by tags and information source.</p>
+<p>The version numbering system has been changed.</p>
+<p>x.y.z</p>
+<p>x &hellip; Major changes
+y &hellip; Small changes
+z &hellip; Bug fixes</p>
 <h3 id="features">Features</h3>
 <ul>
-<li><a href="https://github.com/ishiDACo/vulsrepo/issues/186" target="_blank" rel="noopener noreferrer">#186 <span class="fas fa-external-link-alt"></span></a>
- Added display of NVD tag information (Vuls v0.14.0 or later required).</li>
+<li><a href="https://github.com/ishiDACo/vulsrepo/issues/192" target="_blank" rel="noopener noreferrer">#192 <span class="fas fa-external-link-alt"></span></a>
+ Added <code>Errors</code> and <code>Warnings</code> on pivot table. EOL information is included in warnings in the output of <a href="https://github.com/future-architect/vuls/releases/tag/v0.15.0" target="_blank" rel="noopener noreferrer">Vuls v0.15.0 <span class="fas fa-external-link-alt"></span></a>
+ and later.</li>
 </ul>
-<p><img src="https://user-images.githubusercontent.com/2542762/103188783-30610800-490d-11eb-8d68-0102e84bd4ba.png" alt="tag"></p>
+<p><img src="https://user-images.githubusercontent.com/2542762/104679912-080d4200-5732-11eb-8336-f2bf2c7339cc.png" alt="warnings-errors"></p>
 <ul>
-<li><a href="https://github.com/ishiDACo/vulsrepo/issues/186" target="_blank" rel="noopener noreferrer">#186 <span class="fas fa-external-link-alt"></span></a>
- Added <code>Reported Version</code> on pivot table.</li>
+<li><a href="https://github.com/ishiDACo/vulsrepo/issues/188" target="_blank" rel="noopener noreferrer">#188 <span class="fas fa-external-link-alt"></span></a>
+ Reference information can now be filtered by tags.</li>
+<li><a href="https://github.com/ishiDACo/vulsrepo/issues/188" target="_blank" rel="noopener noreferrer">#188 <span class="fas fa-external-link-alt"></span></a>
+ Added the ability to open and close the reference information for each information provider.</li>
 </ul>
+<p><img src="https://user-images.githubusercontent.com/2542762/104680847-30963b80-5734-11eb-8a98-99d9394b7535.png" alt="tag-filter"></p>
 <h3 id="changes">Changes</h3>
 <ul>
-<li><a href="https://github.com/ishiDACo/vulsrepo/issues/186" target="_blank" rel="noopener noreferrer">#186 <span class="fas fa-external-link-alt"></span></a>
- Changed the style of the links.</li>
+<li>Nothing.</li>
 </ul>
 <h3 id="fixes">Fixes</h3>
 <ul>
-<li><a href="https://github.com/ishiDACo/vulsrepo/issues/186" target="_blank" rel="noopener noreferrer">#186 <span class="fas fa-external-link-alt"></span></a>
- Fixed an issue where <code>Mitigation</code> was not displayed in the output results of Vuls v0.14.0 or later.</li>
+<li><a href="https://github.com/ishiDACo/vulsrepo/issues/192" target="_blank" rel="noopener noreferrer">#192 <span class="fas fa-external-link-alt"></span></a>
+ <code>[Warn]</code> and <code>[Reboot Required]</code> labels are now on <code>Container</code> instead of <code>Server</code>.</li>
 </ul>
 <h2 id="docker-image">Docker image</h2>
 <p><a href="https://hub.docker.com/r/ishidaco/vulsrepo" target="_blank" rel="noopener noreferrer">ishidaco/vulsrepo - Docker Hub <span class="fas fa-external-link-alt"></span></a>
 </p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker pull ishidaco/vulsrepo
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker pull ishidaco/vulsrepo:version-0.2.8
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker pull ishidaco/vulsrepo:version-0.3.0
 </code></pre></div><h2 id="demo">Demo</h2>
+<p><a href="/vulsrepo/">VulsRepo online demo</a>
+ is here.</p>
 <p>You can see a sample of the following vulnerability scan results.</p>
 <ul>
 <li>Amazon Linux 2</li>
@@ -349,8 +367,9 @@ v0.2.8 Features  #186  Added display of NVD tag information (Vuls v0.14.0 or lat
 <li>Raspberry Pi OS 10</li>
 <li>Oracle Linux 7.9</li>
 <li>Alpine Linux on Docker container</li>
+<li>Ubuntu 14.04 on Docker container</li>
 </ul>
-<p>See also <a href="https://github.com/ishiDACo/vulsrepo/releases/tag/v0.2.8">https://github.com/ishiDACo/vulsrepo/releases/tag/v0.2.8</a></p>
+<p>See also <a href="https://github.com/ishiDACo/vulsrepo/releases/tag/v0.3.0">https://github.com/ishiDACo/vulsrepo/releases/tag/v0.3.0</a></p>
 
   </div>
   <footer>
@@ -389,10 +408,8 @@ v0.2.8 Features  #186  Added display of NVD tag information (Vuls v0.14.0 or lat
 
 <div class="pagination">
   
-    <a href="/en/blog/vulsrepo-demo-v0-2-7/" class="button"><div class="previous"><div>VulsRepo v0.2.7 makes it easier to narrow down the data to be displayed</div></div></a>
+    <a href="/en/blog/vulsrepo-demo-v0-2-8/" class="button"><div class="previous"><div>VulsRepo v0.2.8 now supports data output by Vuls v0.14.0 and later</div></div></a>
   
-  
-    <a href="/en/blog/vulsrepo-v0-3-0/" class="button"><div class="next"><div>VulsRepo v0.3.0 now supports displaying EOL information and filtering reference information</div></div></a>
   
 </div>
 

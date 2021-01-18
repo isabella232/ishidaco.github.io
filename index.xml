@@ -6,7 +6,16 @@
     <description>Recent content on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 28 Dec 2020 10:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Jan 2021 10:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo v0.3.0 で EOL 情報表示とリファレンス情報のフィルタリングに対応しました</title>
+      <link>https://monocosel.jp/blog/vulsrepo-v0-3-0/</link>
+      <pubDate>Mon, 18 Jan 2021 10:30:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/blog/vulsrepo-v0-3-0/</guid>
+      <description>VulsRepo を v0.3.0 に更新しました。Vuls v0.15.0 で追加された EOL 情報表示に対応しました。また、タグと情報提供元でリファレンス情報をフィルタリングできるようにし</description>
+    </item>
+    
     <item>
       <title>VulsRepo v0.2.8 で Vuls v0.14.0 以降で出力されるデータにも対応しました</title>
       <link>https://monocosel.jp/blog/vulsrepo-demo-v0-2-8/</link>
