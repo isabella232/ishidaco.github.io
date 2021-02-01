@@ -6,7 +6,16 @@
     <description>Recent content in vulsrepo on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 18 Jan 2021 10:30:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/tags/vulsrepo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 01 Feb 2021 10:00:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/tags/vulsrepo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo v0.4.0 で表示対象データをパラメータ指定で選んで表示できるようにしました</title>
+      <link>https://monocosel.jp/blog/vulsrepo-v0-4-0/</link>
+      <pubDate>Mon, 01 Feb 2021 10:00:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/blog/vulsrepo-v0-4-0/</guid>
+      <description>VulsRepo を v0.4.0 に更新しました。日付、サーバーやフィルターを URL パラメータで決め打ちすることで、対象データをフィルタリングしてすぐに表示できるようになり</description>
+    </item>
+    
     <item>
       <title>VulsRepo v0.3.0 で EOL 情報表示とリファレンス情報のフィルタリングに対応しました</title>
       <link>https://monocosel.jp/blog/vulsrepo-v0-3-0/</link>

@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+  <meta charset="utf-8">
+<title>VulsRepo v0.4.0 で表示対象データをパラメータ指定で選んで表示できるようにしました - モノコセル</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+  <meta name="generator" content="Hugo 0.80.0" />
+  <meta itemprop="name" content="VulsRepo v0.4.0 で表示対象データをパラメータ指定で選んで表示できるようにしました">
+<meta itemprop="description" content="VulsRepo を v0.4.0 に更新しました。日付、サーバーやフィルターを URL パラメータで決め打ちすることで、対象データをフィルタリングしてすぐに表示できるようになり">
+<meta itemprop="datePublished" content="2021-02-01T10:00:09+09:00" />
+<meta itemprop="dateModified" content="2021-02-01T10:00:09+09:00" />
+<meta itemprop="wordCount" content="809">
+<meta itemprop="image" content="https://monocosel.jp/blog/vulsrepo-v0-4-0/param.gif">
+
+
+
+<meta itemprop="keywords" content="vulsrepo," />
+
+  <meta property="og:title" content="VulsRepo v0.4.0 で表示対象データをパラメータ指定で選んで表示できるようにしました" />
+<meta property="og:description" content="VulsRepo を v0.4.0 に更新しました。日付、サーバーやフィルターを URL パラメータで決め打ちすることで、対象データをフィルタリングしてすぐに表示できるようになり" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://monocosel.jp/blog/vulsrepo-v0-4-0/" />
+<meta property="og:image" content="https://monocosel.jp/blog/vulsrepo-v0-4-0/param.gif" />
+<meta property="article:published_time" content="2021-02-01T10:00:09+09:00" />
+<meta property="article:modified_time" content="2021-02-01T10:00:09+09:00" />
+
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://monocosel.jp/blog/vulsrepo-v0-4-0/param.gif"/>
+
+<meta name="twitter:title" content="VulsRepo v0.4.0 で表示対象データをパラメータ指定で選んで表示できるようにしました"/>
+<meta name="twitter:description" content="VulsRepo を v0.4.0 に更新しました。日付、サーバーやフィルターを URL パラメータで決め打ちすることで、対象データをフィルタリングしてすぐに表示できるようになり"/>
+<meta name="twitter:site" content="@ishiDACo"/>
+
+  
+
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" async></script>
+  
+    
+      <link rel="stylesheet" href="/css/normalize.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css" integrity="sha384-i1LQnF23gykqWXg6jxC2ZbCbUMxyw5gLZY6UiUS98LYV5unm8GWmfkIS6jqJfb4E" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+      
+      
+      <link rel="stylesheet" href="/css/main.min.28c2eb3dd3501209686acc28117ae9d6a328ae0b1eaa20cc93e631f66c2133e0.css" integrity="sha256-KMLrPdNQEgloaswoEXrp1qMorgseqiDMk&#43;Yx9mwhM&#43;A=">
+      <link rel="stylesheet" href="/css/add-on.css">
+    
+  
+  
+  
+  
+    
+  
+</head>
+
+  <body>
+    
+<header id="site-header">
+  <nav id="site-nav">
+    <h1 class="nav-title">
+      <a href="/">
+        
+          
+            ブログ
+          
+        
+      </a>
+    </h1>
+    <menu id="site-nav-menu" class="flyout-menu">
+      
+        
+          
+          
+            <a href="/" class="link"><i class='fa fa-home'></i> ホーム</a>
+          
+        
+      
+        
+          
+          
+            <a href="/about/" class="link"><i class='far fa-id-card'></i> モノコセルについて</a>
+          
+        
+      
+        
+          
+          
+            <a href="/blog/" class="link"><i class='far fa-newspaper'></i> ブログ</a>
+          
+        
+      
+        
+          
+          
+            <a href="/categories/" class="link"><i class='fas fa-sitemap'></i> カテゴリー</a>
+          
+        
+      
+        
+          
+          
+            <a href="/privacy-policy/" class="link"><i class='fas fa-user-secret'></i> プライバシーポリシー</a>
+          
+        
+      
+        
+          
+          
+            <a href="/disclaimer/" class="link">免責事項</a>
+          
+        
+      
+      <a href="#share-menu" class="share-toggle"><i class="fas fa-share-alt">&nbsp;</i>Share</a>
+      
+
+    </menu>
+    
+
+    <a href="#share-menu" class="share-toggle"><i class="fas fa-share-alt fa-2x">&nbsp;</i></a>
+    <a href="#lang-menu" class="lang-toggle" lang="ja">ja</a>
+    <a href="#site-nav" class="nav-toggle"><i class="fas fa-bars fa-2x"></i></a>
+  </nav>
+  <menu id="lang-menu" class="flyout-menu">
+  <a href="#" lang="ja" class="link active">日本語 (ja)</a>
+  
+      <a href="https://monocosel.jp/en/blog/vulsrepo-v0-4-0/" lang="en" class="link">English (en)</a>
+    
+  
+</menu>
+
+  
+    <menu id="share-menu" class="flyout-menu">
+      <h1>Share Post</h1>
+      
+
+
+
+
+  
+    
+    <a href="//twitter.com/share?text=VulsRepo%20v0.4.0%20%e3%81%a7%e8%a1%a8%e7%a4%ba%e5%af%be%e8%b1%a1%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e6%8c%87%e5%ae%9a%e3%81%a7%e9%81%b8%e3%82%93%e3%81%a7%e8%a1%a8%e7%a4%ba%e3%81%a7%e3%81%8d%e3%82%8b%e3%82%88%e3%81%86%e3%81%ab%e3%81%97%e3%81%be%e3%81%97%e3%81%9f&amp;url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-4-0%2f" target="_blank" rel="noopener" class="share-btn twitter">
+        <i class="fab fa-twitter"></i><p>&nbsp;Twitter</p>
+      </a>
+  
+
+  
+      <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-4-0%2f" target="_blank" rel="noopener" class="share-btn facebook">
+        <i class="fab fa-facebook"></i><p>&nbsp;Facebook</p>
+        </a>
+  
+
+  
+    <a href="//www.reddit.com/submit?url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-4-0%2f&amp;title=VulsRepo%20v0.4.0%20%e3%81%a7%e8%a1%a8%e7%a4%ba%e5%af%be%e8%b1%a1%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e6%8c%87%e5%ae%9a%e3%81%a7%e9%81%b8%e3%82%93%e3%81%a7%e8%a1%a8%e7%a4%ba%e3%81%a7%e3%81%8d%e3%82%8b%e3%82%88%e3%81%86%e3%81%ab%e3%81%97%e3%81%be%e3%81%97%e3%81%9f" target="_blank" rel="noopener" class="share-btn reddit">
+          <i class="fab fa-reddit-alien"></i><p>&nbsp;Reddit</p>
+        </a>
+  
+
+  
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-4-0%2f&amp;title=VulsRepo%20v0.4.0%20%e3%81%a7%e8%a1%a8%e7%a4%ba%e5%af%be%e8%b1%a1%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e6%8c%87%e5%ae%9a%e3%81%a7%e9%81%b8%e3%82%93%e3%81%a7%e8%a1%a8%e7%a4%ba%e3%81%a7%e3%81%8d%e3%82%8b%e3%82%88%e3%81%86%e3%81%ab%e3%81%97%e3%81%be%e3%81%97%e3%81%9f" target="_blank" rel="noopener" class="share-btn linkedin">
+            <i class="fab fa-linkedin"></i><p>&nbsp;LinkedIn</p>
+          </a>
+  
+
+  
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-4-0%2f&amp;description=VulsRepo%20v0.4.0%20%e3%81%a7%e8%a1%a8%e7%a4%ba%e5%af%be%e8%b1%a1%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e6%8c%87%e5%ae%9a%e3%81%a7%e9%81%b8%e3%82%93%e3%81%a7%e8%a1%a8%e7%a4%ba%e3%81%a7%e3%81%8d%e3%82%8b%e3%82%88%e3%81%86%e3%81%ab%e3%81%97%e3%81%be%e3%81%97%e3%81%9f" target="_blank" rel="noopener" class="share-btn pinterest">
+          <i class="fab fa-pinterest-p"></i><p>&nbsp;Pinterest</p>
+        </a>
+  
+
+
+    </menu>
+  
+</header>
+
+    <div id="wrapper">
+      <section id="site-intro">
+  <a href="/"><img src="/img/main/logo.png" class="circle" width="" alt="モノコセル" /></a>
+  <header>
+    <h1>モノコセル</h1>
+  </header>
+  <main>
+    <p>「こせる」とは千葉の方言で「作る」の意味。<br>今を越せる残せるモノをこせる。</p>
+  </main>
+  
+    <footer>
+      <ul class="socnet-icons">
+        
+        <li><a href="//github.com/ishiDACo" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//twitter.com/ishiDACo" target="_blank" rel="noopener" title="Twitter" class="fab fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+    </footer>
+  
+</section>
+
+      <main id="site-main">
+        <article class="post">
+  <header>
+  <div class="title">
+    
+        <h2><a href="/blog/vulsrepo-v0-4-0/">VulsRepo v0.4.0 で表示対象データをパラメータ指定で選んで表示できるようにしました</a></h2>
+    
+    
+</div>
+  <div class="meta">
+    <time class="published" datetime="2021-02-01 10:00:09 &#43;0900 JST">
+      2021-02-01
+    </time>
+    <span class="author"></span>
+    
+      <p>2 分で読めます</p>
+    
+  </div>
+</header>
+
+  <section id="socnet-share">
+    
+
+
+
+
+  
+    
+    <a href="//twitter.com/share?text=VulsRepo%20v0.4.0%20%e3%81%a7%e8%a1%a8%e7%a4%ba%e5%af%be%e8%b1%a1%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e6%8c%87%e5%ae%9a%e3%81%a7%e9%81%b8%e3%82%93%e3%81%a7%e8%a1%a8%e7%a4%ba%e3%81%a7%e3%81%8d%e3%82%8b%e3%82%88%e3%81%86%e3%81%ab%e3%81%97%e3%81%be%e3%81%97%e3%81%9f&amp;url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-4-0%2f" target="_blank" rel="noopener" class="share-btn twitter">
+        <i class="fab fa-twitter"></i><p>&nbsp;Twitter</p>
+      </a>
+  
+
+  
+      <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-4-0%2f" target="_blank" rel="noopener" class="share-btn facebook">
+        <i class="fab fa-facebook"></i><p>&nbsp;Facebook</p>
+        </a>
+  
+
+  
+    <a href="//www.reddit.com/submit?url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-4-0%2f&amp;title=VulsRepo%20v0.4.0%20%e3%81%a7%e8%a1%a8%e7%a4%ba%e5%af%be%e8%b1%a1%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e6%8c%87%e5%ae%9a%e3%81%a7%e9%81%b8%e3%82%93%e3%81%a7%e8%a1%a8%e7%a4%ba%e3%81%a7%e3%81%8d%e3%82%8b%e3%82%88%e3%81%86%e3%81%ab%e3%81%97%e3%81%be%e3%81%97%e3%81%9f" target="_blank" rel="noopener" class="share-btn reddit">
+          <i class="fab fa-reddit-alien"></i><p>&nbsp;Reddit</p>
+        </a>
+  
+
+  
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-4-0%2f&amp;title=VulsRepo%20v0.4.0%20%e3%81%a7%e8%a1%a8%e7%a4%ba%e5%af%be%e8%b1%a1%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e6%8c%87%e5%ae%9a%e3%81%a7%e9%81%b8%e3%82%93%e3%81%a7%e8%a1%a8%e7%a4%ba%e3%81%a7%e3%81%8d%e3%82%8b%e3%82%88%e3%81%86%e3%81%ab%e3%81%97%e3%81%be%e3%81%97%e3%81%9f" target="_blank" rel="noopener" class="share-btn linkedin">
+            <i class="fab fa-linkedin"></i><p>&nbsp;LinkedIn</p>
+          </a>
+  
+
+  
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-4-0%2f&amp;description=VulsRepo%20v0.4.0%20%e3%81%a7%e8%a1%a8%e7%a4%ba%e5%af%be%e8%b1%a1%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e3%83%91%e3%83%a9%e3%83%a1%e3%83%bc%e3%82%bf%e6%8c%87%e5%ae%9a%e3%81%a7%e9%81%b8%e3%82%93%e3%81%a7%e8%a1%a8%e7%a4%ba%e3%81%a7%e3%81%8d%e3%82%8b%e3%82%88%e3%81%86%e3%81%ab%e3%81%97%e3%81%be%e3%81%97%e3%81%9f" target="_blank" rel="noopener" class="share-btn pinterest">
+          <i class="fab fa-pinterest-p"></i><p>&nbsp;Pinterest</p>
+        </a>
+  
+
+
+  </section>
+  
+  <a href="/blog/vulsrepo-v0-4-0/" class="image featured">
+    
+      <img src="/blog/vulsrepo-v0-4-0/param.gif" alt="">
+    
+  </a>
+
+
+  <div class="content">
+    <p><a href="https://github.com/ishiDACo/vulsrepo" target="_blank" rel="noopener noreferrer">VulsRepo <span class="fas fa-external-link-alt"></span></a>
+ を v0.4.0 に更新しました。日付、サーバーやフィルターを URL パラメータで決め打ちすることで、対象データをフィルタリングしてすぐに表示できるようになりました。</p>
+<p>今回のアップデートにより、サーバーや期間、フィルターがあらかじめ決まっているならば、 VulsRepo を開く際の URL に各種パラメータを指定することで、毎回手動で選ぶ手間が省けます。</p>
+<p>従来は VulsRepo を開いて、毎回手動で日付やサーバーを選んでから <code>Submit</code> ボタンを押して、必要に応じてフィルターを選択する必要がありました。</p>
+<h2 id="更新内容">更新内容</h2>
+<h3 id="追加">追加</h3>
+<ul>
+<li><a href="https://github.com/ishiDACo/vulsrepo/issues/189" target="_blank" rel="noopener noreferrer">#189 <span class="fas fa-external-link-alt"></span></a>
+ いくつかのパラメータを指定して、表示対象データを選んで表示できるようにしました。</li>
+</ul>
+<p>以下のパラメータが指定可能です。</p>
+<table>
+<thead>
+<tr>
+<th>パラメータ</th>
+<th>用途</th>
+<th>指定できる値</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>server</td>
+<td>対象サーバー（コンテナ）の指定</td>
+<td>すべての場合は <code>all</code>。 複数の場合は <code>+</code> で連結 例）<code>foo.json</code> <code>foo.json+bar.json+baz@foo.json</code></td>
+</tr>
+<tr>
+<td>daterange</td>
+<td>日付範囲指定</td>
+<td><code>today</code> <code>yesterday</code> <code>last7days</code> <code>last30days</code> <code>thismonth</code> <code>lastmonth</code> <code>alldays</code> のいずれか一つ</td>
+</tr>
+<tr>
+<td>datefrom</td>
+<td>日付範囲指定 from (*)</td>
+<td>YYYY-MM-DD 形式の日付  例）<code>2020-11-01</code></td>
+</tr>
+<tr>
+<td>dateto</td>
+<td>日付範囲指定 to (*)</td>
+<td>YYYY-MM-DD 形式の日付  例）<code>2021-01-23</code></td>
+</tr>
+<tr>
+<td>time</td>
+<td>特定日時の指定</td>
+<td>ISO8601 形式の時刻  例) <code>2020-02-04T01:25:11Z</code> や <code>2021-01-25T12:34:56+09:00</code></td>
+</tr>
+<tr>
+<td>filter</td>
+<td>フィルターの指定</td>
+<td>フィルター名。未指定ならばフィルター無し 例) <code>01.%20Graph:%20CVSS-Severity%20=&gt;%20ServerName</code></td>
+</tr>
+</tbody>
+</table>
+<p>(*) <code>datefrom</code> と <code>dateto</code> はセットで指定してください。</p>
+<h4 id="日付関連パラメータの優先度">日付関連パラメータの優先度</h4>
+<p>高 <code>daterange</code> &gt; <code>datefrom</code> と <code>dateto</code> &gt; <code>time</code> 低</p>
+<p>いずれも未指定の場合は最新日を設定とみなします。</p>
+<h4 id="例">例</h4>
+<p>いくつか例を示します。</p>
+<h5 id="最新日の-localhostjson">最新日の <code>localhost.json</code></h5>
+<p><a href="https://monocosel.jp/vulsrepo/?server=localhost.json">https://monocosel.jp/vulsrepo/?server=localhost.json</a></p>
+<h5 id="直近30日の-localhostjson-と-raspberry10json">直近30日の <code>localhost.json</code> と <code>raspberry10.json</code></h5>
+<p><a href="https://monocosel.jp/vulsrepo/?daterange=last30days&amp;server=localhost.json+raspberry10.json">https://monocosel.jp/vulsrepo/?daterange=last30days&amp;server=localhost.json+raspberry10.json</a></p>
+<h5 id="2020-09-18--2020-11-16-の全サーバーコンテナ">2020-09-18 〜 2020-11-16 の全サーバー（コンテナ）</h5>
+<p><a href="https://monocosel.jp/vulsrepo/?datefrom=2020-09-18&amp;dateto=2020-11-16&amp;server=all">https://monocosel.jp/vulsrepo/?datefrom=2020-09-18&amp;dateto=2020-11-16&amp;server=all</a></p>
+<h5 id="2020-02-04t012511z-の-localhostjson"><code>2020-02-04T01:25:11Z</code> の <code>localhost.json</code></h5>
+<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json</a></p>
+<h5 id="2020-02-04t012511z-の-localhostjson-と-vulsrepolocalhostjson"><code>2020-02-04T01:25:11Z</code> の <code>localhost.json</code> と <code>vulsrepo@localhost.json</code></h5>
+<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json+vulsrepo@localhost.json">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json+vulsrepo@localhost.json</a></p>
+<h5 id="2020-02-04t012511z-の-localhostjson-を-01-graph-cvss-severity--servername-フィルター適用"><code>2020-02-04T01:25:11Z</code> の <code>localhost.json</code> を <code>01. Graph: CVSS-Severity =&gt; ServerName</code> フィルター適用</h5>
+<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=01.%20Graph:%20CVSS-Severity%20=%3E%20ServerName">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=01.%20Graph:%20CVSS-Severity%20=%3E%20ServerName</a></p>
+<h5 id="2020-02-04t012511z-の-localhostjson-を-02-graph-cvss-severity--cvss-score-フィルター適用"><code>2020-02-04T01:25:11Z</code> の <code>localhost.json</code> を <code>02. Graph: CVSS-Severity =&gt; CVSS-Score</code> フィルター適用</h5>
+<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=02.%20Graph:%20CVSS-Severity%20=%3E%20CVSS-Score">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=02.%20Graph:%20CVSS-Severity%20=%3E%20CVSS-Score</a></p>
+<h5 id="2020-02-04t012511z-の-localhostjson-を-03-pivot-packagecvss-severitycveidsummary--servername-フィルター適用"><code>2020-02-04T01:25:11Z</code> の <code>localhost.json</code> を <code>03. Pivot: Package/CVSS-Severity/CveID/Summary =&gt; ServerName</code> フィルター適用</h5>
+<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=03.%20Pivot:%20Package/CVSS-Severity/CveID/Summary%20=%3E%20ServerName">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=03.%20Pivot:%20Package/CVSS-Severity/CveID/Summary%20=%3E%20ServerName</a></p>
+<h5 id="2020-02-04t012511z-の-localhostjson-を-04-pivot-packagecveid--scantime-フィルター適用"><code>2020-02-04T01:25:11Z</code> の <code>localhost.json</code> を <code>04. Pivot: Package/CveID =&gt; ScanTime</code> フィルター適用</h5>
+<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=04.%20Pivot:%20Package/CveID%20=%3E%20ScanTime">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=04.%20Pivot:%20Package/CveID%20=%3E%20ScanTime</a></p>
+<h5 id="2020-02-04t012511z-の-localhostjson-を-05-pivot-cveidpackageinfo--notfixedyet-フィルター適用"><code>2020-02-04T01:25:11Z</code> の <code>localhost.json</code> を <code>05. Pivot: CveID/PackageInfo =&gt; NotFixedYet</code> フィルター適用</h5>
+<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=05.%20Pivot:%20CveID/PackageInfo%20=%3E%20NotFixedYet">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=05.%20Pivot:%20CveID/PackageInfo%20=%3E%20NotFixedYet</a></p>
+<h3 id="変更">変更</h3>
+<ul>
+<li>ありません。</li>
+</ul>
+<h3 id="修正">修正</h3>
+<ul>
+<li><a href="https://github.com/ishiDACo/vulsrepo/issues/189" target="_blank" rel="noopener noreferrer">#189 <span class="fas fa-external-link-alt"></span></a>
+ 不要なデバッグログ出力を削除しました。</li>
+</ul>
+<h2 id="docker-イメージ">Docker イメージ</h2>
+<p><a href="https://hub.docker.com/r/ishidaco/vulsrepo" target="_blank" rel="noopener noreferrer">ishidaco/vulsrepo - Docker Hub <span class="fas fa-external-link-alt"></span></a>
+</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker pull ishidaco/vulsrepo
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker pull ishidaco/vulsrepo:version-0.4.0
+</code></pre></div><h2 id="デモ">デモ</h2>
+<p><a href="/vulsrepo/">VulsRepo オンラインデモ</a>
+ を公開しています。</p>
+<ul>
+<li>Amazon Linux 2</li>
+<li>Ubuntu 18.04</li>
+<li>Raspbian 9.13</li>
+<li>Raspberry Pi OS 10</li>
+<li>Oracle Linux 7.9</li>
+<li>CentOS 8.2</li>
+<li>Debian 10</li>
+<li>Docker コンテナ上の Alpine Linux</li>
+<li>Docker コンテナ上の Ubuntu 14.04</li>
+</ul>
+<p>に対する脆弱性スキャン結果のサンプルを確認できます。</p>
+<p><a href="https://github.com/ishiDACo/vulsrepo/releases/tag/v0.4.0">https://github.com/ishiDACo/vulsrepo/releases/tag/v0.4.0</a> に対応したものになります。</p>
+
+  </div>
+  <footer>
+    <ul class="stats">
+  
+    
+    
+      <li class="categories">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://monocosel.jp/categories/security">security</a></li>
+          
+        </ul>
+      </li>
+    
+  
+  
+    
+    
+      <li class="tags">
+        <ul>
+          
+            
+            <li><a class="article-category-link" href="https://monocosel.jp/tags/vulsrepo">vulsrepo</a></li>
+          
+        </ul>
+      </li>
+    
+  
+</ul>
+
+  </footer>
+</article>
+
+
+<div class="pagination">
+  
+    <a href="/blog/vulsrepo-v0-3-0/" class="button"><div class="previous"><div>VulsRepo v0.3.0 で EOL 情報表示とリファレンス情報のフィルタリングに対応しました</div></div></a>
+  
+  
+</div>
+
+
+      </main>
+      <section id="site-sidebar">
+  
+    <section id="recent-posts">
+      <header>
+        <h1>最近の投稿</h1>
+      </header>
+      
+      <article class="mini-post">
+        <section>
+          
+  <a href="/blog/vulsrepo-v0-4-0/" class="image featured">
+    
+      <img src="/blog/vulsrepo-v0-4-0/param.gif" alt="">
+    
+  </a>
+
+
+        </section>
+        <header>
+          <h1><a href="/blog/vulsrepo-v0-4-0/">VulsRepo v0.4.0 で表示対象データをパラメータ指定で選んで表示できるようにしました</a></h1>
+          <time class="published" datetime="">2021-02-01</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+        <section>
+          
+  <a href="/blog/vulsrepo-v0-3-0/" class="image featured">
+    
+      <img src="/blog/vulsrepo-v0-3-0/tag-filter.png" alt="">
+    
+  </a>
+
+
+        </section>
+        <header>
+          <h1><a href="/blog/vulsrepo-v0-3-0/">VulsRepo v0.3.0 で EOL 情報表示とリファレンス情報のフィルタリングに対応しました</a></h1>
+          <time class="published" datetime="">2021-01-18</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+        <section>
+          
+  <a href="/blog/vulsrepo-demo-v0-2-8/" class="image featured">
+    
+      <img src="/blog/vulsrepo-demo-v0-2-8/tag.png" alt="">
+    
+  </a>
+
+
+        </section>
+        <header>
+          <h1><a href="/blog/vulsrepo-demo-v0-2-8/">VulsRepo v0.2.8 で Vuls v0.14.0 以降で出力されるデータにも対応しました</a></h1>
+          <time class="published" datetime="">2020-12-28</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+        <section>
+          
+  <a href="/blog/vulsrepo-demo-v0-2-7/" class="image featured">
+    
+      <img src="/blog/vulsrepo-demo-v0-2-7/daterange-custom.png" alt="">
+    
+  </a>
+
+
+        </section>
+        <header>
+          <h1><a href="/blog/vulsrepo-demo-v0-2-7/">VulsRepo v0.2.7 で表示対象データの絞り込みが簡単になりました</a></h1>
+          <time class="published" datetime="">2020-12-21</time>
+        </header>
+      </article>
+      
+      <article class="mini-post">
+        <section>
+          
+  <a href="/blog/vulsrepo-demo-v0-2-6/" class="image featured">
+    
+      <img src="/blog/vulsrepo-demo-v0-2-6/tsv.png" alt="">
+    
+  </a>
+
+
+        </section>
+        <header>
+          <h1><a href="/blog/vulsrepo-demo-v0-2-6/">VulsRepo v0.2.6 で TSV ダウンロードと印刷用ページを追加しました</a></h1>
+          <time class="published" datetime="">2020-12-04</time>
+        </header>
+      </article>
+      
+      
+        <a href="/blog/" class="button">続きを見る</a>
+      
+    </section>
+  
+
+  
+    
+      <section id="categories">
+        <header>
+          <h1><a href="/categories">カテゴリー</a></h1>
+        </header>
+        <ul>
+          
+            
+          
+          
+          <li>
+            
+              <a href="/categories/security/">security<span class="count">10</span></a>
+            
+          
+          <li>
+            
+              <a href="/categories/matomeli/">matomeli<span class="count">1</span></a>
+            
+          
+          <li>
+            
+              <a href="/categories/performance/">performance<span class="count">1</span></a>
+            
+          
+          <li>
+            
+              <a href="/categories/ruby/">ruby<span class="count">1</span></a>
+            
+          
+          </li>
+        </ul>
+      </section>
+    
+  
+
+  <section id="tag-clouds" class="panel panel-default">
+    <header>
+      <h1><a href="/tags">タグ</a></h1>
+    </header>
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+    <div id="tag-cloud" style="padding: 5px 15px">
+      
+      
+      
+      
+      
+      
+      
+      <a href="/tags/carrierwave"
+        style="font-size:1rem">carrierwave</a>&nbsp;
+      
+      
+      
+      
+      
+      
+      
+      <a href="/tags/css"
+        style="font-size:1rem">css</a>&nbsp;
+      
+      
+      
+      
+      
+      
+      
+      <a href="/tags/html"
+        style="font-size:1rem">html</a>&nbsp;
+      
+      
+      
+      
+      
+      
+      
+      <a href="/tags/image"
+        style="font-size:1rem">image</a>&nbsp;
+      
+      
+      
+      
+      
+      
+      
+      <a href="/tags/javascript"
+        style="font-size:1rem">javascript</a>&nbsp;
+      
+      
+      
+      
+      
+      
+      
+      <a href="/tags/matomeli"
+        style="font-size:1rem">matomeli</a>&nbsp;
+      
+      
+      
+      
+      
+      
+      
+      <a href="/tags/ror"
+        style="font-size:1rem">ror</a>&nbsp;
+      
+      
+      
+      
+      
+      
+      
+      <a href="/tags/service"
+        style="font-size:1rem">service</a>&nbsp;
+      
+      
+      
+      
+      
+      
+      
+      <a href="/tags/vulsrepo"
+        style="font-size:1.9602525677891274rem">vulsrepo</a>&nbsp;
+      
+    </div>
+    
+  </section>
+
+  <section id="mini-bio">
+    <header>
+      <h1>About</h1>
+    </header>
+    <p>フリーランスのシステムエンジニア。受託開発ソフトウェア業の中小企業での 18 年間の勤務を経て、2019 年よりフリーランス。新技術を習得するのが得意。千葉県在住。</p>
+    <footer>
+      <a href="/about" class="button">もっと知る</a>
+    </footer>
+  </section>
+</section>
+
+      <footer id="site-footer">
+  
+      <ul class="socnet-icons">
+        
+        <li><a href="//github.com/ishiDACo" target="_blank" rel="noopener" title="GitHub" class="fab fa-github"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li><a href="//twitter.com/ishiDACo" target="_blank" rel="noopener" title="Twitter" class="fab fa-twitter"></a></li>
+
+
+
+
+
+
+
+
+
+
+
+
+      </ul>
+  
+  <p class="copyright">
+    
+      &copy; 2021
+      
+        モノコセル
+      
+    . <br>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.80.0' target='_blank' rel='noopener'>Hugo</a>
+  </p>
+</footer>
+<a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
+
+      
+
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+  <script src=/js/util.js></script>
+  <script src=/js/main.js></script>
+  <script src=/js/add-on.js></script>
+  
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-152677997-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+    </div>
+  </body>
+</html>
