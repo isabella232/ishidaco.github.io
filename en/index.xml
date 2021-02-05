@@ -6,7 +6,17 @@
     <description>Recent content on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 01 Feb 2021 10:00:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/en/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Feb 2021 10:00:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo v0.5.0 can now display WordPress related vulnerability information</title>
+      <link>https://monocosel.jp/en/blog/vulsrepo-v0-5-0/</link>
+      <pubDate>Fri, 05 Feb 2021 10:00:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/en/blog/vulsrepo-v0-5-0/</guid>
+      <description>With this update, Vulnerability information for WordPress itself, themes, and plugins can now be displayed.
+Features  #201  Vulnerability information for WordPress itself, themes, and plugins can now be displayed with wpscan. #201  Added VulnType, Status and Update to pivot table for WordPress information.     Item Description     VulnType (WordPress only) Vulnerability type provided by WPScan  .   Status (WordPress theme and plugin only) Whether a WordPress theme or plugin is active or inactive.</description>
+    </item>
+    
     <item>
       <title>In VulsRepo v0.4.0, it is possible to select the data to be displayed by specifying parameters</title>
       <link>https://monocosel.jp/en/blog/vulsrepo-v0-4-0/</link>

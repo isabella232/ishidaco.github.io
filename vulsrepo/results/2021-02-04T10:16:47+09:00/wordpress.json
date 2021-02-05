@@ -1,0 +1,1591 @@
+{
+    "jsonVersion": 4,
+    "lang": "ja",
+    "serverUUID": "",
+    "serverName": "wordpress",
+    "family": "centos",
+    "release": "8.2.2004",
+    "container": {
+        "containerID": "",
+        "name": "",
+        "image": "",
+        "type": "",
+        "uuid": ""
+    },
+    "platform": {
+        "name": "other",
+        "instanceID": ""
+    },
+    "scannedAt": "2021-02-04T10:16:47.564415231+09:00",
+    "scanMode": "fast mode",
+    "scannedVersion": "v0.15.6",
+    "scannedRevision": "build-20210203_020609_fea7e93",
+    "scannedBy": "b6b9edbc5e51",
+    "scannedVia": "remote",
+    "scannedIpv4Addrs": [
+        "172.17.0.3"
+    ],
+    "reportedAt": "2021-02-04T10:17:04.851102201+09:00",
+    "reportedVersion": "v0.15.6",
+    "reportedRevision": "build-20210203_020609_fea7e93",
+    "reportedBy": "61cdf9688b50",
+    "errors": [],
+    "warnings": [],
+    "scannedCves": {
+        "CVE-2019-10692": {
+            "cveID": "CVE-2019-10692",
+            "confidences": [
+                {
+                    "score": 100,
+                    "detectionMethod": "WpScanMatch"
+                }
+            ],
+            "cveContents": {
+                "jvn": {
+                    "type": "jvn",
+                    "cveID": "CVE-2019-10692",
+                    "title": "WordPress 用 wp-google-maps プラグインにおける入力確認に関する脆弱性",
+                    "summary": "WordPress 用 wp-google-maps プラグインには、入力確認に関する脆弱性が存在します。",
+                    "cvss2Score": 7.5,
+                    "cvss2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+                    "cvss2Severity": "High",
+                    "cvss3Score": 9.8,
+                    "cvss3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+                    "cvss3Severity": "Critical",
+                    "sourceLink": "https://jvndb.jvn.jp/ja/contents/2019/JVNDB-2019-003093.html",
+                    "references": [
+                        {
+                            "link": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-10692",
+                            "source": "CVE"
+                        },
+                        {
+                            "link": "https://nvd.nist.gov/vuln/detail/CVE-2019-10692",
+                            "source": "NVD"
+                        },
+                        {
+                            "link": "https://jvndb.jvn.jp/ja/cwe/CWE-20.html"
+                        }
+                    ],
+                    "published": "2019-05-09T17:43:00+09:00",
+                    "lastModified": "2019-05-09T17:43:00+09:00"
+                },
+                "nvd": {
+                    "type": "nvd",
+                    "cveID": "CVE-2019-10692",
+                    "title": "",
+                    "summary": "In the wp-google-maps plugin before 7.11.18 for WordPress, includes/class.rest-api.php in the REST API does not sanitize field names before a SELECT statement.",
+                    "cvss2Score": 7.5,
+                    "cvss2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+                    "cvss2Severity": "HIGH",
+                    "cvss3Score": 9.8,
+                    "cvss3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+                    "cvss3Severity": "CRITICAL",
+                    "sourceLink": "https://nvd.nist.gov/vuln/detail/CVE-2019-10692",
+                    "references": [
+                        {
+                            "link": "http://packetstormsecurity.com/files/159640/WordPress-Rest-Google-Maps-SQL-Injection.html"
+                        },
+                        {
+                            "link": "http://www.rapid7.com/db/modules/auxiliary/admin/http/wp_google_maps_sqli"
+                        },
+                        {
+                            "link": "https://plugins.trac.wordpress.org/changeset?old_path=%2Fwp-google-maps\u0026old=2061433\u0026new_path=%2Fwp-google-maps\u0026new=2061434\u0026sfp_email=\u0026sfph_mail=#file755"
+                        },
+                        {
+                            "link": "https://wordpress.org/plugins/wp-google-maps/#developers"
+                        }
+                    ],
+                    "cweIDs": [
+                        "CWE-20"
+                    ],
+                    "published": "2019-04-02T18:30:00Z",
+                    "lastModified": "2020-10-20T22:15:00Z"
+                },
+                "wpscan": {
+                    "type": "wpscan",
+                    "cveID": "CVE-2019-10692",
+                    "title": "WP Google Maps 7.11.00-7.11.17 - Unauthenticated SQL Injection",
+                    "summary": "",
+                    "cvss2Score": 0,
+                    "cvss2Vector": "",
+                    "cvss2Severity": "",
+                    "cvss3Score": 0,
+                    "cvss3Vector": "",
+                    "cvss3Severity": "",
+                    "sourceLink": "https://wpscan.com/vulnerability/475404ce-2a1a-4d15-bf02-df0ea2afdaea",
+                    "references": [
+                        {
+                            "link": "https://plugins.trac.wordpress.org/changeset/2061434/wp-google-maps/trunk/includes/class.rest-api.php"
+                        },
+                        {
+                            "link": "https://packetstormsecurity.com/files/159640/"
+                        }
+                    ],
+                    "published": "2019-04-02T12:24:45Z",
+                    "lastModified": "2020-11-19T06:03:54Z"
+                }
+            },
+            "metasploits": [
+                {
+                    "name": "wp_google_maps_sqli.rb",
+                    "title": "WordPress Google Maps Plugin SQL Injection",
+                    "description": "This module exploits a SQL injection vulnerability in a REST endpoint registered by the WordPress plugin wp-google-maps between 7.11.00 and 7.11.17 (included). As the table prefix can be changed by administrators, set DB_PREFIX accordingly.",
+                    "URLs": [
+                        "https://wpvulndb.com/vulnerabilities/9249",
+                        "https://github.com/rapid7/metasploit-framework/blob/master/modules/auxiliary/admin/http/wp_google_maps_sqli.rb"
+                    ]
+                }
+            ],
+            "alertDict": {
+                "ja": null,
+                "en": null
+            },
+            "wpPackageFixStats": [
+                {
+                    "name": "wp-google-maps",
+                    "fixedIn": "7.11.18"
+                }
+            ],
+            "vulnType": "SQLI"
+        },
+        "CVE-2019-14792": {
+            "cveID": "CVE-2019-14792",
+            "confidences": [
+                {
+                    "score": 100,
+                    "detectionMethod": "WpScanMatch"
+                }
+            ],
+            "cveContents": {
+                "jvn": {
+                    "type": "jvn",
+                    "cveID": "CVE-2019-14792",
+                    "title": "WordPress 用 WP Google Maps プラグインにおけるクロスサイトスクリプティングの脆弱性",
+                    "summary": "WordPress 用 WP Google Maps プラグインには、クロスサイトスクリプティングの脆弱性が存在します。",
+                    "cvss2Score": 3.5,
+                    "cvss2Vector": "AV:N/AC:M/Au:S/C:N/I:P/A:N",
+                    "cvss2Severity": "Low",
+                    "cvss3Score": 5.4,
+                    "cvss3Vector": "CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+                    "cvss3Severity": "Medium",
+                    "sourceLink": "https://jvndb.jvn.jp/ja/contents/2019/JVNDB-2019-007564.html",
+                    "references": [
+                        {
+                            "link": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-14792",
+                            "source": "CVE"
+                        },
+                        {
+                            "link": "https://nvd.nist.gov/vuln/detail/CVE-2019-14792",
+                            "source": "NVD"
+                        },
+                        {
+                            "link": "https://jvndb.jvn.jp/ja/cwe/CWE-79.html"
+                        }
+                    ],
+                    "published": "2019-08-15T15:39:00+09:00",
+                    "lastModified": "2019-08-15T15:39:00+09:00"
+                },
+                "nvd": {
+                    "type": "nvd",
+                    "cveID": "CVE-2019-14792",
+                    "title": "",
+                    "summary": "The WP Google Maps plugin before 7.11.35 for WordPress allows XSS via the wp-admin/ rectangle_name or rectangle_opacity parameter.",
+                    "cvss2Score": 3.5,
+                    "cvss2Vector": "AV:N/AC:M/Au:S/C:N/I:P/A:N",
+                    "cvss2Severity": "LOW",
+                    "cvss3Score": 5.4,
+                    "cvss3Vector": "CVSS:3.0/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+                    "cvss3Severity": "MEDIUM",
+                    "sourceLink": "https://nvd.nist.gov/vuln/detail/CVE-2019-14792",
+                    "references": [
+                        {
+                            "link": "https://wordpress.org/plugins/wp-google-maps/#developers"
+                        },
+                        {
+                            "link": "https://wpvulndb.com/vulnerabilities/9442"
+                        },
+                        {
+                            "link": "https://www.pluginvulnerabilities.com/2019/07/08/recently-closed-wordpress-plugin-with-400000-installs-contains-another-authenticated-persistent-xss-vulnerability/"
+                        }
+                    ],
+                    "cweIDs": [
+                        "CWE-79"
+                    ],
+                    "published": "2019-08-09T13:15:00Z",
+                    "lastModified": "2019-08-14T20:40:00Z"
+                },
+                "wpscan": {
+                    "type": "wpscan",
+                    "cveID": "CVE-2019-14792",
+                    "title": "WP Google Maps \u003c= 7.11.34 - CSRF to Stored XSS",
+                    "summary": "",
+                    "cvss2Score": 0,
+                    "cvss2Vector": "",
+                    "cvss2Severity": "",
+                    "cvss3Score": 0,
+                    "cvss3Vector": "",
+                    "cvss3Severity": "",
+                    "sourceLink": "https://wpscan.com/vulnerability/7b392e1e-7c5b-4517-967f-cdffe126d292",
+                    "references": [
+                        {
+                            "link": "https://plugins.trac.wordpress.org/changeset/2119722"
+                        }
+                    ],
+                    "published": "2019-07-09T12:14:37Z",
+                    "lastModified": "2020-09-22T07:29:18Z"
+                }
+            },
+            "alertDict": {
+                "ja": null,
+                "en": null
+            },
+            "wpPackageFixStats": [
+                {
+                    "name": "wp-google-maps",
+                    "fixedIn": "7.11.35"
+                }
+            ],
+            "vulnType": "MULTI"
+        },
+        "CVE-2019-9912": {
+            "cveID": "CVE-2019-9912",
+            "confidences": [
+                {
+                    "score": 100,
+                    "detectionMethod": "WpScanMatch"
+                }
+            ],
+            "cveContents": {
+                "jvn": {
+                    "type": "jvn",
+                    "cveID": "CVE-2019-9912",
+                    "title": "WordPress 用 wp-google-maps プラグインにおけるクロスサイトスクリプティングの脆弱性",
+                    "summary": "WordPress 用 wp-google-maps プラグインには、クロスサイトスクリプティングの脆弱性が存在します。",
+                    "cvss2Score": 4.3,
+                    "cvss2Vector": "AV:N/AC:M/Au:N/C:N/I:P/A:N",
+                    "cvss2Severity": "Medium",
+                    "cvss3Score": 6.1,
+                    "cvss3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+                    "cvss3Severity": "Medium",
+                    "sourceLink": "https://jvndb.jvn.jp/ja/contents/2019/JVNDB-2019-002623.html",
+                    "references": [
+                        {
+                            "link": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-9912",
+                            "source": "CVE"
+                        },
+                        {
+                            "link": "https://nvd.nist.gov/vuln/detail/CVE-2019-9912",
+                            "source": "NVD"
+                        },
+                        {
+                            "link": "https://security-consulting.icu/blog/2019/02/wordpress-wpgooglemaps-xss/",
+                            "source": "関連文書"
+                        },
+                        {
+                            "link": "https://jvndb.jvn.jp/ja/cwe/CWE-79.html"
+                        }
+                    ],
+                    "published": "2019-04-16T16:18:00+09:00",
+                    "lastModified": "2019-04-16T16:18:00+09:00"
+                },
+                "nvd": {
+                    "type": "nvd",
+                    "cveID": "CVE-2019-9912",
+                    "title": "",
+                    "summary": "The wp-google-maps plugin before 7.10.43 for WordPress has XSS via the wp-admin/admin.php PATH_INFO.",
+                    "cvss2Score": 4.3,
+                    "cvss2Vector": "AV:N/AC:M/Au:N/C:N/I:P/A:N",
+                    "cvss2Severity": "MEDIUM",
+                    "cvss3Score": 6.1,
+                    "cvss3Vector": "CVSS:3.0/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+                    "cvss3Severity": "MEDIUM",
+                    "sourceLink": "https://nvd.nist.gov/vuln/detail/CVE-2019-9912",
+                    "references": [
+                        {
+                            "link": "http://seclists.org/fulldisclosure/2019/Mar/41"
+                        },
+                        {
+                            "link": "https://lists.openwall.net/full-disclosure/2019/02/05/13"
+                        },
+                        {
+                            "link": "https://security-consulting.icu/blog/2019/02/wordpress-wpgooglemaps-xss/"
+                        }
+                    ],
+                    "cweIDs": [
+                        "CWE-79"
+                    ],
+                    "published": "2019-03-22T00:29:00Z",
+                    "lastModified": "2019-03-22T20:32:00Z"
+                },
+                "wpscan": {
+                    "type": "wpscan",
+                    "cveID": "CVE-2019-9912",
+                    "title": "WP Google Maps \u003c= 7.10.41 - Cross-Site Scripting (XSS)",
+                    "summary": "",
+                    "cvss2Score": 0,
+                    "cvss2Vector": "",
+                    "cvss2Severity": "",
+                    "cvss3Score": 0,
+                    "cvss3Vector": "",
+                    "cvss3Severity": "",
+                    "sourceLink": "https://wpscan.com/vulnerability/d8a7ea0e-ca34-4b54-ab08-3f0a2c5b6d48",
+                    "references": [
+                        {
+                            "link": "https://security-consulting.icu/blog/2019/02/wordpress-wpgooglemaps-xss/"
+                        },
+                        {
+                            "link": "https://lists.openwall.net/full-disclosure/2019/02/05/13"
+                        }
+                    ],
+                    "published": "2019-03-22T09:23:23Z",
+                    "lastModified": "2020-09-22T07:27:12Z"
+                }
+            },
+            "alertDict": {
+                "ja": null,
+                "en": null
+            },
+            "wpPackageFixStats": [
+                {
+                    "name": "wp-google-maps",
+                    "fixedIn": "7.10.43"
+                }
+            ],
+            "vulnType": "XSS"
+        },
+        "CVE-2020-28032": {
+            "cveID": "CVE-2020-28032",
+            "confidences": [
+                {
+                    "score": 100,
+                    "detectionMethod": "WpScanMatch"
+                }
+            ],
+            "cveContents": {
+                "nvd": {
+                    "type": "nvd",
+                    "cveID": "CVE-2020-28032",
+                    "title": "",
+                    "summary": "WordPress before 5.5.2 mishandles deserialization requests in wp-includes/Requests/Utility/FilteredIterator.php.",
+                    "cvss2Score": 7.5,
+                    "cvss2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+                    "cvss2Severity": "HIGH",
+                    "cvss3Score": 9.8,
+                    "cvss3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+                    "cvss3Severity": "CRITICAL",
+                    "sourceLink": "https://nvd.nist.gov/vuln/detail/CVE-2020-28032",
+                    "references": [
+                        {
+                            "link": "https://github.com/WordPress/wordpress-develop/commit/add6bedf3a53b647d0ebda2970057912d3cd79d3",
+                            "tags": [
+                                "Patch",
+                                "Third Party Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://lists.debian.org/debian-lts-announce/2020/11/msg00004.html",
+                            "tags": [
+                                "Third Party Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CHHVNK2WYAM3ZTCXTFSEIT56IKLVJHU3/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VAVVYJKA2I6CRQUINECDPBGWMQDEG244/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VUXVUAKL2HL4QYJEPHBNVQQWRMFMII2Y/"
+                        },
+                        {
+                            "link": "https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/",
+                            "tags": [
+                                "Release Notes",
+                                "Vendor Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://wpscan.com/vulnerability/10446",
+                            "tags": [
+                                "Third Party Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://www.debian.org/security/2020/dsa-4784"
+                        }
+                    ],
+                    "cweIDs": [
+                        "CWE-502"
+                    ],
+                    "published": "2020-11-02T21:15:00Z",
+                    "lastModified": "2020-11-11T03:15:00Z"
+                },
+                "wpscan": {
+                    "type": "wpscan",
+                    "cveID": "CVE-2020-28032",
+                    "title": "WordPress \u003c 5.5.2 - Hardening Deserialization Requests",
+                    "summary": "",
+                    "cvss2Score": 0,
+                    "cvss2Vector": "",
+                    "cvss2Severity": "",
+                    "cvss3Score": 0,
+                    "cvss3Vector": "",
+                    "cvss3Severity": "",
+                    "sourceLink": "https://wpscan.com/vulnerability/f2bd06cf-f4e9-4077-90b0-fba80c3d0969",
+                    "references": [
+                        {
+                            "link": "https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/"
+                        },
+                        {
+                            "link": "https://github.com/WordPress/wordpress-develop/commit/add6bedf3a53b647d0ebda2970057912d3cd79d3"
+                        },
+                        {
+                            "link": "https://blog.wpscan.com/2020/10/30/wordpress-5.5.2-security-release.html"
+                        }
+                    ],
+                    "published": "2020-10-29T21:19:54Z",
+                    "lastModified": "2020-11-01T06:01:01Z"
+                }
+            },
+            "alertDict": {
+                "ja": null,
+                "en": null
+            },
+            "wpPackageFixStats": [
+                {
+                    "name": "55",
+                    "fixedIn": "5.5.2"
+                }
+            ],
+            "vulnType": "OBJECT INJECTION"
+        },
+        "CVE-2020-28033": {
+            "cveID": "CVE-2020-28033",
+            "confidences": [
+                {
+                    "score": 100,
+                    "detectionMethod": "WpScanMatch"
+                }
+            ],
+            "cveContents": {
+                "nvd": {
+                    "type": "nvd",
+                    "cveID": "CVE-2020-28033",
+                    "title": "",
+                    "summary": "WordPress before 5.5.2 mishandles embeds from disabled sites on a multisite network, as demonstrated by allowing a spam embed.",
+                    "cvss2Score": 5,
+                    "cvss2Vector": "AV:N/AC:L/Au:N/C:N/I:P/A:N",
+                    "cvss2Severity": "MEDIUM",
+                    "cvss3Score": 7.5,
+                    "cvss3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+                    "cvss3Severity": "HIGH",
+                    "sourceLink": "https://nvd.nist.gov/vuln/detail/CVE-2020-28033",
+                    "references": [
+                        {
+                            "link": "https://lists.debian.org/debian-lts-announce/2020/11/msg00004.html",
+                            "tags": [
+                                "Third Party Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CHHVNK2WYAM3ZTCXTFSEIT56IKLVJHU3/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VAVVYJKA2I6CRQUINECDPBGWMQDEG244/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VUXVUAKL2HL4QYJEPHBNVQQWRMFMII2Y/"
+                        },
+                        {
+                            "link": "https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/",
+                            "tags": [
+                                "Release Notes",
+                                "Vendor Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://www.debian.org/security/2020/dsa-4784"
+                        }
+                    ],
+                    "cweIDs": [
+                        "NVD-CWE-noinfo"
+                    ],
+                    "published": "2020-11-02T21:15:00Z",
+                    "lastModified": "2020-11-11T03:15:00Z"
+                },
+                "wpscan": {
+                    "type": "wpscan",
+                    "cveID": "CVE-2020-28033",
+                    "title": "WordPress \u003c 5.5.2 - Disable Spam Embeds from Disabled Sites on a Multisite Network",
+                    "summary": "",
+                    "cvss2Score": 0,
+                    "cvss2Vector": "",
+                    "cvss2Severity": "",
+                    "cvss3Score": 0,
+                    "cvss3Vector": "",
+                    "cvss3Severity": "",
+                    "sourceLink": "https://wpscan.com/vulnerability/a1941f4f-6adb-41e9-b47f-6eddd6f6a04a",
+                    "references": [
+                        {
+                            "link": "https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/"
+                        },
+                        {
+                            "link": "https://blog.wpscan.com/2020/10/30/wordpress-5.5.2-security-release.html"
+                        }
+                    ],
+                    "published": "2020-10-29T21:20:32Z",
+                    "lastModified": "2020-11-02T06:01:41Z"
+                }
+            },
+            "alertDict": {
+                "ja": null,
+                "en": null
+            },
+            "wpPackageFixStats": [
+                {
+                    "name": "55",
+                    "fixedIn": "5.5.2"
+                }
+            ],
+            "vulnType": "BYPASS"
+        },
+        "CVE-2020-28034": {
+            "cveID": "CVE-2020-28034",
+            "confidences": [
+                {
+                    "score": 100,
+                    "detectionMethod": "WpScanMatch"
+                }
+            ],
+            "cveContents": {
+                "nvd": {
+                    "type": "nvd",
+                    "cveID": "CVE-2020-28034",
+                    "title": "",
+                    "summary": "WordPress before 5.5.2 allows XSS associated with global variables.",
+                    "cvss2Score": 4.3,
+                    "cvss2Vector": "AV:N/AC:M/Au:N/C:N/I:P/A:N",
+                    "cvss2Severity": "MEDIUM",
+                    "cvss3Score": 6.1,
+                    "cvss3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+                    "cvss3Severity": "MEDIUM",
+                    "sourceLink": "https://nvd.nist.gov/vuln/detail/CVE-2020-28034",
+                    "references": [
+                        {
+                            "link": "https://lists.debian.org/debian-lts-announce/2020/11/msg00004.html"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CHHVNK2WYAM3ZTCXTFSEIT56IKLVJHU3/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VAVVYJKA2I6CRQUINECDPBGWMQDEG244/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VUXVUAKL2HL4QYJEPHBNVQQWRMFMII2Y/"
+                        },
+                        {
+                            "link": "https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/",
+                            "tags": [
+                                "Release Notes",
+                                "Vendor Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://www.debian.org/security/2020/dsa-4784"
+                        }
+                    ],
+                    "cweIDs": [
+                        "CWE-79"
+                    ],
+                    "published": "2020-11-02T21:15:00Z",
+                    "lastModified": "2020-11-11T03:15:00Z"
+                },
+                "wpscan": {
+                    "type": "wpscan",
+                    "cveID": "CVE-2020-28034",
+                    "title": "WordPress \u003c 5.5.2 - Cross-Site Scripting (XSS) via Global Variables",
+                    "summary": "",
+                    "cvss2Score": 0,
+                    "cvss2Vector": "",
+                    "cvss2Severity": "",
+                    "cvss3Score": 0,
+                    "cvss3Vector": "",
+                    "cvss3Severity": "",
+                    "sourceLink": "https://wpscan.com/vulnerability/336deb2e-5286-422d-9aa2-6898877d55a9",
+                    "references": [
+                        {
+                            "link": "https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/"
+                        },
+                        {
+                            "link": "https://blog.wpscan.com/2020/10/30/wordpress-5.5.2-security-release.html"
+                        }
+                    ],
+                    "published": "2020-10-29T21:29:21Z",
+                    "lastModified": "2020-11-01T06:00:59Z"
+                }
+            },
+            "alertDict": {
+                "ja": null,
+                "en": null
+            },
+            "wpPackageFixStats": [
+                {
+                    "name": "55",
+                    "fixedIn": "5.5.2"
+                }
+            ],
+            "vulnType": "XSS"
+        },
+        "CVE-2020-28035": {
+            "cveID": "CVE-2020-28035",
+            "confidences": [
+                {
+                    "score": 100,
+                    "detectionMethod": "WpScanMatch"
+                }
+            ],
+            "cveContents": {
+                "nvd": {
+                    "type": "nvd",
+                    "cveID": "CVE-2020-28035",
+                    "title": "",
+                    "summary": "WordPress before 5.5.2 allows attackers to gain privileges via XML-RPC.",
+                    "cvss2Score": 7.5,
+                    "cvss2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+                    "cvss2Severity": "HIGH",
+                    "cvss3Score": 9.8,
+                    "cvss3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+                    "cvss3Severity": "CRITICAL",
+                    "sourceLink": "https://nvd.nist.gov/vuln/detail/CVE-2020-28035",
+                    "references": [
+                        {
+                            "link": "https://lists.debian.org/debian-lts-announce/2020/11/msg00004.html",
+                            "tags": [
+                                "Third Party Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CHHVNK2WYAM3ZTCXTFSEIT56IKLVJHU3/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VAVVYJKA2I6CRQUINECDPBGWMQDEG244/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VUXVUAKL2HL4QYJEPHBNVQQWRMFMII2Y/"
+                        },
+                        {
+                            "link": "https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/",
+                            "tags": [
+                                "Release Notes",
+                                "Vendor Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://www.debian.org/security/2020/dsa-4784"
+                        }
+                    ],
+                    "cweIDs": [
+                        "CWE-269"
+                    ],
+                    "published": "2020-11-02T21:15:00Z",
+                    "lastModified": "2020-11-11T03:15:00Z"
+                },
+                "wpscan": {
+                    "type": "wpscan",
+                    "cveID": "CVE-2020-28035",
+                    "title": "WordPress \u003c 5.5.2 - XML-RPC Privilege Escalation",
+                    "summary": "",
+                    "cvss2Score": 0,
+                    "cvss2Vector": "",
+                    "cvss2Severity": "",
+                    "cvss3Score": 0,
+                    "cvss3Vector": "",
+                    "cvss3Severity": "",
+                    "sourceLink": "https://wpscan.com/vulnerability/76a05ec0-08f3-459f-8379-3b4865a0813f",
+                    "references": [
+                        {
+                            "link": "https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/"
+                        },
+                        {
+                            "link": "https://github.com/WordPress/wordpress-develop/commit/c9e6b98968025b1629015998d12c3102165a7d32"
+                        },
+                        {
+                            "link": "https://blog.wpscan.com/2020/10/30/wordpress-5.5.2-security-release.html"
+                        }
+                    ],
+                    "published": "2020-10-29T21:31:43Z",
+                    "lastModified": "2020-11-01T06:01:12Z"
+                }
+            },
+            "alertDict": {
+                "ja": null,
+                "en": null
+            },
+            "wpPackageFixStats": [
+                {
+                    "name": "55",
+                    "fixedIn": "5.5.2"
+                }
+            ],
+            "vulnType": "PRIVESC"
+        },
+        "CVE-2020-28036": {
+            "cveID": "CVE-2020-28036",
+            "confidences": [
+                {
+                    "score": 100,
+                    "detectionMethod": "WpScanMatch"
+                }
+            ],
+            "cveContents": {
+                "nvd": {
+                    "type": "nvd",
+                    "cveID": "CVE-2020-28036",
+                    "title": "",
+                    "summary": "wp-includes/class-wp-xmlrpc-server.php in WordPress before 5.5.2 allows attackers to gain privileges by using XML-RPC to comment on a post.",
+                    "cvss2Score": 7.5,
+                    "cvss2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+                    "cvss2Severity": "HIGH",
+                    "cvss3Score": 9.8,
+                    "cvss3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+                    "cvss3Severity": "CRITICAL",
+                    "sourceLink": "https://nvd.nist.gov/vuln/detail/CVE-2020-28036",
+                    "references": [
+                        {
+                            "link": "https://github.com/WordPress/wordpress-develop/commit/c9e6b98968025b1629015998d12c3102165a7d32",
+                            "tags": [
+                                "Patch",
+                                "Third Party Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://lists.debian.org/debian-lts-announce/2020/11/msg00004.html",
+                            "tags": [
+                                "Third Party Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CHHVNK2WYAM3ZTCXTFSEIT56IKLVJHU3/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VAVVYJKA2I6CRQUINECDPBGWMQDEG244/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VUXVUAKL2HL4QYJEPHBNVQQWRMFMII2Y/"
+                        },
+                        {
+                            "link": "https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/",
+                            "tags": [
+                                "Release Notes",
+                                "Vendor Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://wpscan.com/vulnerability/10449",
+                            "tags": [
+                                "Third Party Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://www.debian.org/security/2020/dsa-4784"
+                        }
+                    ],
+                    "cweIDs": [
+                        "CWE-269"
+                    ],
+                    "published": "2020-11-02T21:15:00Z",
+                    "lastModified": "2020-11-11T03:15:00Z"
+                },
+                "wpscan": {
+                    "type": "wpscan",
+                    "cveID": "CVE-2020-28036",
+                    "title": "WordPress \u003c 5.5.2 - XML-RPC Privilege Escalation",
+                    "summary": "",
+                    "cvss2Score": 0,
+                    "cvss2Vector": "",
+                    "cvss2Severity": "",
+                    "cvss3Score": 0,
+                    "cvss3Vector": "",
+                    "cvss3Severity": "",
+                    "sourceLink": "https://wpscan.com/vulnerability/76a05ec0-08f3-459f-8379-3b4865a0813f",
+                    "references": [
+                        {
+                            "link": "https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/"
+                        },
+                        {
+                            "link": "https://github.com/WordPress/wordpress-develop/commit/c9e6b98968025b1629015998d12c3102165a7d32"
+                        },
+                        {
+                            "link": "https://blog.wpscan.com/2020/10/30/wordpress-5.5.2-security-release.html"
+                        }
+                    ],
+                    "published": "2020-10-29T21:31:43Z",
+                    "lastModified": "2020-11-01T06:01:12Z"
+                }
+            },
+            "alertDict": {
+                "ja": null,
+                "en": null
+            },
+            "wpPackageFixStats": [
+                {
+                    "name": "55",
+                    "fixedIn": "5.5.2"
+                }
+            ],
+            "vulnType": "PRIVESC"
+        },
+        "CVE-2020-28037": {
+            "cveID": "CVE-2020-28037",
+            "confidences": [
+                {
+                    "score": 100,
+                    "detectionMethod": "WpScanMatch"
+                }
+            ],
+            "cveContents": {
+                "nvd": {
+                    "type": "nvd",
+                    "cveID": "CVE-2020-28037",
+                    "title": "",
+                    "summary": "is_blog_installed in wp-includes/functions.php in WordPress before 5.5.2 improperly determines whether WordPress is already installed, which might allow an attacker to perform a new installation, leading to remote code execution (as well as a denial of service for the old installation).",
+                    "cvss2Score": 7.5,
+                    "cvss2Vector": "AV:N/AC:L/Au:N/C:P/I:P/A:P",
+                    "cvss2Severity": "HIGH",
+                    "cvss3Score": 9.8,
+                    "cvss3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+                    "cvss3Severity": "CRITICAL",
+                    "sourceLink": "https://nvd.nist.gov/vuln/detail/CVE-2020-28037",
+                    "references": [
+                        {
+                            "link": "https://github.com/WordPress/wordpress-develop/commit/2ca15d1e5ce70493c5c0c096ca0c76503d6da07c",
+                            "tags": [
+                                "Patch",
+                                "Third Party Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://lists.debian.org/debian-lts-announce/2020/11/msg00004.html",
+                            "tags": [
+                                "Third Party Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CHHVNK2WYAM3ZTCXTFSEIT56IKLVJHU3/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VAVVYJKA2I6CRQUINECDPBGWMQDEG244/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VUXVUAKL2HL4QYJEPHBNVQQWRMFMII2Y/"
+                        },
+                        {
+                            "link": "https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/",
+                            "tags": [
+                                "Release Notes",
+                                "Vendor Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://wpscan.com/vulnerability/10450",
+                            "tags": [
+                                "Third Party Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://www.debian.org/security/2020/dsa-4784"
+                        }
+                    ],
+                    "cweIDs": [
+                        "CWE-20"
+                    ],
+                    "published": "2020-11-02T21:15:00Z",
+                    "lastModified": "2020-11-11T03:15:00Z"
+                },
+                "wpscan": {
+                    "type": "wpscan",
+                    "cveID": "CVE-2020-28037",
+                    "title": "WordPress \u003c 5.5.2 - Unauthenticated DoS Attack to RCE",
+                    "summary": "",
+                    "cvss2Score": 0,
+                    "cvss2Vector": "",
+                    "cvss2Severity": "",
+                    "cvss3Score": 0,
+                    "cvss3Vector": "",
+                    "cvss3Severity": "",
+                    "sourceLink": "https://wpscan.com/vulnerability/016774df-5031-4315-a893-a47d99273883",
+                    "references": [
+                        {
+                            "link": "https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/"
+                        },
+                        {
+                            "link": "https://github.com/WordPress/wordpress-develop/commit/2ca15d1e5ce70493c5c0c096ca0c76503d6da07c"
+                        },
+                        {
+                            "link": "https://blog.wpscan.com/2020/10/30/wordpress-5.5.2-security-release.html"
+                        },
+                        {
+                            "link": "https://threatpost.com/wordpress-patches-rce-bug/160812/"
+                        }
+                    ],
+                    "published": "2020-10-29T21:34:06Z",
+                    "lastModified": "2020-11-03T06:01:09Z"
+                }
+            },
+            "alertDict": {
+                "ja": null,
+                "en": null
+            },
+            "wpPackageFixStats": [
+                {
+                    "name": "55",
+                    "fixedIn": "5.5.2"
+                }
+            ],
+            "vulnType": "DOS"
+        },
+        "CVE-2020-28038": {
+            "cveID": "CVE-2020-28038",
+            "confidences": [
+                {
+                    "score": 100,
+                    "detectionMethod": "WpScanMatch"
+                }
+            ],
+            "cveContents": {
+                "nvd": {
+                    "type": "nvd",
+                    "cveID": "CVE-2020-28038",
+                    "title": "",
+                    "summary": "WordPress before 5.5.2 allows stored XSS via post slugs.",
+                    "cvss2Score": 4.3,
+                    "cvss2Vector": "AV:N/AC:M/Au:N/C:N/I:P/A:N",
+                    "cvss2Severity": "MEDIUM",
+                    "cvss3Score": 6.1,
+                    "cvss3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+                    "cvss3Severity": "MEDIUM",
+                    "sourceLink": "https://nvd.nist.gov/vuln/detail/CVE-2020-28038",
+                    "references": [
+                        {
+                            "link": "https://blog.ripstech.com",
+                            "tags": [
+                                "Third Party Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://lists.debian.org/debian-lts-announce/2020/11/msg00004.html"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CHHVNK2WYAM3ZTCXTFSEIT56IKLVJHU3/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VAVVYJKA2I6CRQUINECDPBGWMQDEG244/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VUXVUAKL2HL4QYJEPHBNVQQWRMFMII2Y/"
+                        },
+                        {
+                            "link": "https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/",
+                            "tags": [
+                                "Release Notes",
+                                "Vendor Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://www.debian.org/security/2020/dsa-4784"
+                        }
+                    ],
+                    "cweIDs": [
+                        "CWE-79"
+                    ],
+                    "published": "2020-11-02T21:15:00Z",
+                    "lastModified": "2020-11-11T03:15:00Z"
+                },
+                "wpscan": {
+                    "type": "wpscan",
+                    "cveID": "CVE-2020-28038",
+                    "title": "WordPress \u003c 5.5.2 - Stored XSS in Post Slugs",
+                    "summary": "",
+                    "cvss2Score": 0,
+                    "cvss2Vector": "",
+                    "cvss2Severity": "",
+                    "cvss3Score": 0,
+                    "cvss3Vector": "",
+                    "cvss3Severity": "",
+                    "sourceLink": "https://wpscan.com/vulnerability/990cf4ff-0084-4a5c-8fdb-db374ffcb5df",
+                    "references": [
+                        {
+                            "link": "https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/"
+                        },
+                        {
+                            "link": "https://blog.wpscan.com/2020/10/30/wordpress-5.5.2-security-release.html"
+                        }
+                    ],
+                    "published": "2020-10-29T21:35:33Z",
+                    "lastModified": "2020-11-02T06:01:27Z"
+                }
+            },
+            "alertDict": {
+                "ja": null,
+                "en": null
+            },
+            "wpPackageFixStats": [
+                {
+                    "name": "55",
+                    "fixedIn": "5.5.2"
+                }
+            ],
+            "vulnType": "XSS"
+        },
+        "CVE-2020-28039": {
+            "cveID": "CVE-2020-28039",
+            "confidences": [
+                {
+                    "score": 100,
+                    "detectionMethod": "WpScanMatch"
+                }
+            ],
+            "cveContents": {
+                "nvd": {
+                    "type": "nvd",
+                    "cveID": "CVE-2020-28039",
+                    "title": "",
+                    "summary": "is_protected_meta in wp-includes/meta.php in WordPress before 5.5.2 allows arbitrary file deletion because it does not properly determine whether a meta key is considered protected.",
+                    "cvss2Score": 6.4,
+                    "cvss2Vector": "AV:N/AC:L/Au:N/C:N/I:P/A:P",
+                    "cvss2Severity": "MEDIUM",
+                    "cvss3Score": 9.1,
+                    "cvss3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H",
+                    "cvss3Severity": "CRITICAL",
+                    "sourceLink": "https://nvd.nist.gov/vuln/detail/CVE-2020-28039",
+                    "references": [
+                        {
+                            "link": "https://github.com/WordPress/wordpress-develop/commit/d5ddd6d4be1bc9fd16b7796842e6fb26315705ad",
+                            "tags": [
+                                "Patch",
+                                "Third Party Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://lists.debian.org/debian-lts-announce/2020/11/msg00004.html",
+                            "tags": [
+                                "Third Party Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CHHVNK2WYAM3ZTCXTFSEIT56IKLVJHU3/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VAVVYJKA2I6CRQUINECDPBGWMQDEG244/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VUXVUAKL2HL4QYJEPHBNVQQWRMFMII2Y/"
+                        },
+                        {
+                            "link": "https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/",
+                            "tags": [
+                                "Release Notes",
+                                "Vendor Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://wpscan.com/vulnerability/10452",
+                            "tags": [
+                                "Third Party Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://www.debian.org/security/2020/dsa-4784"
+                        }
+                    ],
+                    "cweIDs": [
+                        "NVD-CWE-noinfo"
+                    ],
+                    "published": "2020-11-02T21:15:00Z",
+                    "lastModified": "2020-11-11T03:15:00Z"
+                },
+                "wpscan": {
+                    "type": "wpscan",
+                    "cveID": "CVE-2020-28039",
+                    "title": "WordPress \u003c 5.5.2 - Protected Meta That Could Lead to Arbitrary File Deletion",
+                    "summary": "",
+                    "cvss2Score": 0,
+                    "cvss2Vector": "",
+                    "cvss2Severity": "",
+                    "cvss3Score": 0,
+                    "cvss3Vector": "",
+                    "cvss3Severity": "",
+                    "sourceLink": "https://wpscan.com/vulnerability/30662254-5a8d-40d0-8a31-eb58b51b3c33",
+                    "references": [
+                        {
+                            "link": "https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/"
+                        },
+                        {
+                            "link": "https://github.com/WordPress/wordpress-develop/commit/d5ddd6d4be1bc9fd16b7796842e6fb26315705ad"
+                        },
+                        {
+                            "link": "https://blog.wpscan.com/2020/10/30/wordpress-5.5.2-security-release.html"
+                        }
+                    ],
+                    "published": "2020-10-29T21:38:09Z",
+                    "lastModified": "2020-11-02T06:01:49Z"
+                }
+            },
+            "alertDict": {
+                "ja": null,
+                "en": null
+            },
+            "wpPackageFixStats": [
+                {
+                    "name": "55",
+                    "fixedIn": "5.5.2"
+                }
+            ],
+            "vulnType": "FILE DELETION"
+        },
+        "CVE-2020-28040": {
+            "cveID": "CVE-2020-28040",
+            "confidences": [
+                {
+                    "score": 100,
+                    "detectionMethod": "WpScanMatch"
+                }
+            ],
+            "cveContents": {
+                "nvd": {
+                    "type": "nvd",
+                    "cveID": "CVE-2020-28040",
+                    "title": "",
+                    "summary": "WordPress before 5.5.2 allows CSRF attacks that change a theme's background image.",
+                    "cvss2Score": 4.3,
+                    "cvss2Vector": "AV:N/AC:M/Au:N/C:N/I:P/A:N",
+                    "cvss2Severity": "MEDIUM",
+                    "cvss3Score": 4.3,
+                    "cvss3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:L/A:N",
+                    "cvss3Severity": "MEDIUM",
+                    "sourceLink": "https://nvd.nist.gov/vuln/detail/CVE-2020-28040",
+                    "references": [
+                        {
+                            "link": "https://blog.wpscan.com/2020/10/30/wordpress-5.5.2-security-release.html",
+                            "tags": [
+                                "Release Notes",
+                                "Vendor Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://lists.debian.org/debian-lts-announce/2020/11/msg00004.html"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/CHHVNK2WYAM3ZTCXTFSEIT56IKLVJHU3/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VAVVYJKA2I6CRQUINECDPBGWMQDEG244/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VUXVUAKL2HL4QYJEPHBNVQQWRMFMII2Y/"
+                        },
+                        {
+                            "link": "https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/",
+                            "tags": [
+                                "Release Notes",
+                                "Vendor Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://www.debian.org/security/2020/dsa-4784"
+                        }
+                    ],
+                    "cweIDs": [
+                        "CWE-352"
+                    ],
+                    "published": "2020-11-02T21:15:00Z",
+                    "lastModified": "2020-11-11T03:15:00Z"
+                },
+                "wpscan": {
+                    "type": "wpscan",
+                    "cveID": "CVE-2020-28040",
+                    "title": "WordPress \u003c 5.5.2 - Cross-Site Request Forgery (CSRF) to Change Theme Background",
+                    "summary": "",
+                    "cvss2Score": 0,
+                    "cvss2Vector": "",
+                    "cvss2Severity": "",
+                    "cvss3Score": 0,
+                    "cvss3Vector": "",
+                    "cvss3Severity": "",
+                    "sourceLink": "https://wpscan.com/vulnerability/ebd354db-ab63-4644-891c-4a200e9eef7e",
+                    "references": [
+                        {
+                            "link": "https://wordpress.org/news/2020/10/wordpress-5-5-2-security-and-maintenance-release/"
+                        },
+                        {
+                            "link": "https://github.com/WordPress/wordpress-develop/commit/cbcc595974d5aaa025ca55625bf68ef286bd8b41"
+                        },
+                        {
+                            "link": "https://blog.wpscan.com/2020/10/30/wordpress-5.5.2-security-release.html"
+                        },
+                        {
+                            "link": "https://hackerone.com/reports/881855"
+                        }
+                    ],
+                    "published": "2020-10-31T08:52:39Z",
+                    "lastModified": "2020-12-15T06:03:04Z"
+                }
+            },
+            "alertDict": {
+                "ja": null,
+                "en": null
+            },
+            "wpPackageFixStats": [
+                {
+                    "name": "55",
+                    "fixedIn": "5.5.2"
+                }
+            ],
+            "vulnType": "CSRF"
+        },
+        "WPVDBID-a394c82c-83e2-40e9-a886-dcfb5abe9b7e": {
+            "cveID": "WPVDBID-a394c82c-83e2-40e9-a886-dcfb5abe9b7e",
+            "confidences": [
+                {
+                    "score": 100,
+                    "detectionMethod": "WpScanMatch"
+                }
+            ],
+            "cveContents": {
+                "wpscan": {
+                    "type": "wpscan",
+                    "cveID": "WPVDBID-a394c82c-83e2-40e9-a886-dcfb5abe9b7e",
+                    "title": "WP Google Maps \u003c= 7.11.27 - Admin Settings CSRF",
+                    "summary": "",
+                    "cvss2Score": 0,
+                    "cvss2Vector": "",
+                    "cvss2Severity": "",
+                    "cvss3Score": 0,
+                    "cvss3Vector": "",
+                    "cvss3Severity": "",
+                    "sourceLink": "https://wpscan.com/vulnerability/a394c82c-83e2-40e9-a886-dcfb5abe9b7e",
+                    "references": [
+                        {
+                            "link": "https://plugins.trac.wordpress.org/changeset/2099647/wp-google-maps/trunk/legacy-core.php?old=2092302\u0026old_path=wp-google-maps%2Ftrunk%2Flegacy-core.php"
+                        }
+                    ],
+                    "published": "2019-06-12T16:08:11Z",
+                    "lastModified": "2019-11-18T06:00:24Z"
+                }
+            },
+            "alertDict": {
+                "ja": null,
+                "en": null
+            },
+            "wpPackageFixStats": [
+                {
+                    "name": "wp-google-maps",
+                    "fixedIn": "7.11.28"
+                }
+            ],
+            "vulnType": "CSRF"
+        },
+        "WPVDBID-aa47a464-af97-43bc-b6cb-75a08ce3ece7": {
+            "cveID": "WPVDBID-aa47a464-af97-43bc-b6cb-75a08ce3ece7",
+            "confidences": [
+                {
+                    "score": 100,
+                    "detectionMethod": "WpScanMatch"
+                }
+            ],
+            "cveContents": {
+                "wpscan": {
+                    "type": "wpscan",
+                    "cveID": "WPVDBID-aa47a464-af97-43bc-b6cb-75a08ce3ece7",
+                    "title": "Multiple Plugins/Themes - Cross-Site Request Forgery (CSRF)",
+                    "summary": "",
+                    "cvss2Score": 0,
+                    "cvss2Vector": "",
+                    "cvss2Severity": "",
+                    "cvss3Score": 0,
+                    "cvss3Vector": "",
+                    "cvss3Severity": "",
+                    "sourceLink": "https://wpscan.com/vulnerability/aa47a464-af97-43bc-b6cb-75a08ce3ece7",
+                    "references": [
+                        {
+                            "link": "https://blog.nintechnet.com/25-wordpress-plugins-vulnerable-to-csrf-attacks/"
+                        },
+                        {
+                            "link": "https://blog.nintechnet.com/more-wordpress-plugins-and-themes-vulnerable-to-csrf-attacks/"
+                        }
+                    ],
+                    "published": "2020-09-16T20:01:01Z",
+                    "lastModified": "2020-10-02T12:42:37Z"
+                }
+            },
+            "alertDict": {
+                "ja": null,
+                "en": null
+            },
+            "wpPackageFixStats": [
+                {
+                    "name": "hueman",
+                    "fixedIn": "3.6.4"
+                }
+            ],
+            "vulnType": "CSRF"
+        }
+    },
+    "runningKernel": {
+        "release": "",
+        "version": "",
+        "rebootRequired": false
+    },
+    "packages": {},
+    "WordPressPackages": [
+        {
+            "name": "core",
+            "version": "5.5",
+            "type": "core"
+        },
+        {
+            "name": "hueman",
+            "status": "inactive",
+            "update": "available",
+            "version": "3.6.3",
+            "type": "theme"
+        },
+        {
+            "name": "twentynineteen",
+            "status": "inactive",
+            "update": "available",
+            "version": "1.7",
+            "type": "theme"
+        },
+        {
+            "name": "twentyseventeen",
+            "status": "inactive",
+            "update": "available",
+            "version": "2.4",
+            "type": "theme"
+        },
+        {
+            "name": "twentytwenty",
+            "status": "active",
+            "update": "available",
+            "version": "1.5",
+            "type": "theme"
+        },
+        {
+            "name": "akismet",
+            "status": "inactive",
+            "update": "available",
+            "version": "4.1.6",
+            "type": "plugin"
+        },
+        {
+            "name": "hello",
+            "status": "inactive",
+            "update": "none",
+            "version": "1.7.2",
+            "type": "plugin"
+        },
+        {
+            "name": "wp-google-maps",
+            "status": "active",
+            "update": "available",
+            "version": "7.10.33",
+            "type": "plugin"
+        }
+    ],
+    "cweDict": {
+        "20": {
+            "en": {
+                "cweID": "20",
+                "name": "Improper Input Validation",
+                "description": "The product does not validate or incorrectly validates input that can affect the control flow or data flow of a program.",
+                "extendedDescription": "When software does not validate input properly, an attacker is able to craft the input in a form that is not expected by the rest of the application. This will lead to parts of the system receiving unintended input, which may result in altered control flow, arbitrary control of a resource, or arbitrary code execution."
+            },
+            "ja": {
+                "cweID": "20",
+                "name": "不適切な入力確認(CWE-20)",
+                "description": "",
+                "extendedDescription": ""
+            },
+            "owaspTopTen2017": "",
+            "cweTopTwentyfive2019": "3",
+            "sansTopTwentyfive": ""
+        },
+        "269": {
+            "en": {
+                "cweID": "269",
+                "name": "Improper Privilege Management",
+                "description": "The software does not properly assign, modify, track, or check privileges for an actor, creating an unintended sphere of control for that actor.",
+                "extendedDescription": ""
+            },
+            "ja": {
+                "cweID": "269",
+                "name": "",
+                "description": "",
+                "extendedDescription": ""
+            },
+            "owaspTopTen2017": "",
+            "cweTopTwentyfive2019": "24",
+            "sansTopTwentyfive": ""
+        },
+        "352": {
+            "en": {
+                "cweID": "352",
+                "name": "Cross-Site Request Forgery (CSRF)",
+                "description": "The web application does not, or can not, sufficiently verify whether a well-formed, valid, consistent request was intentionally provided by the user who submitted the request.",
+                "extendedDescription": "When a web server is designed to receive a request from a client without any mechanism for verifying that it was intentionally sent, then it might be possible for an attacker to trick a client into making an unintentional request to the web server which will be treated as an authentic request. This can be done via a URL, image load, XMLHttpRequest, etc. and can result in exposure of data or unintended code execution."
+            },
+            "ja": {
+                "cweID": "352",
+                "name": "クロスサイトリクエストフォージェリ(CWE-352)",
+                "description": "",
+                "extendedDescription": ""
+            },
+            "owaspTopTen2017": "",
+            "cweTopTwentyfive2019": "9",
+            "sansTopTwentyfive": "12"
+        },
+        "502": {
+            "en": {
+                "cweID": "502",
+                "name": "Deserialization of Untrusted Data",
+                "description": "The application deserializes untrusted data without sufficiently verifying that the resulting data will be valid.",
+                "extendedDescription": ""
+            },
+            "ja": {
+                "cweID": "502",
+                "name": "信頼性のないデータのデシリアライゼーション(CWE-502)",
+                "description": "",
+                "extendedDescription": ""
+            },
+            "owaspTopTen2017": "8",
+            "cweTopTwentyfive2019": "23",
+            "sansTopTwentyfive": ""
+        },
+        "79": {
+            "en": {
+                "cweID": "79",
+                "name": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                "description": "The software does not neutralize or incorrectly neutralizes user-controllable input before it is placed in output that is used as a web page that is served to other users.",
+                "extendedDescription": ""
+            },
+            "ja": {
+                "cweID": "79",
+                "name": "クロスサイトスクリプティング(CWE-79)",
+                "description": "",
+                "extendedDescription": ""
+            },
+            "owaspTopTen2017": "7",
+            "cweTopTwentyfive2019": "2",
+            "sansTopTwentyfive": "4"
+        }
+    },
+    "config": {
+        "scan": {
+            "logDir": "/var/log/vuls",
+            "resultsDir": "/vuls/results",
+            "sshNative": true,
+            "default": {},
+            "servers": {
+                "wordpress": {
+                    "serverName": "centos",
+                    "user": "ishida",
+                    "host": "10.0.4.15",
+                    "port": "22",
+                    "keyPath": "/root/.ssh/centos",
+                    "scanMode": [
+                        "fast"
+                    ],
+                    "scanModules": [
+                        "wordpress"
+                    ],
+                    "wordpress": {
+                        "osUser": "ishida",
+                        "docRoot": "/var/www/html/wordpress/",
+                        "cmdPath": "/usr/local/bin/wp"
+                    }
+                },
+                "localhost": {
+                    "serverName": "localhost",
+                    "user": "ishida",
+                    "host": "10.0.4.73",
+                    "port": "22",
+                    "keyPath": "/root/.ssh/id_rsa",
+                    "scanMode": [
+                        "fast"
+                    ],
+                    "lockfiles": [
+                        "/home/ishida/yarn.lock",
+                        "/home/ishida/Pipfile.lock"
+                    ],
+                    "wordpress": {}
+                }
+            },
+            "cacheDBPath": "/vuls/cache.db",
+            "cveDict": {
+                "Type": "sqlite3"
+            },
+            "ovalDict": {
+                "Type": "sqlite3"
+            },
+            "gost": {
+                "Type": "sqlite3"
+            },
+            "exploit": {
+                "Type": "sqlite3"
+            },
+            "metasploit": {
+                "Type": "sqlite3"
+            },
+            "WpScan": {
+                "detectInactive": true
+            }
+        },
+        "report": {
+            "lang": "ja",
+            "logDir": "/var/log/vuls",
+            "resultsDir": "/vuls/results",
+            "default": {},
+            "servers": {
+                "centos": {
+                    "serverName": "centos",
+                    "user": "ishida",
+                    "host": "10.0.4.15",
+                    "port": "22",
+                    "keyPath": "/root/.ssh/centos",
+                    "scanMode": [
+                        "fast"
+                    ],
+                    "scanModules": [
+                        "wordpress"
+                    ],
+                    "wordpress": {
+                        "osUser": "ishida",
+                        "docRoot": "/var/www/html/wordpress/",
+                        "cmdPath": "/usr/local/bin/wp"
+                    }
+                }
+            },
+            "trivyCacheDBDir": "/root/.cache/trivy",
+            "cveDict": {
+                "Type": "sqlite3"
+            },
+            "ovalDict": {
+                "Type": "sqlite3"
+            },
+            "gost": {
+                "Type": "sqlite3"
+            },
+            "exploit": {
+                "Type": "sqlite3"
+            },
+            "metasploit": {
+                "Type": "sqlite3"
+            },
+            "WpScan": {
+                "detectInactive": true
+            },
+            "formatFullText": true
+        }
+    }
+}

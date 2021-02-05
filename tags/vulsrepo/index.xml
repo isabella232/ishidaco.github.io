@@ -6,7 +6,16 @@
     <description>Recent content in vulsrepo on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 01 Feb 2021 10:00:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/tags/vulsrepo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Feb 2021 10:00:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/tags/vulsrepo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo v0.5.0 で WordPress の脆弱性情報を表示できるようになりました</title>
+      <link>https://monocosel.jp/blog/vulsrepo-v0-5-0/</link>
+      <pubDate>Fri, 05 Feb 2021 10:00:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/blog/vulsrepo-v0-5-0/</guid>
+      <description>VulsRepo を v0.5.0 に更新しました。WordPress 本体、テーマ、プラグインの脆弱性情報を表示できるようになりました。 更新内容 追加 #201 wpscan で WordPress 本体、テーマ、</description>
+    </item>
+    
     <item>
       <title>VulsRepo v0.4.0 で表示対象データをパラメータ指定で選んで表示できるようにしました</title>
       <link>https://monocosel.jp/blog/vulsrepo-v0-4-0/</link>
