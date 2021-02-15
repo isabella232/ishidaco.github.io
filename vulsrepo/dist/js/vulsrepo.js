@@ -940,7 +940,8 @@ const createPivotData = function(resultArray) {
                 "Reported Version": x_val.data.reportedVersion.replace("v", ""),
                 "VulnType": "healthy",
                 "Status": "healthy",
-                "Update": "healthy"
+                "Update": "healthy",
+                "Diff": "healthy"
             };
 
             result["ServerName"] = x_val.data.serverName;
@@ -981,15 +982,11 @@ const createPivotData = function(resultArray) {
                     if (libPath === undefined) {
                         libPath = "";
                         pkgInfo = x_val.data.packages[pkgName];
-                        if (y_val.wpPackageFixStats !== undefined) {
-                            x_val.data.WordPressPackages.forEach(package => {
-                                if (package.name === p_val.name) {
-                                    wpInfo = package;
-                                    if (pkgName === "core") {
-                                        pkgName = "WordPress core";
-                                    }
-                                }
-                            });
+                        wpInfo = getWordPressInformation(x_val.data.WordPressPackages, pkgName, y_val.wpPackageFixStats);
+                        if (wpInfo !== undefined) {
+                            if (pkgName === "core") {
+                                pkgName = "WordPress core";
+                            }
                         }
                     } else {
                         libInfo = getLibraryInformation(x_val.data.libraries, pkgName, libPath);
@@ -1016,6 +1013,11 @@ const createPivotData = function(resultArray) {
                         "FixedIn": fixedIn,
                         "FixState": fixState
                     };
+                    if (y_val.diffStatus !== undefined) {
+                        result["Diff"] = y_val.diffStatus;
+                    } else {
+                        result["Diff"] = "";
+                    }
 
                     result["ServerName"] = x_val.data.serverName;
 
@@ -1130,7 +1132,7 @@ const createPivotData = function(resultArray) {
                     result["DetectionMethod"] = DetectionMethod;
                     result["ConfidenceScore"] = y_val.confidences[0].score;
                     if (pkgInfo !== undefined) {
-                        if (pkgInfo.changelog !== undefined && pkgInfo.changelog.contents !== "") {
+                        if (pkgInfo.changelog !== undefined && pkgInfo.changelog.contents !== undefined && pkgInfo.changelog.contents !== "") {
                             result["Changelog"] = "CHK-changelog-" + y_val.cveID + "," + x_val.scanTime + "," + x_val.data.serverName + "," + x_val.data.container.name + "," + pkgName;
                         } else {
                             result["Changelog"] = "None";
@@ -1320,7 +1322,7 @@ const createPivotData = function(resultArray) {
                             result["CVSS Severity"] = toUpperFirstLetter(y_val.cveContents[target].cvss2Severity);
                             result["CVSS Score Type"] = target;
                         } else {
-                            result["CVSS Score"] = "-";
+                            result["CVSS Score"] = "";
                             if (y_val.cveContents[target].cvss3Severity !== "") {
                                 result["CVSS Severity"] = toUpperFirstLetter(y_val.cveContents[target].cvss3Severity);
                                 result["CVSS Score Type"] = target;
@@ -1590,6 +1592,17 @@ const displayPivot = function(array) {
             $("#pivot_base").find("th:contains('Fixed')").each(function() {
                 if ($(this).text() === "Fixed") {
                     $(this).addClass("notfixyet-false");
+                }
+            });
+
+            $("#pivot_base").find("th:contains('+')").each(function() {
+                if ($(this).text() === "+") {
+                    $(this).addClass("diff-plus");
+                }
+            });
+            $("#pivot_base").find("th:contains('-')").each(function() {
+                if ($(this).text() === "-") {
+                    $(this).addClass("diff-minus");
                 }
             });
 
@@ -2676,6 +2689,22 @@ const getLibraryInformation = function(libraries, pkgName, libPath) {
     return libInfo;
 };
 
+const getWordPressInformation = function(wordPressPackages, pkgName, wpPackageFixStats) {
+    let wpInfo;
+
+    if (wpPackageFixStats === undefined) {
+        return;
+    }
+
+    wordPressPackages.forEach(package => {
+        if (package.name === pkgName) {
+            wpInfo = package;
+        }
+    });
+
+    return wpInfo;
+};
+
 const createDetailPackageData = function(cveID) {
     var array = [];
     $.each(vulsrepo.detailRawData, function(x, x_val) {
@@ -2697,6 +2726,7 @@ const createDetailPackageData = function(cveID) {
                     }
 
                     let libInfo =  getLibraryInformation(x_val.data.libraries, pkgName, libPath);
+                    let wpInfo = getWordPressInformation(x_val.data.WordPressPackages, pkgName, y_val.wpPackageFixStats);
 
                     let tmp_Map = {
                         ScanTime: x_val.scanTime,
@@ -2706,7 +2736,7 @@ const createDetailPackageData = function(cveID) {
 
                     if (pkgName.indexOf('cpe:/') != -1) {
                         tmp_Map["Path"] = "";
-                        tmp_Map["PackageName"] = '<a href="#contents" class="lightbox" data-cveid="' + cveID + '" data-scantime="' + x_val.scanTime + '" data-server="' + x_val.data.serverName + '" data-container="' + x_val.data.container.name + '" data-package="' + pkgName + '">' + pkgName + '</a>';
+                        tmp_Map["PackageName"] = pkgName;
                         tmp_Map["PackageVersion"] = "";
                         tmp_Map["PackageRelease"] = "";
                         tmp_Map["PackageNewVersion"] = "";
@@ -2730,6 +2760,20 @@ const createDetailPackageData = function(cveID) {
                         tmp_Map["Path"] = libPath;
                         tmp_Map["PackageName"] = '<a href="#contents" class="lightbox" data-cveid="' + cveID + '" data-scantime="' + x_val.scanTime + '" data-server="' + x_val.data.serverName + '" data-container="' + x_val.data.container.name + '" data-package="' + pkgName + '">' + pkgName + '</a>';
                         tmp_Map["PackageVersion"] = libInfo.Version;
+                        tmp_Map["PackageRelease"] = "";
+                        tmp_Map["PackageNewVersion"] = "";
+                        tmp_Map["PackageNewRelease"] = "";
+                        tmp_Map["Repository"] = "";
+                        tmp_Map["NotFixedYet"] = NotFixedYet;
+                        tmp_Map["FixedIn"] = fixedIn;
+                        tmp_Map["FixState"] = fixState;
+                    } else if (wpInfo !== undefined) {
+                        if (pkgName === "core") {
+                            pkgName = "WordPress core";
+                        }
+                        tmp_Map["Path"] = "";
+                        tmp_Map["PackageName"] = pkgName;
+                        tmp_Map["PackageVersion"] = wpInfo.version;
                         tmp_Map["PackageRelease"] = "";
                         tmp_Map["PackageNewVersion"] = "";
                         tmp_Map["PackageNewRelease"] = "";
@@ -2812,7 +2856,7 @@ const displayChangelogDetail = function(ankerData) {
             packageInfo = packageInfo + " (" + pkgContents.repository + ")";
         }
         $("#changelog-packagename").append(packageInfo);
-        if (changelogInfo.pkgContents.changelog.contents === "") {
+        if (changelogInfo.pkgContents.changelog === undefined || changelogInfo.pkgContents.changelog.contents === undefined || changelogInfo.pkgContents.changelog.contents === "") {
             $("#changelog-contents").append("NO DATA");
         } else {
             $.each(shapeChangelog(changelogInfo.pkgContents.changelog.contents, cveid), function (y, y_val) {

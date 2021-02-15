@@ -6,7 +6,16 @@
     <description>Recent content in Blog on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Fri, 05 Feb 2021 10:00:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Feb 2021 10:00:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo v0.5.1 で差分情報が表示できるようになりました</title>
+      <link>https://monocosel.jp/blog/vulsrepo-v0-5-1/</link>
+      <pubDate>Mon, 15 Feb 2021 10:00:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/blog/vulsrepo-v0-5-1/</guid>
+      <description>VulsRepo を v0.5.1 に更新しました。Vuls v0.15.8 で追加された差分情報を表示できるようになりました。また、いくつかの不具合を修正しています。 更新内容 追加 #212 Vuls v0.15.8</description>
+    </item>
+    
     <item>
       <title>VulsRepo v0.5.0 で WordPress の脆弱性情報を表示できるようになりました</title>
       <link>https://monocosel.jp/blog/vulsrepo-v0-5-0/</link>
