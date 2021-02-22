@@ -1,0 +1,257 @@
+{
+    "jsonVersion": 4,
+    "lang": "en",
+    "serverUUID": "",
+    "serverName": "githubrepo",
+    "family": "pseudo",
+    "release": "",
+    "container": {
+        "containerID": "",
+        "name": "",
+        "image": "",
+        "type": "",
+        "uuid": ""
+    },
+    "platform": {
+        "name": "other",
+        "instanceID": ""
+    },
+    "scannedAt": "2021-02-19T15:37:31.170962688+09:00",
+    "scanMode": "fast mode",
+    "scannedVersion": "v0.15.9",
+    "scannedRevision": "build-20210218_214508_e3c27e1",
+    "scannedBy": "6de531d6a23e",
+    "scannedVia": "pseudo",
+    "scannedIpv4Addrs": [
+        "172.17.0.3"
+    ],
+    "reportedAt": "2021-02-19T15:43:32.157130685+09:00",
+    "reportedVersion": "v0.15.9",
+    "reportedRevision": "build-20210218_214508_e3c27e1",
+    "reportedBy": "0c870b263ac1",
+    "errors": [],
+    "warnings": [],
+    "scannedCves": {
+        "CVE-2020-27783": {
+            "cveID": "CVE-2020-27783",
+            "confidences": [
+                {
+                    "score": 97,
+                    "detectionMethod": "GitHubMatch"
+                }
+            ],
+            "cveContents": {
+                "github": {
+                    "type": "github",
+                    "cveID": "CVE-2020-27783",
+                    "title": "XSS in lxml",
+                    "summary": "A XSS vulnerability was discovered in python-lxml's clean module. The module's parser didn't properly imitate browsers, which caused different behaviors between the sanitizer and the user's page. A remote attacker could exploit this flaw to run arbitrary HTML/JS code.",
+                    "cvss2Score": 0,
+                    "cvss2Vector": "",
+                    "cvss2Severity": "MODERATE",
+                    "cvss3Score": 0,
+                    "cvss3Vector": "",
+                    "cvss3Severity": "MODERATE",
+                    "sourceLink": "https://github.com/advisories/GHSA-pgww-xf46-h92r",
+                    "references": [
+                        {
+                            "link": "https://nvd.nist.gov/vuln/detail/CVE-2020-27783"
+                        },
+                        {
+                            "link": "https://github.com/advisories/GHSA-pgww-xf46-h92r"
+                        }
+                    ],
+                    "published": "2021-01-07T21:54:01Z",
+                    "lastModified": "2021-01-19T18:16:40Z"
+                },
+                "nvd": {
+                    "type": "nvd",
+                    "cveID": "CVE-2020-27783",
+                    "title": "",
+                    "summary": "A XSS vulnerability was discovered in python-lxml's clean module. The module's parser didn't properly imitate browsers, which caused different behaviors between the sanitizer and the user's page. A remote attacker could exploit this flaw to run arbitrary HTML/JS code.",
+                    "cvss2Score": 4.3,
+                    "cvss2Vector": "AV:N/AC:M/Au:N/C:N/I:P/A:N",
+                    "cvss2Severity": "MEDIUM",
+                    "cvss3Score": 6.1,
+                    "cvss3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+                    "cvss3Severity": "MEDIUM",
+                    "sourceLink": "https://nvd.nist.gov/vuln/detail/CVE-2020-27783",
+                    "references": [
+                        {
+                            "link": "https://bugzilla.redhat.com/show_bug.cgi?id=1901633",
+                            "tags": [
+                                "Exploit",
+                                "Issue Tracking",
+                                "Patch",
+                                "Third Party Advisory"
+                            ]
+                        },
+                        {
+                            "link": "https://lists.debian.org/debian-lts-announce/2020/12/msg00028.html"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/JKG67GPGTV23KADT4D4GK4RMHSO4CIQL/"
+                        },
+                        {
+                            "link": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/TMHVKRUT22LVWNL3TB7HPSDHJT74Q3JK/"
+                        },
+                        {
+                            "link": "https://www.debian.org/security/2020/dsa-4810"
+                        }
+                    ],
+                    "cweIDs": [
+                        "CWE-79",
+                        "CWE-79"
+                    ],
+                    "published": "2020-12-03T17:15:00Z",
+                    "lastModified": "2021-01-14T04:15:00Z"
+                },
+                "redhat_api": {
+                    "type": "redhat_api",
+                    "cveID": "CVE-2020-27783",
+                    "title": "CVE-2020-27783 python-lxml: mXSS due to the use of improper parser",
+                    "summary": "A XSS vulnerability was discovered in python-lxml's clean module. The module's parser didn't properly imitate browsers, which caused different behaviors between the sanitizer and the user's page. A remote attacker could exploit this flaw to run arbitrary HTML/JS code.\nA Cross-site Scripting (XSS) vulnerability was found in the python-lxml's clean module. The module's parser did not properly imitate browsers, causing different behaviors between the sanitizer and the user's page. This flaw allows a remote attacker to run arbitrary HTML/JS code. The highest threat from this vulnerability is to system availability.",
+                    "cvss2Score": 0,
+                    "cvss2Vector": "",
+                    "cvss2Severity": "",
+                    "cvss3Score": 6.1,
+                    "cvss3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+                    "cvss3Severity": "Moderate",
+                    "sourceLink": "https://access.redhat.com/security/cve/CVE-2020-27783",
+                    "cweIDs": [
+                        "CWE-79"
+                    ],
+                    "published": "2020-10-18T00:00:00Z",
+                    "lastModified": "0001-01-01T00:00:00Z"
+                }
+            },
+            "exploits": [
+                {
+                    "exploitType": "nvd",
+                    "id": "",
+                    "url": "https://bugzilla.redhat.com/show_bug.cgi?id=1901633",
+                    "description": ""
+                }
+            ],
+            "alertDict": {
+                "ja": null,
+                "en": null
+            },
+            "gitHubSecurityAlerts": [
+                {
+                    "packageName": "https://github.com/ishiDACo/matomeli lxml",
+                    "fixedIn": "4.6.2",
+                    "affectedRange": "\u003c 4.6.2",
+                    "dismissed": true,
+                    "dismissedAt": "2021-02-19T06:13:51Z",
+                    "dismissReason": "Risk is tolerable to this project"
+                }
+            ]
+        }
+    },
+    "runningKernel": {
+        "release": "",
+        "version": "",
+        "rebootRequired": false
+    },
+    "packages": {},
+    "cweDict": {
+        "79": {
+            "en": {
+                "cweID": "79",
+                "name": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')",
+                "description": "The software does not neutralize or incorrectly neutralizes user-controllable input before it is placed in output that is used as a web page that is served to other users.",
+                "extendedDescription": ""
+            },
+            "owaspTopTen2017": "7",
+            "cweTopTwentyfive2019": "2",
+            "sansTopTwentyfive": "4"
+        }
+    },
+    "config": {
+        "scan": {
+            "logDir": "/var/log/vuls",
+            "resultsDir": "/vuls/results",
+            "sshNative": true,
+            "default": {},
+            "servers": {
+                "localhost": {
+                    "serverName": "localhost",
+                    "user": "ishida",
+                    "host": "10.0.4.73",
+                    "port": "22",
+                    "keyPath": "/root/.ssh/id_rsa",
+                    "cpeNames": [
+                        "cpe:/a:gnu:bash:4.4.18"
+                    ],
+                    "scanMode": [
+                        "deep"
+                    ],
+                    "wordpress": {}
+                },
+                "githubrepo": {
+                    "serverName": "githubrepo",
+                    "githubs": {
+                        "ishiDACo/matomeli": {}
+                    },
+                    "type": "pseudo",
+                    "wordpress": {}
+                }
+            },
+            "cacheDBPath": "/vuls/cache.db",
+            "cveDict": {
+                "Type": "sqlite3"
+            },
+            "ovalDict": {
+                "Type": "sqlite3"
+            },
+            "gost": {
+                "Type": "sqlite3"
+            },
+            "exploit": {
+                "Type": "sqlite3"
+            },
+            "metasploit": {
+                "Type": "sqlite3"
+            },
+            "WpScan": {
+                "detectInactive": true
+            }
+        },
+        "report": {
+            "lang": "en",
+            "logDir": "/var/log/vuls",
+            "resultsDir": "/vuls/results",
+            "default": {},
+            "servers": {
+                "githubrepo": {
+                    "serverName": "githubrepo",
+                    "githubs": {
+                        "ishiDACo/matomeli": {}
+                    },
+                    "type": "pseudo",
+                    "wordpress": {}
+                }
+            },
+            "trivyCacheDBDir": "/root/.cache/trivy",
+            "cveDict": {
+                "Type": "sqlite3"
+            },
+            "ovalDict": {
+                "Type": "sqlite3"
+            },
+            "gost": {
+                "Type": "sqlite3"
+            },
+            "exploit": {
+                "Type": "sqlite3"
+            },
+            "metasploit": {
+                "Type": "sqlite3"
+            },
+            "WpScan": {
+                "detectInactive": true
+            }
+        }
+    }
+}

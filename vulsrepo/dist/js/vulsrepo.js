@@ -912,6 +912,7 @@ const createPivotData = function(resultArray) {
                 "CVSS Score": "healthy",
                 "CVSS Score Type": "healthy",
                 "CVSS Severity": "healthy",
+                "Attack": "healthy",
                 "CVSSv3 (AV)": "healthy",
                 "CVSSv3 (AC)": "healthy",
                 "CVSSv3 (PR)": "healthy",
@@ -941,6 +942,10 @@ const createPivotData = function(resultArray) {
                 "VulnType": "healthy",
                 "Status": "healthy",
                 "Update": "healthy",
+                "Affected Range": "healthy",
+                "Dismissed": "healthy",
+                "DismissedAt": "healthy",
+                "DismissReason": "healthy",
                 "Diff": "healthy"
             };
 
@@ -979,6 +984,7 @@ const createPivotData = function(resultArray) {
                     let pkgInfo;
                     let libInfo;
                     let wpInfo;
+                    let githubsainfo;
                     if (libPath === undefined) {
                         libPath = "";
                         pkgInfo = x_val.data.packages[pkgName];
@@ -989,7 +995,13 @@ const createPivotData = function(resultArray) {
                             }
                         }
                     } else {
-                        libInfo = getLibraryInformation(x_val.data.libraries, pkgName, libPath);
+                        if (y_val.gitHubSecurityAlerts !== undefined) {
+                            // GitHub SA
+                            githubsainfo = getGitHubSecurityAlertInformation(y_val.gitHubSecurityAlerts, pkgName, libPath);
+                        } else {
+                            // lockfile etc.
+                            libInfo = getLibraryInformation(x_val.data.libraries, pkgName, libPath);
+                        }
                     }
 
                     let errors = "";
@@ -1011,7 +1023,14 @@ const createPivotData = function(resultArray) {
                         "Path": libPath,
                         "NotFixedYet": NotFixedYet,
                         "FixedIn": fixedIn,
-                        "FixState": fixState
+                        "FixState": fixState,
+                        "VulnType": "",
+                        "Status": "",
+                        "Update": "",
+                        "Affected Range": "",
+                        "Dismissed": "",
+                        "DismissedAt": "",
+                        "DismissReason": ""
                     };
                     if (y_val.diffStatus !== undefined) {
                         result["Diff"] = y_val.diffStatus;
@@ -1177,9 +1196,6 @@ const createPivotData = function(resultArray) {
                                 result["Process"] = "CHK-Process-" + y_val.cveID + "," + x_val.scanTime + "," + x_val.data.serverName + "," + x_val.data.container.name + "," + pkgName + "," + process;
                             }
                         }
-                        result["VulnType"] = "";
-                        result["Status"] = "";
-                        result["Update"] = "";
                     } else if (libInfo !== undefined) {
                         // === for library
                         result["PackageVer"] = libInfo.Version;
@@ -1190,9 +1206,6 @@ const createPivotData = function(resultArray) {
                             result["PortScannable"] = "";
                             result["Process"] = "";
                         }
-                        result["VulnType"] = "";
-                        result["Status"] = "";
-                        result["Update"] = "";
                     } else if (wpInfo !== undefined) {
                         // === for WordPress
                         result["PackageVer"] = wpInfo.version;
@@ -1211,6 +1224,24 @@ const createPivotData = function(resultArray) {
                             result["Status"] = wpInfo.status;
                             result["Update"] = wpInfo.update;
                         }
+                    } else if (githubsainfo !== undefined) {
+                        // === for GitHubSecurityAlerts
+                        result["PackageVer"] = "Unknown";
+                        result["NewPackageVer"] = "Unknown";
+                        result["Changelog"] = "None";
+                        result["Repository"] = ""
+                        if (processFlag !== "false") {
+                            result["PortScannable"] = "";
+                            result["Process"] = "";
+                        }
+                        result["Affected Range"] = githubsainfo.affectedRange;
+                        result["Dismissed"] = githubsainfo.dismissed;
+                        if (githubsainfo.dismissedAt !== "0001-01-01T00:00:00Z") {
+                            result["DismissedAt"] = githubsainfo.dismissedAt;
+                        } else {
+                            result["DismissedAt"] = "------";
+                        }
+                        result["DismissReason"] = githubsainfo.dismissReason;
                     } else {
                         // ===for cpe
                         result["PackageVer"] = "Unknown";
@@ -1221,9 +1252,6 @@ const createPivotData = function(resultArray) {
                             result["PortScannable"] = "";
                             result["Process"] = "";
                         }
-                        result["VulnType"] = "";
-                        result["Status"] = "";
-                        result["Update"] = "";
                     }
 
                     var getSummaryAndDate = function(target) {
@@ -1335,6 +1363,23 @@ const createPivotData = function(resultArray) {
                             }
                         }
 
+                        // "cvss2Vector", "cvss3Vector" or "attack range"
+                        if (y_val.cveContents[target].cvss3Vector !== "") {
+                            let arrayVector = getSplitArray(y_val.cveContents[target].cvss3Vector);
+                            let cvssv3 = getVectorV3.cvss(arrayVector[1], "");
+                            result["Attack"] = cvssv3[0];
+                        } else if (y_val.cveContents[target].cvss2Vector !== "") {
+                            let arrayVector = getSplitArray(y_val.cveContents[target].cvss2Vector);
+                            let cvssv2 = getVectorV2.cvss(arrayVector[0], "");
+                            result["Attack"] = cvssv2[0];
+                        } else if (target === "debian_security_tracker" &&
+                            y_val.cveContents[target].optional !== undefined &&
+                            y_val.cveContents[target].optional["attack range"] !== undefined) {
+                            result["Attack"] = y_val.cveContents[target].optional["attack range"].toUpperCase();
+                        } else {
+                            result["Attack"] = "";
+                        }
+
                         if (cvssFlag !== "false") {
                             if (y_val.cveContents[target].cvss3Vector !== "") { //ex) CVE-2016-5483
                                 var arrayVector = getSplitArray(y_val.cveContents[target].cvss3Vector);
@@ -1402,6 +1447,7 @@ const createPivotData = function(resultArray) {
                         result["CVSS Score"] = "Unknown";
                         result["CVSS Severity"] = "Unknown";
                         result["CVSS Score Type"] = "Unknown";
+                        result["Attack"] = "";
                         result["CVSSv3 (AV)"] = "Unknown";
                         result["CVSSv3 (AC)"] = "Unknown";
                         result["CVSSv3 (PR)"] = "Unknown";
@@ -1496,13 +1542,19 @@ const displayPivot = function(array) {
             c3: {
                 data: {
                     colors: {
+                        healthy: "lightskyblue",
                         Unknown: "#666666",
                         Critical: "#cb4829",
                         High: "#d59533",
                         Important: "#d59533",
                         Medium: "#dfd238",
                         Moderate: "#dfd238",
-                        Low: "#93b447"
+                        Low: "#93b447",
+                        Negligible: "#61C1BE",
+                        Unimportant: "#61C1BE",
+                        Pending: "#796BAF",
+                        "Not Vulnerable": "#BA79B1",
+                        "Not yet assigned": "#e6AAAA"
                     }
                 }
             },
@@ -1901,7 +1953,7 @@ const displayDetail = function(cveID) {
             if (target === "ubuntu" || target === "debian" || target === "debian_security_tracker" || target === "amazon") {
                 $("#scoreText_" + dest).removeClass();
                 $("#scoreText_" + dest).text(severityV2).addClass("cvss-" + severityV2);
-            } else if (target === "trivy") {
+            } else if (target === "trivy" || target === "github") {
                 $("#scoreText_" + dest).removeClass();
                 $("#scoreText_" + dest).text(severityV3).addClass("cvss-" + severityV3);
             } else if (target === "oracle" && isCheckNull(data.DistroAdvisories) === false) {
@@ -2320,6 +2372,11 @@ const displayDetail = function(cveID) {
     } else {
         $("#typeName_wpscan").append("WordPress");
     }
+    if (data.cveContents.github !== undefined) {
+        $("#typeName_github").append("<a href=\"" + data.cveContents.github.sourceLink + "\" rel='noopener noreferrer' target='_blank'>GitHub</a>");
+    } else {
+        $("#typeName_github").append("GitHub");
+    }
 
     // ---USCERT/JPCERT---
     let countCert = 0;
@@ -2664,9 +2721,33 @@ const getTargetPackages = function(scannedCve) {
             }
         });
         targets = scannedCve.wpPackageFixStats;
+    } else if (isCheckNull(scannedCve.gitHubSecurityAlerts) === false) {
+        scannedCve.gitHubSecurityAlerts.forEach(pkg => {
+            // repository package
+            let pkgName = pkg.packageName.split(" ");
+            pkg["path"] = pkgName[0];
+            pkg["name"] = pkgName[1];
+        });
+        targets = scannedCve.gitHubSecurityAlerts;
     }
 
     return targets;
+};
+
+const getGitHubSecurityAlertInformation = function(alerts, pkgName, libPath) {
+    let libInfo;
+
+    if (libPath === undefined) {
+        return;
+    }
+
+    $.each(alerts, function(l, l_val) {
+        if (l_val.path === libPath && l_val.name === pkgName) {
+            libInfo = l_val;
+        }
+    });
+
+    return libInfo;
 };
 
 const getLibraryInformation = function(libraries, pkgName, libPath) {
