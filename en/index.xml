@@ -111,7 +111,7 @@ v0.2.3  #72  USCERT is now shown in the CERT of the pivot table.  #76  Show [WAR
       <description>VulsRepo online demo is here.
 Now, VulsRepo supports Debian Security Tracker!
 You can see a sample of the following vulnerability scan results.
- Amazon Linux 2 Ubuntu 18.04 Raspbian 9.13 Raspberry Pi OS 10 Alpine Linux on Docker container  See also https://github.com/ishiDACo/vulsrepo/releases/tag/v0.2.2</description>
+ Amazon Linux 2 Ubuntu 18.04 Raspbian 9.13 Raspberry Pi OS 10 Alpine Linux on Docker container  See also https://github.com/ishiDACo/vulsrepo/releases/tag/v0.2.2  </description>
     </item>
     
     <item>
@@ -121,7 +121,7 @@ You can see a sample of the following vulnerability scan results.
       
       <guid>https://monocosel.jp/en/blog/vulsrepo-demo/</guid>
       <description>VulsRepo online demo is here.
-See also https://github.com/ishiDACo/vulsrepo</description>
+See also https://github.com/ishiDACo/vulsrepo  </description>
     </item>
     
   </channel>

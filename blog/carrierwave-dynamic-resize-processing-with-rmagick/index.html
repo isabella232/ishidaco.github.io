@@ -7,23 +7,19 @@
 
 
 
-  <meta name="generator" content="Hugo 0.80.0" />
+  <meta name="generator" content="Hugo 0.87.0" />
   <meta itemprop="name" content="Carrierwave: Dynamic Resize Processing With RMagick">
-<meta itemprop="description" content="この投稿は 旧ブログ stnoctps-blog Tumblr 出張所 から引っ越してきました。 Carrierwave 標準だと、resize_ 系が固定サイズしか指定できなかったので、倍率指定して拡大縮小で">
-<meta itemprop="datePublished" content="2013-01-24T21:49:00+09:00" />
+<meta itemprop="description" content="この投稿は 旧ブログ stnoctps-blog Tumblr 出張所 から引っ越してきました。 Carrierwave 標準だと、resize_ 系が固定サイズしか指定できなかったので、倍率指定して拡大縮小で"><meta itemprop="datePublished" content="2013-01-24T21:49:00+09:00" />
 <meta itemprop="dateModified" content="2013-01-24T21:49:00+09:00" />
 <meta itemprop="wordCount" content="211">
-
-
-
 <meta itemprop="keywords" content="carrierwave,image,ror," />
-
   <meta property="og:title" content="Carrierwave: Dynamic Resize Processing With RMagick" />
 <meta property="og:description" content="この投稿は 旧ブログ stnoctps-blog Tumblr 出張所 から引っ越してきました。 Carrierwave 標準だと、resize_ 系が固定サイズしか指定できなかったので、倍率指定して拡大縮小で" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://monocosel.jp/blog/carrierwave-dynamic-resize-processing-with-rmagick/" />
+<meta property="og:url" content="https://monocosel.jp/blog/carrierwave-dynamic-resize-processing-with-rmagick/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2013-01-24T21:49:00+09:00" />
 <meta property="article:modified_time" content="2013-01-24T21:49:00+09:00" />
+
 
   <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Carrierwave: Dynamic Resize Processing With RMagick"/>
@@ -245,7 +241,7 @@
     
 </div>
   <div class="meta">
-    <time class="published" datetime="2013-01-24 21:49:00 &#43;0900 JST">
+    <time class="published" datetime="2013-01-24 21:49:00 &#43;0900 &#43;0900">
       2013-01-24
     </time>
     <span class="author"></span>
@@ -306,7 +302,7 @@
 <p>carrierwave (0.7.1)</p>
 <p>rmagick (2.13.1)</p>
 <h1 id="libcarrierwavedynamic_resizerb">/lib/carrierwave/dynamic_resize.rb</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rb" data-lang="rb"><span style="color:#66d9ef">module</span> CarrierWave
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rb" data-lang="rb"><span style="color:#66d9ef">module</span> CarrierWave
 
   <span style="color:#66d9ef">module</span> DynamicResize
 
@@ -335,7 +331,7 @@
 
 <span style="color:#66d9ef">end</span>
 </code></pre></div><h1 id="appuploadershoge_uploaderrb">/app/uploaders/hoge_uploader.rb</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rb" data-lang="rb"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HogeUploader</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">CarrierWave</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Uploader</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Base</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rb" data-lang="rb"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HogeUploader</span> <span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">CarrierWave</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Uploader</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Base</span>
 
   :
 
@@ -353,7 +349,7 @@
   <span style="color:#66d9ef">end</span>
 <span style="color:#66d9ef">end</span>
 </code></pre></div><h1 id="configinitilaizerscarrierwaverb">/config/initilaizers/carrierwave.rb</h1>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rb" data-lang="rb">  :
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rb" data-lang="rb">  :
 
 require <span style="color:#66d9ef">File</span><span style="color:#f92672">.</span>join(<span style="color:#66d9ef">Rails</span><span style="color:#f92672">.</span>root, <span style="color:#960050;background-color:#1e0010">“</span>lib<span style="color:#960050;background-color:#1e0010">”</span>, <span style="color:#960050;background-color:#1e0010">“</span>carrierwave<span style="color:#960050;background-color:#1e0010">”</span>, <span style="color:#960050;background-color:#1e0010">“</span>dynamic_resize<span style="color:#960050;background-color:#1e0010">”</span>)
 </code></pre></div>
@@ -709,7 +705,7 @@ require <span style="color:#66d9ef">File</span><span style="color:#f92672">.</sp
         モノコセル
       
     . <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.80.0' target='_blank' rel='noopener'>Hugo</a>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.87.0' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>

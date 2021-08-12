@@ -7,25 +7,19 @@
 
 
 
-  <meta name="generator" content="Hugo 0.80.0" />
+  <meta name="generator" content="Hugo 0.87.0" />
   <meta itemprop="name" content="VulsRepo v0.4.0 で表示対象データをパラメータ指定で選んで表示できるようにしました">
-<meta itemprop="description" content="VulsRepo を v0.4.0 に更新しました。日付、サーバーやフィルターを URL パラメータで決め打ちすることで、対象データをフィルタリングしてすぐに表示できるようになり">
-<meta itemprop="datePublished" content="2021-02-01T10:00:09+09:00" />
+<meta itemprop="description" content="VulsRepo を v0.4.0 に更新しました。日付、サーバーやフィルターを URL パラメータで決め打ちすることで、対象データをフィルタリングしてすぐに表示できるようになり"><meta itemprop="datePublished" content="2021-02-01T10:00:09+09:00" />
 <meta itemprop="dateModified" content="2021-02-01T10:00:09+09:00" />
-<meta itemprop="wordCount" content="809">
-<meta itemprop="image" content="https://monocosel.jp/blog/vulsrepo-v0-4-0/param.gif">
-
-
-
+<meta itemprop="wordCount" content="809"><meta itemprop="image" content="https://monocosel.jp/blog/vulsrepo-v0-4-0/param.gif">
 <meta itemprop="keywords" content="vulsrepo," />
-
   <meta property="og:title" content="VulsRepo v0.4.0 で表示対象データをパラメータ指定で選んで表示できるようにしました" />
 <meta property="og:description" content="VulsRepo を v0.4.0 に更新しました。日付、サーバーやフィルターを URL パラメータで決め打ちすることで、対象データをフィルタリングしてすぐに表示できるようになり" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://monocosel.jp/blog/vulsrepo-v0-4-0/" />
-<meta property="og:image" content="https://monocosel.jp/blog/vulsrepo-v0-4-0/param.gif" />
+<meta property="og:url" content="https://monocosel.jp/blog/vulsrepo-v0-4-0/" /><meta property="og:image" content="https://monocosel.jp/blog/vulsrepo-v0-4-0/param.gif" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2021-02-01T10:00:09+09:00" />
 <meta property="article:modified_time" content="2021-02-01T10:00:09+09:00" />
+
 
   <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://monocosel.jp/blog/vulsrepo-v0-4-0/param.gif"/>
@@ -361,25 +355,35 @@
 <h4 id="例">例</h4>
 <p>いくつか例を示します。</p>
 <h5 id="最新日の-localhostjson">最新日の <code>localhost.json</code></h5>
-<p><a href="https://monocosel.jp/vulsrepo/?server=localhost.json">https://monocosel.jp/vulsrepo/?server=localhost.json</a></p>
+<p><a href="https://monocosel.jp/vulsrepo/?server=localhost.json" target="_blank" rel="noopener noreferrer">https://monocosel.jp/vulsrepo/?server=localhost.json <span class="fas fa-external-link-alt"></span></a>
+</p>
 <h5 id="直近30日の-localhostjson-と-raspberry10json">直近30日の <code>localhost.json</code> と <code>raspberry10.json</code></h5>
-<p><a href="https://monocosel.jp/vulsrepo/?daterange=last30days&amp;server=localhost.json+raspberry10.json">https://monocosel.jp/vulsrepo/?daterange=last30days&amp;server=localhost.json+raspberry10.json</a></p>
+<p><a href="https://monocosel.jp/vulsrepo/?daterange=last30days&amp;server=localhost.json&#43;raspberry10.json" target="_blank" rel="noopener noreferrer">https://monocosel.jp/vulsrepo/?daterange=last30days&server=localhost.json+raspberry10.json <span class="fas fa-external-link-alt"></span></a>
+</p>
 <h5 id="2020-09-18--2020-11-16-の全サーバーコンテナ">2020-09-18 〜 2020-11-16 の全サーバー（コンテナ）</h5>
-<p><a href="https://monocosel.jp/vulsrepo/?datefrom=2020-09-18&amp;dateto=2020-11-16&amp;server=all">https://monocosel.jp/vulsrepo/?datefrom=2020-09-18&amp;dateto=2020-11-16&amp;server=all</a></p>
+<p><a href="https://monocosel.jp/vulsrepo/?datefrom=2020-09-18&amp;dateto=2020-11-16&amp;server=all" target="_blank" rel="noopener noreferrer">https://monocosel.jp/vulsrepo/?datefrom=2020-09-18&dateto=2020-11-16&server=all <span class="fas fa-external-link-alt"></span></a>
+</p>
 <h5 id="2020-02-04t012511z-の-localhostjson"><code>2020-02-04T01:25:11Z</code> の <code>localhost.json</code></h5>
-<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json</a></p>
+<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json" target="_blank" rel="noopener noreferrer">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&server=localhost.json <span class="fas fa-external-link-alt"></span></a>
+</p>
 <h5 id="2020-02-04t012511z-の-localhostjson-と-vulsrepolocalhostjson"><code>2020-02-04T01:25:11Z</code> の <code>localhost.json</code> と <code>vulsrepo@localhost.json</code></h5>
-<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json+vulsrepo@localhost.json">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json+vulsrepo@localhost.json</a></p>
+<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&#43;vulsrepo@localhost.json" target="_blank" rel="noopener noreferrer">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&server=localhost.json+vulsrepo@localhost.json <span class="fas fa-external-link-alt"></span></a>
+</p>
 <h5 id="2020-02-04t012511z-の-localhostjson-を-01-graph-cvss-severity--servername-フィルター適用"><code>2020-02-04T01:25:11Z</code> の <code>localhost.json</code> を <code>01. Graph: CVSS-Severity =&gt; ServerName</code> フィルター適用</h5>
-<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=01.%20Graph:%20CVSS-Severity%20=%3E%20ServerName">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=01.%20Graph:%20CVSS-Severity%20=%3E%20ServerName</a></p>
+<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=01.%20Graph:%20CVSS-Severity%20=%3E%20ServerName" target="_blank" rel="noopener noreferrer">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&server=localhost.json&filter=01.%20Graph:%20CVSS-Severity%20=%3E%20ServerName <span class="fas fa-external-link-alt"></span></a>
+</p>
 <h5 id="2020-02-04t012511z-の-localhostjson-を-02-graph-cvss-severity--cvss-score-フィルター適用"><code>2020-02-04T01:25:11Z</code> の <code>localhost.json</code> を <code>02. Graph: CVSS-Severity =&gt; CVSS-Score</code> フィルター適用</h5>
-<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=02.%20Graph:%20CVSS-Severity%20=%3E%20CVSS-Score">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=02.%20Graph:%20CVSS-Severity%20=%3E%20CVSS-Score</a></p>
+<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=02.%20Graph:%20CVSS-Severity%20=%3E%20CVSS-Score" target="_blank" rel="noopener noreferrer">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&server=localhost.json&filter=02.%20Graph:%20CVSS-Severity%20=%3E%20CVSS-Score <span class="fas fa-external-link-alt"></span></a>
+</p>
 <h5 id="2020-02-04t012511z-の-localhostjson-を-03-pivot-packagecvss-severitycveidsummary--servername-フィルター適用"><code>2020-02-04T01:25:11Z</code> の <code>localhost.json</code> を <code>03. Pivot: Package/CVSS-Severity/CveID/Summary =&gt; ServerName</code> フィルター適用</h5>
-<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=03.%20Pivot:%20Package/CVSS-Severity/CveID/Summary%20=%3E%20ServerName">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=03.%20Pivot:%20Package/CVSS-Severity/CveID/Summary%20=%3E%20ServerName</a></p>
+<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=03.%20Pivot:%20Package/CVSS-Severity/CveID/Summary%20=%3E%20ServerName" target="_blank" rel="noopener noreferrer">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&server=localhost.json&filter=03.%20Pivot:%20Package/CVSS-Severity/CveID/Summary%20=%3E%20ServerName <span class="fas fa-external-link-alt"></span></a>
+</p>
 <h5 id="2020-02-04t012511z-の-localhostjson-を-04-pivot-packagecveid--scantime-フィルター適用"><code>2020-02-04T01:25:11Z</code> の <code>localhost.json</code> を <code>04. Pivot: Package/CveID =&gt; ScanTime</code> フィルター適用</h5>
-<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=04.%20Pivot:%20Package/CveID%20=%3E%20ScanTime">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=04.%20Pivot:%20Package/CveID%20=%3E%20ScanTime</a></p>
+<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=04.%20Pivot:%20Package/CveID%20=%3E%20ScanTime" target="_blank" rel="noopener noreferrer">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&server=localhost.json&filter=04.%20Pivot:%20Package/CveID%20=%3E%20ScanTime <span class="fas fa-external-link-alt"></span></a>
+</p>
 <h5 id="2020-02-04t012511z-の-localhostjson-を-05-pivot-cveidpackageinfo--notfixedyet-フィルター適用"><code>2020-02-04T01:25:11Z</code> の <code>localhost.json</code> を <code>05. Pivot: CveID/PackageInfo =&gt; NotFixedYet</code> フィルター適用</h5>
-<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=05.%20Pivot:%20CveID/PackageInfo%20=%3E%20NotFixedYet">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=05.%20Pivot:%20CveID/PackageInfo%20=%3E%20NotFixedYet</a></p>
+<p><a href="https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&amp;server=localhost.json&amp;filter=05.%20Pivot:%20CveID/PackageInfo%20=%3E%20NotFixedYet" target="_blank" rel="noopener noreferrer">https://monocosel.jp/vulsrepo/?time=2020-02-04T01:25:11Z&server=localhost.json&filter=05.%20Pivot:%20CveID/PackageInfo%20=%3E%20NotFixedYet <span class="fas fa-external-link-alt"></span></a>
+</p>
 <h3 id="変更">変更</h3>
 <ul>
 <li>ありません。</li>
@@ -392,8 +396,8 @@
 <h2 id="docker-イメージ">Docker イメージ</h2>
 <p><a href="https://hub.docker.com/r/ishidaco/vulsrepo" target="_blank" rel="noopener noreferrer">ishidaco/vulsrepo - Docker Hub <span class="fas fa-external-link-alt"></span></a>
 </p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker pull ishidaco/vulsrepo
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker pull ishidaco/vulsrepo:version-0.4.0
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker pull ishidaco/vulsrepo
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker pull ishidaco/vulsrepo:version-0.4.0
 </code></pre></div><h2 id="デモ">デモ</h2>
 <p><a href="/vulsrepo/">VulsRepo オンラインデモ</a>
  を公開しています。</p>
@@ -409,7 +413,8 @@
 <li>Docker コンテナ上の Ubuntu 14.04</li>
 </ul>
 <p>に対する脆弱性スキャン結果のサンプルを確認できます。</p>
-<p><a href="https://github.com/ishiDACo/vulsrepo/releases/tag/v0.4.0">https://github.com/ishiDACo/vulsrepo/releases/tag/v0.4.0</a> に対応したものになります。</p>
+<p><a href="https://github.com/ishiDACo/vulsrepo/releases/tag/v0.4.0" target="_blank" rel="noopener noreferrer">https://github.com/ishiDACo/vulsrepo/releases/tag/v0.4.0 <span class="fas fa-external-link-alt"></span></a>
+ に対応したものになります。</p>
 
   </div>
   <footer>
@@ -759,7 +764,7 @@
         モノコセル
       
     . <br>
-    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.80.0' target='_blank' rel='noopener'>Hugo</a>
+    Theme: <a href='https://github.com/pacollins/hugo-future-imperfect-slim' target='_blank' rel='noopener'>Hugo Future Imperfect Slim</a><br>A <a href='https://html5up.net/future-imperfect' target='_blank' rel='noopener'>HTML5 UP port</a> | Powered by <a href='https://gohugo.io/' title='0.87.0' target='_blank' rel='noopener'>Hugo</a>
   </p>
 </footer>
 <a id="back-to-top" href="#" class="fas fa-arrow-up fa-2x"></a>
