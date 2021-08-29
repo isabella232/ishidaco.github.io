@@ -6,7 +6,16 @@
     <description>Recent content in vulsrepo on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Tue, 23 Mar 2021 10:00:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/tags/vulsrepo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 29 Aug 2021 10:00:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/tags/vulsrepo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo v0.6.4</title>
+      <link>https://monocosel.jp/blog/vulsrepo-v0-6-4/</link>
+      <pubDate>Sun, 29 Aug 2021 10:00:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/blog/vulsrepo-v0-6-4/</guid>
+      <description>VulsRepo を v0.6.4 に更新しました。Vuls のbreaking-change(go-cve-dict): support new go-cve-dictionary の変更に伴い、読み込みに失敗する問題に対応し</description>
+    </item>
+    
     <item>
       <title>VulsRepo v0.6.3 でパネルをレスポンシブデザインに変更しました</title>
       <link>https://monocosel.jp/blog/vulsrepo-v0-6-3/</link>
