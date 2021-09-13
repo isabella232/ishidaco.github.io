@@ -6,7 +6,16 @@
     <description>Recent content in vulsrepo on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sun, 29 Aug 2021 10:00:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/tags/vulsrepo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Sep 2021 10:00:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/tags/vulsrepo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo v0.7.0 で Primary source と Patch の表示を追加しました</title>
+      <link>https://monocosel.jp/blog/vulsrepo-v0-7-0/</link>
+      <pubDate>Mon, 13 Sep 2021 10:00:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/blog/vulsrepo-v0-7-0/</guid>
+      <description>VulsRepo を v0.7.0 に更新しました。Vuls v0.15.14 への対応と、Primary source と Patch の表示を追加しました。また CweID に関連する不具合を修正しています。 更新内容 追加 #234</description>
+    </item>
+    
     <item>
       <title>VulsRepo v0.6.4</title>
       <link>https://monocosel.jp/blog/vulsrepo-v0-6-4/</link>

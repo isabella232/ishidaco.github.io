@@ -6,7 +6,17 @@
     <description>Recent content in security on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 05 Feb 2021 10:00:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/en/categories/security/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Sep 2021 10:00:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/en/categories/security/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Added display of Primary source and Patch in VulsRepo v0.7.0</title>
+      <link>https://monocosel.jp/en/blog/vulsrepo-v0-7-0/</link>
+      <pubDate>Mon, 13 Sep 2021 10:00:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/en/blog/vulsrepo-v0-7-0/</guid>
+      <description>With this update, Added support for Vuls v0.15.14  and the display of Primary source and Patch. Also fixed a bug related to CweID.
+Features  #234  Merged CweID and References of multiple cveContent that can be retrieved in Vuls v0.15.14 to show them all. #236  Primary source and Patch are now shown in the details panel. #236  References now shows both source and tags.  Changes  Nothing  Fixes  #216  Fixed a problem with CweID links breaking.</description>
+    </item>
+    
     <item>
       <title>VulsRepo v0.5.0 can now display WordPress related vulnerability information</title>
       <link>https://monocosel.jp/en/blog/vulsrepo-v0-5-0/</link>
