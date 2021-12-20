@@ -2,23 +2,30 @@
 <html lang="ja">
   <head>
   <meta charset="utf-8">
-<title>モノコセル</title>
+<title>VulsRepo v0.7.1 で CISA 情報の表示の追加および CERT 情報が表示されない問題修正 - モノコセル</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
   <meta name="generator" content="Hugo 0.91.0" />
-  <meta itemprop="name" content="モノコセル">
-<meta itemprop="description" content="">
-  <meta property="og:title" content="モノコセル" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://monocosel.jp/" />
+  <meta itemprop="name" content="VulsRepo v0.7.1 で CISA 情報の表示の追加および CERT 情報が表示されない問題修正">
+<meta itemprop="description" content="VulsRepo を v0.7.1 に更新しました。Vuls v0.19.0 への対応です。 更新内容 追加 #243 Vuls v0.19.0 で取得できる CISA 情報を表示するようにしました。 変更 1231d27 ExecRestart を ExecReload に変更しました。 修正"><meta itemprop="datePublished" content="2021-12-20T10:00:09+09:00" />
+<meta itemprop="dateModified" content="2021-12-20T10:00:09+09:00" />
+<meta itemprop="wordCount" content="229"><meta itemprop="image" content="https://monocosel.jp/blog/vulsrepo-v0-7-1/cisa-detail.png">
+<meta itemprop="keywords" content="vulsrepo," />
+  <meta property="og:title" content="VulsRepo v0.7.1 で CISA 情報の表示の追加および CERT 情報が表示されない問題修正" />
+<meta property="og:description" content="VulsRepo を v0.7.1 に更新しました。Vuls v0.19.0 への対応です。 更新内容 追加 #243 Vuls v0.19.0 で取得できる CISA 情報を表示するようにしました。 変更 1231d27 ExecRestart を ExecReload に変更しました。 修正" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://monocosel.jp/blog/vulsrepo-v0-7-1/" /><meta property="og:image" content="https://monocosel.jp/blog/vulsrepo-v0-7-1/cisa-detail.png" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2021-12-20T10:00:09+09:00" />
+<meta property="article:modified_time" content="2021-12-20T10:00:09+09:00" />
 
 
-  <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="モノコセル"/>
-<meta name="twitter:description" content=""/>
+  <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://monocosel.jp/blog/vulsrepo-v0-7-1/cisa-detail.png"/>
+
+<meta name="twitter:title" content="VulsRepo v0.7.1 で CISA 情報の表示の追加および CERT 情報が表示されない問題修正"/>
+<meta name="twitter:description" content="VulsRepo を v0.7.1 に更新しました。Vuls v0.19.0 への対応です。 更新内容 追加 #243 Vuls v0.19.0 で取得できる CISA 情報を表示するようにしました。 変更 1231d27 ExecRestart を ExecReload に変更しました。 修正"/>
 <meta name="twitter:site" content="@ishiDACo"/>
 
   
@@ -50,7 +57,9 @@
     <h1 class="nav-title">
       <a href="/">
         
-          モノコセル
+          
+            ブログ
+          
         
       </a>
     </h1>
@@ -111,7 +120,12 @@
   <menu id="lang-menu" class="flyout-menu">
   <a href="#" lang="ja" class="link active">日本語 (ja)</a>
   
-      <a href="https://monocosel.jp/en/" lang="en" class="link">English (en)</a>
+    
+      
+    
+      
+        <a href="/en" lang="en" class="no-lang link">English (en)</a>
+      
     
   
 </menu>
@@ -126,31 +140,31 @@
 
   
     
-    <a href="//twitter.com/share?text=%e3%83%a2%e3%83%8e%e3%82%b3%e3%82%bb%e3%83%ab&amp;url=https%3a%2f%2fmonocosel.jp%2f" target="_blank" rel="noopener" class="share-btn twitter">
+    <a href="//twitter.com/share?text=VulsRepo%20v0.7.1%20%e3%81%a7%20CISA%20%e6%83%85%e5%a0%b1%e3%81%ae%e8%a1%a8%e7%a4%ba%e3%81%ae%e8%bf%bd%e5%8a%a0%e3%81%8a%e3%82%88%e3%81%b3%20CERT%20%e6%83%85%e5%a0%b1%e3%81%8c%e8%a1%a8%e7%a4%ba%e3%81%95%e3%82%8c%e3%81%aa%e3%81%84%e5%95%8f%e9%a1%8c%e4%bf%ae%e6%ad%a3&amp;url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-7-1%2f" target="_blank" rel="noopener" class="share-btn twitter">
         <i class="fab fa-twitter"></i><p>&nbsp;Twitter</p>
       </a>
   
 
   
-      <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fmonocosel.jp%2f" target="_blank" rel="noopener" class="share-btn facebook">
+      <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-7-1%2f" target="_blank" rel="noopener" class="share-btn facebook">
         <i class="fab fa-facebook"></i><p>&nbsp;Facebook</p>
         </a>
   
 
   
-    <a href="//www.reddit.com/submit?url=https%3a%2f%2fmonocosel.jp%2f&amp;title=%e3%83%a2%e3%83%8e%e3%82%b3%e3%82%bb%e3%83%ab" target="_blank" rel="noopener" class="share-btn reddit">
+    <a href="//www.reddit.com/submit?url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-7-1%2f&amp;title=VulsRepo%20v0.7.1%20%e3%81%a7%20CISA%20%e6%83%85%e5%a0%b1%e3%81%ae%e8%a1%a8%e7%a4%ba%e3%81%ae%e8%bf%bd%e5%8a%a0%e3%81%8a%e3%82%88%e3%81%b3%20CERT%20%e6%83%85%e5%a0%b1%e3%81%8c%e8%a1%a8%e7%a4%ba%e3%81%95%e3%82%8c%e3%81%aa%e3%81%84%e5%95%8f%e9%a1%8c%e4%bf%ae%e6%ad%a3" target="_blank" rel="noopener" class="share-btn reddit">
           <i class="fab fa-reddit-alien"></i><p>&nbsp;Reddit</p>
         </a>
   
 
   
-        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fmonocosel.jp%2f&amp;title=%e3%83%a2%e3%83%8e%e3%82%b3%e3%82%bb%e3%83%ab" target="_blank" rel="noopener" class="share-btn linkedin">
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-7-1%2f&amp;title=VulsRepo%20v0.7.1%20%e3%81%a7%20CISA%20%e6%83%85%e5%a0%b1%e3%81%ae%e8%a1%a8%e7%a4%ba%e3%81%ae%e8%bf%bd%e5%8a%a0%e3%81%8a%e3%82%88%e3%81%b3%20CERT%20%e6%83%85%e5%a0%b1%e3%81%8c%e8%a1%a8%e7%a4%ba%e3%81%95%e3%82%8c%e3%81%aa%e3%81%84%e5%95%8f%e9%a1%8c%e4%bf%ae%e6%ad%a3" target="_blank" rel="noopener" class="share-btn linkedin">
             <i class="fab fa-linkedin"></i><p>&nbsp;LinkedIn</p>
           </a>
   
 
   
-        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fmonocosel.jp%2f&amp;description=%e3%83%a2%e3%83%8e%e3%82%b3%e3%82%bb%e3%83%ab" target="_blank" rel="noopener" class="share-btn pinterest">
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-7-1%2f&amp;description=VulsRepo%20v0.7.1%20%e3%81%a7%20CISA%20%e6%83%85%e5%a0%b1%e3%81%ae%e8%a1%a8%e7%a4%ba%e3%81%ae%e8%bf%bd%e5%8a%a0%e3%81%8a%e3%82%88%e3%81%b3%20CERT%20%e6%83%85%e5%a0%b1%e3%81%8c%e8%a1%a8%e7%a4%ba%e3%81%95%e3%82%8c%e3%81%aa%e3%81%84%e5%95%8f%e9%a1%8c%e4%bf%ae%e6%ad%a3" target="_blank" rel="noopener" class="share-btn pinterest">
           <i class="fab fa-pinterest-p"></i><p>&nbsp;Pinterest</p>
         </a>
   
@@ -220,19 +234,17 @@
 </section>
 
       <main id="site-main">
-        
-        
-          <article class="post">
+        <article class="post">
   <header>
   <div class="title">
     
-        <h2><a href="/blog/vulsrepo-v0-6-3/">VulsRepo v0.6.3 でパネルをレスポンシブデザインに変更しました</a></h2>
+        <h2><a href="/blog/vulsrepo-v0-7-1/">VulsRepo v0.7.1 で CISA 情報の表示の追加および CERT 情報が表示されない問題修正</a></h2>
     
     
 </div>
   <div class="meta">
-    <time class="published" datetime="2021-03-23 10:00:09 &#43;0900 JST">
-      2021-03-23
+    <time class="published" datetime="2021-12-20 10:00:09 &#43;0900 JST">
+      2021-12-20
     </time>
     <span class="author"></span>
     
@@ -241,19 +253,105 @@
   </div>
 </header>
 
-  
-  <a href="/blog/vulsrepo-v0-6-3/" class="image featured">
+  <section id="socnet-share">
     
-      <img src="/blog/vulsrepo-v0-6-3/detail-panel.png" alt="">
+
+
+
+
+  
+    
+    <a href="//twitter.com/share?text=VulsRepo%20v0.7.1%20%e3%81%a7%20CISA%20%e6%83%85%e5%a0%b1%e3%81%ae%e8%a1%a8%e7%a4%ba%e3%81%ae%e8%bf%bd%e5%8a%a0%e3%81%8a%e3%82%88%e3%81%b3%20CERT%20%e6%83%85%e5%a0%b1%e3%81%8c%e8%a1%a8%e7%a4%ba%e3%81%95%e3%82%8c%e3%81%aa%e3%81%84%e5%95%8f%e9%a1%8c%e4%bf%ae%e6%ad%a3&amp;url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-7-1%2f" target="_blank" rel="noopener" class="share-btn twitter">
+        <i class="fab fa-twitter"></i><p>&nbsp;Twitter</p>
+      </a>
+  
+
+  
+      <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-7-1%2f" target="_blank" rel="noopener" class="share-btn facebook">
+        <i class="fab fa-facebook"></i><p>&nbsp;Facebook</p>
+        </a>
+  
+
+  
+    <a href="//www.reddit.com/submit?url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-7-1%2f&amp;title=VulsRepo%20v0.7.1%20%e3%81%a7%20CISA%20%e6%83%85%e5%a0%b1%e3%81%ae%e8%a1%a8%e7%a4%ba%e3%81%ae%e8%bf%bd%e5%8a%a0%e3%81%8a%e3%82%88%e3%81%b3%20CERT%20%e6%83%85%e5%a0%b1%e3%81%8c%e8%a1%a8%e7%a4%ba%e3%81%95%e3%82%8c%e3%81%aa%e3%81%84%e5%95%8f%e9%a1%8c%e4%bf%ae%e6%ad%a3" target="_blank" rel="noopener" class="share-btn reddit">
+          <i class="fab fa-reddit-alien"></i><p>&nbsp;Reddit</p>
+        </a>
+  
+
+  
+        <a href="//www.linkedin.com/shareArticle?url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-7-1%2f&amp;title=VulsRepo%20v0.7.1%20%e3%81%a7%20CISA%20%e6%83%85%e5%a0%b1%e3%81%ae%e8%a1%a8%e7%a4%ba%e3%81%ae%e8%bf%bd%e5%8a%a0%e3%81%8a%e3%82%88%e3%81%b3%20CERT%20%e6%83%85%e5%a0%b1%e3%81%8c%e8%a1%a8%e7%a4%ba%e3%81%95%e3%82%8c%e3%81%aa%e3%81%84%e5%95%8f%e9%a1%8c%e4%bf%ae%e6%ad%a3" target="_blank" rel="noopener" class="share-btn linkedin">
+            <i class="fab fa-linkedin"></i><p>&nbsp;LinkedIn</p>
+          </a>
+  
+
+  
+        <a href="//www.pinterest.com/pin/create/button/?url=https%3a%2f%2fmonocosel.jp%2fblog%2fvulsrepo-v0-7-1%2f&amp;description=VulsRepo%20v0.7.1%20%e3%81%a7%20CISA%20%e6%83%85%e5%a0%b1%e3%81%ae%e8%a1%a8%e7%a4%ba%e3%81%ae%e8%bf%bd%e5%8a%a0%e3%81%8a%e3%82%88%e3%81%b3%20CERT%20%e6%83%85%e5%a0%b1%e3%81%8c%e8%a1%a8%e7%a4%ba%e3%81%95%e3%82%8c%e3%81%aa%e3%81%84%e5%95%8f%e9%a1%8c%e4%bf%ae%e6%ad%a3" target="_blank" rel="noopener" class="share-btn pinterest">
+          <i class="fab fa-pinterest-p"></i><p>&nbsp;Pinterest</p>
+        </a>
+  
+
+
+  </section>
+  
+  <a href="/blog/vulsrepo-v0-7-1/" class="image featured">
+    
+      <img src="/blog/vulsrepo-v0-7-1/cisa-detail.png" alt="">
     
   </a>
 
 
-  
-  <p><a href="https://github.com/ishiDACo/vulsrepo" target="_blank" rel="noopener noreferrer">VulsRepo <span class="fas fa-external-link-alt"></span></a>
- を v0.6.3 に更新しました。各種パネルをレスポンシブデザインに変更したので、スマホやタブレットで表示が見切れなくなりました。また、依存ライブラリを更新しています。</p>
+  <div class="content">
+    <p><a href="https://github.com/ishiDACo/vulsrepo" target="_blank" rel="noopener noreferrer">VulsRepo <span class="fas fa-external-link-alt"></span></a>
+ を v0.7.1 に更新しました。<a href="https://github.com/future-architect/vuls/releases/tag/v0.19.0" target="_blank" rel="noopener noreferrer">Vuls v0.19.0 <span class="fas fa-external-link-alt"></span></a>
+ への対応です。</p>
+<h2 id="更新内容">更新内容</h2>
+<h3 id="追加">追加</h3>
+<ul>
+<li><a href="https://github.com/ishiDACo/vulsrepo/issues/243" target="_blank" rel="noopener noreferrer">#243 <span class="fas fa-external-link-alt"></span></a>
+ <a href="https://github.com/future-architect/vuls/releases/tag/v0.19.0" target="_blank" rel="noopener noreferrer">Vuls v0.19.0 <span class="fas fa-external-link-alt"></span></a>
+ で取得できる CISA 情報を表示するようにしました。</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/2542762/146713494-63e98fb8-5563-4af9-993b-b1fae9efa35c.png" alt="cisa">
+<img src="https://user-images.githubusercontent.com/2542762/146713501-5cc27d3a-4ba9-4ecf-90ea-18ed779c9bb3.png" alt="cisa-detail"></p>
+<h3 id="変更">変更</h3>
+<ul>
+<li><a href="https://github.com/ishiDACo/vulsrepo/commit/1231d278b928cc0830c25f13e6238633d648f8f4" target="_blank" rel="noopener noreferrer">1231d27 <span class="fas fa-external-link-alt"></span></a>
+ ExecRestart を ExecReload に変更しました。</li>
+</ul>
+<h3 id="修正">修正</h3>
+<ul>
+<li><a href="https://github.com/ishiDACo/vulsrepo/issues/243" target="_blank" rel="noopener noreferrer">#243 <span class="fas fa-external-link-alt"></span></a>
+ <a href="https://github.com/future-architect/vuls/releases/tag/v0.19.0" target="_blank" rel="noopener noreferrer">Vuls v0.19.0 <span class="fas fa-external-link-alt"></span></a>
+ で取得できる JPCERT および USCERT 情報が表示されない問題を修正しました。</li>
+</ul>
+<h2 id="docker-イメージ">Docker イメージ</h2>
+<p><a href="https://hub.docker.com/r/ishidaco/vulsrepo" target="_blank" rel="noopener noreferrer">ishidaco/vulsrepo - Docker Hub <span class="fas fa-external-link-alt"></span></a>
+</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker pull ishidaco/vulsrepo
+</code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">docker pull ishidaco/vulsrepo:version-0.7.1
+</code></pre></div><h2 id="デモ">デモ</h2>
+<p><a href="/vulsrepo/">VulsRepo オンラインデモ</a>
+ を公開しています。</p>
+<ul>
+<li>Amazon Linux 2</li>
+<li>Ubuntu 18.04</li>
+<li>Raspbian 9.13</li>
+<li>Raspberry Pi OS 10</li>
+<li>Oracle Linux 7.9</li>
+<li>CentOS 8.2</li>
+<li>CentOS 8.2 で稼働している WordPress</li>
+<li>Debian 10</li>
+<li>Docker コンテナ上の Alpine Linux</li>
+<li>Docker コンテナ上の Ubuntu 14.04</li>
+<li>Rocky Linux 8.4</li>
+<li>Alma Linux 8.4</li>
+</ul>
+<p>に対する脆弱性スキャン結果のサンプルを確認できます。</p>
+<p><a href="https://github.com/ishiDACo/vulsrepo/releases/tag/v0.7.0" target="_blank" rel="noopener noreferrer">https://github.com/ishiDACo/vulsrepo/releases/tag/v0.7.0 <span class="fas fa-external-link-alt"></span></a>
+ に対応したものになります。</p>
+
+  </div>
   <footer>
-    <a href="/blog/vulsrepo-v0-6-3/" class="button big">続きを読む</a>
     <ul class="stats">
   
     
@@ -286,147 +384,14 @@
   </footer>
 </article>
 
-        
-          <article class="post">
-  <header>
-  <div class="title">
-    
-        <h2><a href="/blog/vulsrepo-v0-6-0/">VulsRepo v0.6.0 で GitHub Security Alerts に対応しました</a></h2>
-    
-    
-</div>
-  <div class="meta">
-    <time class="published" datetime="2021-02-22 10:00:09 &#43;0900 JST">
-      2021-02-22
-    </time>
-    <span class="author"></span>
-    
-      <p>1 分で読めます</p>
-    
-  </div>
-</header>
 
-  
-  <a href="/blog/vulsrepo-v0-6-0/" class="image featured">
-    
-      <img src="/blog/vulsrepo-v0-6-0/detail.png" alt="">
-    
-  </a>
-
-
-  
-  <p><a href="https://github.com/ishiDACo/vulsrepo" target="_blank" rel="noopener noreferrer">VulsRepo <span class="fas fa-external-link-alt"></span></a>
- を v0.6.0 に更新しました。GitHub Security Alerts に対応しました。また、細かい不具合を修正しています。</p>
-  <footer>
-    <a href="/blog/vulsrepo-v0-6-0/" class="button big">続きを読む</a>
-    <ul class="stats">
-  
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://monocosel.jp/categories/security">security</a></li>
-          
-        </ul>
-      </li>
-    
-  
-  
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://monocosel.jp/tags/vulsrepo">vulsrepo</a></li>
-          
-        </ul>
-      </li>
-    
-  
-</ul>
-
-  </footer>
-</article>
-
-        
-          <article class="post">
-  <header>
-  <div class="title">
-    
-        <h2><a href="/blog/vulsrepo-v0-5-1/">VulsRepo v0.5.1 で差分情報が表示できるようになりました</a></h2>
-    
-    
-</div>
-  <div class="meta">
-    <time class="published" datetime="2021-02-15 10:00:09 &#43;0900 JST">
-      2021-02-15
-    </time>
-    <span class="author"></span>
-    
-      <p>1 分で読めます</p>
-    
-  </div>
-</header>
-
-  
-  <a href="/blog/vulsrepo-v0-5-1/" class="image featured">
-    
-      <img src="/blog/vulsrepo-v0-5-1/diff-status.png" alt="">
-    
-  </a>
-
-
-  
-  <p><a href="https://github.com/ishiDACo/vulsrepo" target="_blank" rel="noopener noreferrer">VulsRepo <span class="fas fa-external-link-alt"></span></a>
- を v0.5.1 に更新しました。<a href="https://github.com/future-architect/vuls/releases/tag/v0.15.8" target="_blank" rel="noopener noreferrer">Vuls v0.15.8 <span class="fas fa-external-link-alt"></span></a>
- で追加された差分情報を表示できるようになりました。また、いくつかの不具合を修正しています。</p>
-  <footer>
-    <a href="/blog/vulsrepo-v0-5-1/" class="button big">続きを読む</a>
-    <ul class="stats">
-  
-    
-    
-      <li class="categories">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://monocosel.jp/categories/security">security</a></li>
-          
-        </ul>
-      </li>
-    
-  
-  
-    
-    
-      <li class="tags">
-        <ul>
-          
-            
-            <li><a class="article-category-link" href="https://monocosel.jp/tags/vulsrepo">vulsrepo</a></li>
-          
-        </ul>
-      </li>
-    
-  
-</ul>
-
-  </footer>
-</article>
-
-        
-        
 <div class="pagination">
   
-    <a href="/" class="button big previous"><i class="fas fa-angle-left"></i></a>
+    <a href="/blog/vulsrepo-v0-7-0/" class="button"><div class="previous"><div>VulsRepo v0.7.0 で Primary source と Patch の表示を追加しました</div></div></a>
   
-  
-    <a href="/page/3/" class="button big next"><i class="fas fa-angle-right"></i></a>
   
 </div>
+
 
       </main>
       <section id="site-sidebar">

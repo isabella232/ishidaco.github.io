@@ -6,7 +6,16 @@
     <description>Recent content in vulsrepo on モノコセル</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Mon, 13 Sep 2021 10:00:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/tags/vulsrepo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Dec 2021 10:00:09 +0900</lastBuildDate><atom:link href="https://monocosel.jp/tags/vulsrepo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VulsRepo v0.7.1 で CISA 情報の表示の追加および CERT 情報が表示されない問題修正</title>
+      <link>https://monocosel.jp/blog/vulsrepo-v0-7-1/</link>
+      <pubDate>Mon, 20 Dec 2021 10:00:09 +0900</pubDate>
+      
+      <guid>https://monocosel.jp/blog/vulsrepo-v0-7-1/</guid>
+      <description>VulsRepo を v0.7.1 に更新しました。Vuls v0.19.0 への対応です。 更新内容 追加 #243 Vuls v0.19.0 で取得できる CISA 情報を表示するようにしました。 変更 1231d27 ExecRestart を ExecReload に変更しました。 修正</description>
+    </item>
+    
     <item>
       <title>VulsRepo v0.7.0 で Primary source と Patch の表示を追加しました</title>
       <link>https://monocosel.jp/blog/vulsrepo-v0-7-0/</link>
